@@ -15,8 +15,13 @@ struct ContentView: View {
         let playerItem = AVPlayerItem(asset: asset)
         let player = AVPlayer(playerItem: playerItem)
 
-        VideoPlayer(player: player).ignoresSafeArea()
-            .onAppear { player.play() }
+        VideoPlayer(player: player)
+            .task {
+                Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { _ in
+                    player.play()
+                }
+                
+            }
     }
 }
 
