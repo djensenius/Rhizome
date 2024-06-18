@@ -132,6 +132,9 @@
 		63294B852C22052200EF4A90 /* RhizomeMacUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RhizomeMacUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		63BB895C2C2215B100A10C74 /* RhizomeTV.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RhizomeTV.entitlements; sourceTree = "<group>"; };
 		63BB895D2C2215CE00A10C74 /* RhizomeVision.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RhizomeVision.entitlements; sourceTree = "<group>"; };
+		63BB895E2C2218BE00A10C74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		63BB895F2C2218C700A10C74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		63BB89602C2218E800A10C74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -256,6 +259,7 @@
 		63294AD52C21EB1100EF4A90 /* Rhizome */ = {
 			isa = PBXGroup;
 			children = (
+				63BB895E2C2218BE00A10C74 /* Info.plist */,
 				63294AD62C21EB1100EF4A90 /* RhizomeApp.swift */,
 				63294AD82C21EB1100EF4A90 /* ContentView.swift */,
 				63294ADA2C21EB1200EF4A90 /* Assets.xcassets */,
@@ -293,6 +297,7 @@
 		63294B062C21EB3100EF4A90 /* RhizomeTV */ = {
 			isa = PBXGroup;
 			children = (
+				63BB895F2C2218C700A10C74 /* Info.plist */,
 				63BB895C2C2215B100A10C74 /* RhizomeTV.entitlements */,
 				63294B072C21EB3100EF4A90 /* RhizomeTVApp.swift */,
 				63294B092C21EB3100EF4A90 /* ContentView.swift */,
@@ -367,6 +372,7 @@
 		63294B662C22052100EF4A90 /* RhizomeMac */ = {
 			isa = PBXGroup;
 			children = (
+				63BB89602C2218E800A10C74 /* Info.plist */,
 				63294B672C22052100EF4A90 /* RhizomeMacApp.swift */,
 				63294B692C22052100EF4A90 /* ContentView.swift */,
 				63294B6B2C22052200EF4A90 /* Assets.xcassets */,
@@ -1033,7 +1039,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
+				INFOPLIST_FILE = Rhizome/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -1073,7 +1079,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
+				INFOPLIST_FILE = Rhizome/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -1202,8 +1208,8 @@
 				DEVELOPMENT_TEAM = 9JALHNGRBQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = RhizomeTV/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Rhizome;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1233,8 +1239,8 @@
 				DEVELOPMENT_TEAM = 9JALHNGRBQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = RhizomeTV/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Rhizome;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1351,7 +1357,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Rhizome;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1382,7 +1387,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Rhizome;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1459,8 +1463,8 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = RhizomeMac/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Rhizome;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1490,8 +1494,8 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = RhizomeMac/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Rhizome;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
