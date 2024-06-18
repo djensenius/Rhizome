@@ -34,6 +34,8 @@
 		63294B7A2C22052200EF4A90 /* RhizomeMacTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63294B792C22052200EF4A90 /* RhizomeMacTests.swift */; };
 		63294B842C22052200EF4A90 /* RhizomeMacUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63294B832C22052200EF4A90 /* RhizomeMacUITests.swift */; };
 		63294B862C22052200EF4A90 /* RhizomeMacUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63294B852C22052200EF4A90 /* RhizomeMacUITestsLaunchTests.swift */; };
+		635AAC0D2C22255F0003C041 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 635AAC0C2C22255F0003C041 /* AVKit.framework */; };
+		635AAC0F2C2225650003C041 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 635AAC0E2C2225650003C041 /* AVFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,6 +132,8 @@
 		63294B7F2C22052200EF4A90 /* RhizomeMacUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RhizomeMacUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		63294B832C22052200EF4A90 /* RhizomeMacUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RhizomeMacUITests.swift; sourceTree = "<group>"; };
 		63294B852C22052200EF4A90 /* RhizomeMacUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RhizomeMacUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		635AAC0C2C22255F0003C041 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
+		635AAC0E2C2225650003C041 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		63BB895C2C2215B100A10C74 /* RhizomeTV.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RhizomeTV.entitlements; sourceTree = "<group>"; };
 		63BB895D2C2215CE00A10C74 /* RhizomeVision.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RhizomeVision.entitlements; sourceTree = "<group>"; };
 		63BB895E2C2218BE00A10C74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -199,6 +203,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				635AAC0F2C2225650003C041 /* AVFoundation.framework in Frameworks */,
+				635AAC0D2C22255F0003C041 /* AVKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,6 +241,7 @@
 				63294B782C22052200EF4A90 /* RhizomeMacTests */,
 				63294B822C22052200EF4A90 /* RhizomeMacUITests */,
 				63294AD42C21EB1100EF4A90 /* Products */,
+				635AAC0B2C22255F0003C041 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -405,6 +412,15 @@
 				63294B852C22052200EF4A90 /* RhizomeMacUITestsLaunchTests.swift */,
 			);
 			path = RhizomeMacUITests;
+			sourceTree = "<group>";
+		};
+		635AAC0B2C22255F0003C041 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				635AAC0E2C2225650003C041 /* AVFoundation.framework */,
+				635AAC0C2C22255F0003C041 /* AVKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
