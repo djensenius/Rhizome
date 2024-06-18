@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "TVOS.png",
+      "idiom" : "tv"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

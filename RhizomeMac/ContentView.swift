@@ -1,6 +1,6 @@
 //
 //  ContentView.swift
-//  Rhizome
+//  RhizomeMac
 //
 //  Created by David Jensenius on 2024-06-18.
 //

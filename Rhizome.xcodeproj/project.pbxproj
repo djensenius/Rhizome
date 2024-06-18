@@ -14,6 +14,26 @@
 		63294AE92C21EB1200EF4A90 /* RhizomeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63294AE82C21EB1200EF4A90 /* RhizomeTests.swift */; };
 		63294AF32C21EB1200EF4A90 /* RhizomeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63294AF22C21EB1200EF4A90 /* RhizomeUITests.swift */; };
 		63294AF52C21EB1200EF4A90 /* RhizomeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63294AF42C21EB1200EF4A90 /* RhizomeUITestsLaunchTests.swift */; };
+		63294B082C21EB3100EF4A90 /* RhizomeTVApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63294B072C21EB3100EF4A90 /* RhizomeTVApp.swift */; };
+		63294B0A2C21EB3100EF4A90 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63294B092C21EB3100EF4A90 /* ContentView.swift */; };
+		63294B0C2C21EB3200EF4A90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63294B0B2C21EB3200EF4A90 /* Assets.xcassets */; };
+		63294B0F2C21EB3200EF4A90 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63294B0E2C21EB3200EF4A90 /* Preview Assets.xcassets */; };
+		63294B192C21EB3200EF4A90 /* RhizomeTVTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63294B182C21EB3200EF4A90 /* RhizomeTVTests.swift */; };
+		63294B232C21EB3200EF4A90 /* RhizomeTVUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63294B222C21EB3200EF4A90 /* RhizomeTVUITests.swift */; };
+		63294B252C21EB3200EF4A90 /* RhizomeTVUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63294B242C21EB3200EF4A90 /* RhizomeTVUITestsLaunchTests.swift */; };
+		63294B462C22044300EF4A90 /* RealityKitContent in Frameworks */ = {isa = PBXBuildFile; productRef = 63294B452C22044300EF4A90 /* RealityKitContent */; };
+		63294B482C22044300EF4A90 /* RhizomeVisionApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63294B472C22044300EF4A90 /* RhizomeVisionApp.swift */; };
+		63294B4A2C22044300EF4A90 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63294B492C22044300EF4A90 /* ContentView.swift */; };
+		63294B4C2C22044400EF4A90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63294B4B2C22044400EF4A90 /* Assets.xcassets */; };
+		63294B4F2C22044400EF4A90 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63294B4E2C22044400EF4A90 /* Preview Assets.xcassets */; };
+		63294B5A2C22044400EF4A90 /* RhizomeVisionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63294B592C22044400EF4A90 /* RhizomeVisionTests.swift */; };
+		63294B682C22052100EF4A90 /* RhizomeMacApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63294B672C22052100EF4A90 /* RhizomeMacApp.swift */; };
+		63294B6A2C22052100EF4A90 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63294B692C22052100EF4A90 /* ContentView.swift */; };
+		63294B6C2C22052200EF4A90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63294B6B2C22052200EF4A90 /* Assets.xcassets */; };
+		63294B6F2C22052200EF4A90 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63294B6E2C22052200EF4A90 /* Preview Assets.xcassets */; };
+		63294B7A2C22052200EF4A90 /* RhizomeMacTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63294B792C22052200EF4A90 /* RhizomeMacTests.swift */; };
+		63294B842C22052200EF4A90 /* RhizomeMacUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63294B832C22052200EF4A90 /* RhizomeMacUITests.swift */; };
+		63294B862C22052200EF4A90 /* RhizomeMacUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63294B852C22052200EF4A90 /* RhizomeMacUITestsLaunchTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +51,41 @@
 			remoteGlobalIDString = 63294AD22C21EB1100EF4A90;
 			remoteInfo = Rhizome;
 		};
+		63294B152C21EB3200EF4A90 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 63294ACB2C21EB1100EF4A90 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 63294B042C21EB3100EF4A90;
+			remoteInfo = RhizomeTV;
+		};
+		63294B1F2C21EB3200EF4A90 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 63294ACB2C21EB1100EF4A90 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 63294B042C21EB3100EF4A90;
+			remoteInfo = RhizomeTV;
+		};
+		63294B562C22044400EF4A90 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 63294ACB2C21EB1100EF4A90 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 63294B402C22044300EF4A90;
+			remoteInfo = RhizomeVision;
+		};
+		63294B762C22052200EF4A90 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 63294ACB2C21EB1100EF4A90 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 63294B642C22052100EF4A90;
+			remoteInfo = RhizomeMac;
+		};
+		63294B802C22052200EF4A90 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 63294ACB2C21EB1100EF4A90 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 63294B642C22052100EF4A90;
+			remoteInfo = RhizomeMac;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +100,36 @@
 		63294AEE2C21EB1200EF4A90 /* RhizomeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RhizomeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		63294AF22C21EB1200EF4A90 /* RhizomeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RhizomeUITests.swift; sourceTree = "<group>"; };
 		63294AF42C21EB1200EF4A90 /* RhizomeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RhizomeUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		63294B052C21EB3100EF4A90 /* RhizomeTV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RhizomeTV.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		63294B072C21EB3100EF4A90 /* RhizomeTVApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RhizomeTVApp.swift; sourceTree = "<group>"; };
+		63294B092C21EB3100EF4A90 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		63294B0B2C21EB3200EF4A90 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		63294B0E2C21EB3200EF4A90 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		63294B142C21EB3200EF4A90 /* RhizomeTVTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RhizomeTVTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		63294B182C21EB3200EF4A90 /* RhizomeTVTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RhizomeTVTests.swift; sourceTree = "<group>"; };
+		63294B1E2C21EB3200EF4A90 /* RhizomeTVUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RhizomeTVUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		63294B222C21EB3200EF4A90 /* RhizomeTVUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RhizomeTVUITests.swift; sourceTree = "<group>"; };
+		63294B242C21EB3200EF4A90 /* RhizomeTVUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RhizomeTVUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		63294B412C22044300EF4A90 /* RhizomeVision.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RhizomeVision.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		63294B442C22044300EF4A90 /* RealityKitContent */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RealityKitContent; sourceTree = "<group>"; };
+		63294B472C22044300EF4A90 /* RhizomeVisionApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RhizomeVisionApp.swift; sourceTree = "<group>"; };
+		63294B492C22044300EF4A90 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		63294B4B2C22044400EF4A90 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		63294B4E2C22044400EF4A90 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		63294B502C22044400EF4A90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		63294B552C22044400EF4A90 /* RhizomeVisionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RhizomeVisionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		63294B592C22044400EF4A90 /* RhizomeVisionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RhizomeVisionTests.swift; sourceTree = "<group>"; };
+		63294B652C22052100EF4A90 /* RhizomeMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RhizomeMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		63294B672C22052100EF4A90 /* RhizomeMacApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RhizomeMacApp.swift; sourceTree = "<group>"; };
+		63294B692C22052100EF4A90 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		63294B6B2C22052200EF4A90 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		63294B6E2C22052200EF4A90 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		63294B702C22052200EF4A90 /* RhizomeMac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RhizomeMac.entitlements; sourceTree = "<group>"; };
+		63294B752C22052200EF4A90 /* RhizomeMacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RhizomeMacTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		63294B792C22052200EF4A90 /* RhizomeMacTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RhizomeMacTests.swift; sourceTree = "<group>"; };
+		63294B7F2C22052200EF4A90 /* RhizomeMacUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RhizomeMacUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		63294B832C22052200EF4A90 /* RhizomeMacUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RhizomeMacUITests.swift; sourceTree = "<group>"; };
+		63294B852C22052200EF4A90 /* RhizomeMacUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RhizomeMacUITestsLaunchTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +154,63 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		63294B022C21EB3100EF4A90 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63294B112C21EB3200EF4A90 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63294B1B2C21EB3200EF4A90 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63294B3E2C22044300EF4A90 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63294B462C22044300EF4A90 /* RealityKitContent in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63294B522C22044400EF4A90 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63294B622C22052100EF4A90 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63294B722C22052200EF4A90 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63294B7C2C22052200EF4A90 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -78,6 +220,15 @@
 				63294AD52C21EB1100EF4A90 /* Rhizome */,
 				63294AE72C21EB1200EF4A90 /* RhizomeTests */,
 				63294AF12C21EB1200EF4A90 /* RhizomeUITests */,
+				63294B062C21EB3100EF4A90 /* RhizomeTV */,
+				63294B172C21EB3200EF4A90 /* RhizomeTVTests */,
+				63294B212C21EB3200EF4A90 /* RhizomeTVUITests */,
+				63294B422C22044300EF4A90 /* RhizomeVision */,
+				63294B432C22044300EF4A90 /* Packages */,
+				63294B582C22044400EF4A90 /* RhizomeVisionTests */,
+				63294B662C22052100EF4A90 /* RhizomeMac */,
+				63294B782C22052200EF4A90 /* RhizomeMacTests */,
+				63294B822C22052200EF4A90 /* RhizomeMacUITests */,
 				63294AD42C21EB1100EF4A90 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -88,6 +239,14 @@
 				63294AD32C21EB1100EF4A90 /* Rhizome.app */,
 				63294AE42C21EB1200EF4A90 /* RhizomeTests.xctest */,
 				63294AEE2C21EB1200EF4A90 /* RhizomeUITests.xctest */,
+				63294B052C21EB3100EF4A90 /* RhizomeTV.app */,
+				63294B142C21EB3200EF4A90 /* RhizomeTVTests.xctest */,
+				63294B1E2C21EB3200EF4A90 /* RhizomeTVUITests.xctest */,
+				63294B412C22044300EF4A90 /* RhizomeVision.app */,
+				63294B552C22044400EF4A90 /* RhizomeVisionTests.xctest */,
+				63294B652C22052100EF4A90 /* RhizomeMac.app */,
+				63294B752C22052200EF4A90 /* RhizomeMacTests.xctest */,
+				63294B7F2C22052200EF4A90 /* RhizomeMacUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -127,6 +286,115 @@
 				63294AF42C21EB1200EF4A90 /* RhizomeUITestsLaunchTests.swift */,
 			);
 			path = RhizomeUITests;
+			sourceTree = "<group>";
+		};
+		63294B062C21EB3100EF4A90 /* RhizomeTV */ = {
+			isa = PBXGroup;
+			children = (
+				63294B072C21EB3100EF4A90 /* RhizomeTVApp.swift */,
+				63294B092C21EB3100EF4A90 /* ContentView.swift */,
+				63294B0B2C21EB3200EF4A90 /* Assets.xcassets */,
+				63294B0D2C21EB3200EF4A90 /* Preview Content */,
+			);
+			path = RhizomeTV;
+			sourceTree = "<group>";
+		};
+		63294B0D2C21EB3200EF4A90 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				63294B0E2C21EB3200EF4A90 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		63294B172C21EB3200EF4A90 /* RhizomeTVTests */ = {
+			isa = PBXGroup;
+			children = (
+				63294B182C21EB3200EF4A90 /* RhizomeTVTests.swift */,
+			);
+			path = RhizomeTVTests;
+			sourceTree = "<group>";
+		};
+		63294B212C21EB3200EF4A90 /* RhizomeTVUITests */ = {
+			isa = PBXGroup;
+			children = (
+				63294B222C21EB3200EF4A90 /* RhizomeTVUITests.swift */,
+				63294B242C21EB3200EF4A90 /* RhizomeTVUITestsLaunchTests.swift */,
+			);
+			path = RhizomeTVUITests;
+			sourceTree = "<group>";
+		};
+		63294B422C22044300EF4A90 /* RhizomeVision */ = {
+			isa = PBXGroup;
+			children = (
+				63294B472C22044300EF4A90 /* RhizomeVisionApp.swift */,
+				63294B492C22044300EF4A90 /* ContentView.swift */,
+				63294B4B2C22044400EF4A90 /* Assets.xcassets */,
+				63294B502C22044400EF4A90 /* Info.plist */,
+				63294B4D2C22044400EF4A90 /* Preview Content */,
+			);
+			path = RhizomeVision;
+			sourceTree = "<group>";
+		};
+		63294B432C22044300EF4A90 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				63294B442C22044300EF4A90 /* RealityKitContent */,
+			);
+			path = Packages;
+			sourceTree = "<group>";
+		};
+		63294B4D2C22044400EF4A90 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				63294B4E2C22044400EF4A90 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		63294B582C22044400EF4A90 /* RhizomeVisionTests */ = {
+			isa = PBXGroup;
+			children = (
+				63294B592C22044400EF4A90 /* RhizomeVisionTests.swift */,
+			);
+			path = RhizomeVisionTests;
+			sourceTree = "<group>";
+		};
+		63294B662C22052100EF4A90 /* RhizomeMac */ = {
+			isa = PBXGroup;
+			children = (
+				63294B672C22052100EF4A90 /* RhizomeMacApp.swift */,
+				63294B692C22052100EF4A90 /* ContentView.swift */,
+				63294B6B2C22052200EF4A90 /* Assets.xcassets */,
+				63294B702C22052200EF4A90 /* RhizomeMac.entitlements */,
+				63294B6D2C22052200EF4A90 /* Preview Content */,
+			);
+			path = RhizomeMac;
+			sourceTree = "<group>";
+		};
+		63294B6D2C22052200EF4A90 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				63294B6E2C22052200EF4A90 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		63294B782C22052200EF4A90 /* RhizomeMacTests */ = {
+			isa = PBXGroup;
+			children = (
+				63294B792C22052200EF4A90 /* RhizomeMacTests.swift */,
+			);
+			path = RhizomeMacTests;
+			sourceTree = "<group>";
+		};
+		63294B822C22052200EF4A90 /* RhizomeMacUITests */ = {
+			isa = PBXGroup;
+			children = (
+				63294B832C22052200EF4A90 /* RhizomeMacUITests.swift */,
+				63294B852C22052200EF4A90 /* RhizomeMacUITestsLaunchTests.swift */,
+			);
+			path = RhizomeMacUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -185,6 +453,150 @@
 			productReference = 63294AEE2C21EB1200EF4A90 /* RhizomeUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		63294B042C21EB3100EF4A90 /* RhizomeTV */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 63294B262C21EB3200EF4A90 /* Build configuration list for PBXNativeTarget "RhizomeTV" */;
+			buildPhases = (
+				63294B012C21EB3100EF4A90 /* Sources */,
+				63294B022C21EB3100EF4A90 /* Frameworks */,
+				63294B032C21EB3100EF4A90 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RhizomeTV;
+			productName = RhizomeTV;
+			productReference = 63294B052C21EB3100EF4A90 /* RhizomeTV.app */;
+			productType = "com.apple.product-type.application";
+		};
+		63294B132C21EB3200EF4A90 /* RhizomeTVTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 63294B292C21EB3200EF4A90 /* Build configuration list for PBXNativeTarget "RhizomeTVTests" */;
+			buildPhases = (
+				63294B102C21EB3200EF4A90 /* Sources */,
+				63294B112C21EB3200EF4A90 /* Frameworks */,
+				63294B122C21EB3200EF4A90 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				63294B162C21EB3200EF4A90 /* PBXTargetDependency */,
+			);
+			name = RhizomeTVTests;
+			productName = RhizomeTVTests;
+			productReference = 63294B142C21EB3200EF4A90 /* RhizomeTVTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		63294B1D2C21EB3200EF4A90 /* RhizomeTVUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 63294B2C2C21EB3200EF4A90 /* Build configuration list for PBXNativeTarget "RhizomeTVUITests" */;
+			buildPhases = (
+				63294B1A2C21EB3200EF4A90 /* Sources */,
+				63294B1B2C21EB3200EF4A90 /* Frameworks */,
+				63294B1C2C21EB3200EF4A90 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				63294B202C21EB3200EF4A90 /* PBXTargetDependency */,
+			);
+			name = RhizomeTVUITests;
+			productName = RhizomeTVUITests;
+			productReference = 63294B1E2C21EB3200EF4A90 /* RhizomeTVUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		63294B402C22044300EF4A90 /* RhizomeVision */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 63294B5B2C22044400EF4A90 /* Build configuration list for PBXNativeTarget "RhizomeVision" */;
+			buildPhases = (
+				63294B3D2C22044300EF4A90 /* Sources */,
+				63294B3E2C22044300EF4A90 /* Frameworks */,
+				63294B3F2C22044300EF4A90 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RhizomeVision;
+			packageProductDependencies = (
+				63294B452C22044300EF4A90 /* RealityKitContent */,
+			);
+			productName = RhizomeVision;
+			productReference = 63294B412C22044300EF4A90 /* RhizomeVision.app */;
+			productType = "com.apple.product-type.application";
+		};
+		63294B542C22044400EF4A90 /* RhizomeVisionTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 63294B5E2C22044400EF4A90 /* Build configuration list for PBXNativeTarget "RhizomeVisionTests" */;
+			buildPhases = (
+				63294B512C22044400EF4A90 /* Sources */,
+				63294B522C22044400EF4A90 /* Frameworks */,
+				63294B532C22044400EF4A90 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				63294B572C22044400EF4A90 /* PBXTargetDependency */,
+			);
+			name = RhizomeVisionTests;
+			productName = RhizomeVisionTests;
+			productReference = 63294B552C22044400EF4A90 /* RhizomeVisionTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		63294B642C22052100EF4A90 /* RhizomeMac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 63294B872C22052200EF4A90 /* Build configuration list for PBXNativeTarget "RhizomeMac" */;
+			buildPhases = (
+				63294B612C22052100EF4A90 /* Sources */,
+				63294B622C22052100EF4A90 /* Frameworks */,
+				63294B632C22052100EF4A90 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RhizomeMac;
+			productName = RhizomeMac;
+			productReference = 63294B652C22052100EF4A90 /* RhizomeMac.app */;
+			productType = "com.apple.product-type.application";
+		};
+		63294B742C22052200EF4A90 /* RhizomeMacTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 63294B8A2C22052200EF4A90 /* Build configuration list for PBXNativeTarget "RhizomeMacTests" */;
+			buildPhases = (
+				63294B712C22052200EF4A90 /* Sources */,
+				63294B722C22052200EF4A90 /* Frameworks */,
+				63294B732C22052200EF4A90 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				63294B772C22052200EF4A90 /* PBXTargetDependency */,
+			);
+			name = RhizomeMacTests;
+			productName = RhizomeMacTests;
+			productReference = 63294B752C22052200EF4A90 /* RhizomeMacTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		63294B7E2C22052200EF4A90 /* RhizomeMacUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 63294B8D2C22052200EF4A90 /* Build configuration list for PBXNativeTarget "RhizomeMacUITests" */;
+			buildPhases = (
+				63294B7B2C22052200EF4A90 /* Sources */,
+				63294B7C2C22052200EF4A90 /* Frameworks */,
+				63294B7D2C22052200EF4A90 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				63294B812C22052200EF4A90 /* PBXTargetDependency */,
+			);
+			name = RhizomeMacUITests;
+			productName = RhizomeMacUITests;
+			productReference = 63294B7F2C22052200EF4A90 /* RhizomeMacUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -206,6 +618,35 @@
 						CreatedOnToolsVersion = 15.4;
 						TestTargetID = 63294AD22C21EB1100EF4A90;
 					};
+					63294B042C21EB3100EF4A90 = {
+						CreatedOnToolsVersion = 15.4;
+					};
+					63294B132C21EB3200EF4A90 = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = 63294B042C21EB3100EF4A90;
+					};
+					63294B1D2C21EB3200EF4A90 = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = 63294B042C21EB3100EF4A90;
+					};
+					63294B402C22044300EF4A90 = {
+						CreatedOnToolsVersion = 15.4;
+					};
+					63294B542C22044400EF4A90 = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = 63294B402C22044300EF4A90;
+					};
+					63294B642C22052100EF4A90 = {
+						CreatedOnToolsVersion = 15.4;
+					};
+					63294B742C22052200EF4A90 = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = 63294B642C22052100EF4A90;
+					};
+					63294B7E2C22052200EF4A90 = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = 63294B642C22052100EF4A90;
+					};
 				};
 			};
 			buildConfigurationList = 63294ACE2C21EB1100EF4A90 /* Build configuration list for PBXProject "Rhizome" */;
@@ -224,6 +665,14 @@
 				63294AD22C21EB1100EF4A90 /* Rhizome */,
 				63294AE32C21EB1200EF4A90 /* RhizomeTests */,
 				63294AED2C21EB1200EF4A90 /* RhizomeUITests */,
+				63294B042C21EB3100EF4A90 /* RhizomeTV */,
+				63294B132C21EB3200EF4A90 /* RhizomeTVTests */,
+				63294B1D2C21EB3200EF4A90 /* RhizomeTVUITests */,
+				63294B402C22044300EF4A90 /* RhizomeVision */,
+				63294B542C22044400EF4A90 /* RhizomeVisionTests */,
+				63294B642C22052100EF4A90 /* RhizomeMac */,
+				63294B742C22052200EF4A90 /* RhizomeMacTests */,
+				63294B7E2C22052200EF4A90 /* RhizomeMacUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -246,6 +695,68 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		63294AEC2C21EB1200EF4A90 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63294B032C21EB3100EF4A90 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63294B0F2C21EB3200EF4A90 /* Preview Assets.xcassets in Resources */,
+				63294B0C2C21EB3200EF4A90 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63294B122C21EB3200EF4A90 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63294B1C2C21EB3200EF4A90 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63294B3F2C22044300EF4A90 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63294B4F2C22044400EF4A90 /* Preview Assets.xcassets in Resources */,
+				63294B4C2C22044400EF4A90 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63294B532C22044400EF4A90 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63294B632C22052100EF4A90 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63294B6F2C22052200EF4A90 /* Preview Assets.xcassets in Resources */,
+				63294B6C2C22052200EF4A90 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63294B732C22052200EF4A90 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63294B7D2C22052200EF4A90 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -281,6 +792,75 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		63294B012C21EB3100EF4A90 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63294B0A2C21EB3100EF4A90 /* ContentView.swift in Sources */,
+				63294B082C21EB3100EF4A90 /* RhizomeTVApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63294B102C21EB3200EF4A90 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63294B192C21EB3200EF4A90 /* RhizomeTVTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63294B1A2C21EB3200EF4A90 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63294B232C21EB3200EF4A90 /* RhizomeTVUITests.swift in Sources */,
+				63294B252C21EB3200EF4A90 /* RhizomeTVUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63294B3D2C22044300EF4A90 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63294B4A2C22044300EF4A90 /* ContentView.swift in Sources */,
+				63294B482C22044300EF4A90 /* RhizomeVisionApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63294B512C22044400EF4A90 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63294B5A2C22044400EF4A90 /* RhizomeVisionTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63294B612C22052100EF4A90 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63294B6A2C22052100EF4A90 /* ContentView.swift in Sources */,
+				63294B682C22052100EF4A90 /* RhizomeMacApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63294B712C22052200EF4A90 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63294B7A2C22052200EF4A90 /* RhizomeMacTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63294B7B2C22052200EF4A90 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63294B842C22052200EF4A90 /* RhizomeMacUITests.swift in Sources */,
+				63294B862C22052200EF4A90 /* RhizomeMacUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -293,6 +873,31 @@
 			isa = PBXTargetDependency;
 			target = 63294AD22C21EB1100EF4A90 /* Rhizome */;
 			targetProxy = 63294AEF2C21EB1200EF4A90 /* PBXContainerItemProxy */;
+		};
+		63294B162C21EB3200EF4A90 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 63294B042C21EB3100EF4A90 /* RhizomeTV */;
+			targetProxy = 63294B152C21EB3200EF4A90 /* PBXContainerItemProxy */;
+		};
+		63294B202C21EB3200EF4A90 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 63294B042C21EB3100EF4A90 /* RhizomeTV */;
+			targetProxy = 63294B1F2C21EB3200EF4A90 /* PBXContainerItemProxy */;
+		};
+		63294B572C22044400EF4A90 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 63294B402C22044300EF4A90 /* RhizomeVision */;
+			targetProxy = 63294B562C22044400EF4A90 /* PBXContainerItemProxy */;
+		};
+		63294B772C22052200EF4A90 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 63294B642C22052100EF4A90 /* RhizomeMac */;
+			targetProxy = 63294B762C22052200EF4A90 /* PBXContainerItemProxy */;
+		};
+		63294B812C22052200EF4A90 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 63294B642C22052100EF4A90 /* RhizomeMac */;
+			targetProxy = 63294B802C22052200EF4A90 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -577,6 +1182,391 @@
 			};
 			name = Release;
 		};
+		63294B272C21EB3200EF4A90 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"RhizomeTV/Preview Content\"";
+				DEVELOPMENT_TEAM = 9JALHNGRBQ;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Rhizome;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.RhizomeTV;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 17.5;
+			};
+			name = Debug;
+		};
+		63294B282C21EB3200EF4A90 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"RhizomeTV/Preview Content\"";
+				DEVELOPMENT_TEAM = 9JALHNGRBQ;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Rhizome;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.RhizomeTV;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 17.5;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		63294B2A2C21EB3200EF4A90 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9JALHNGRBQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.RhizomeTVTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RhizomeTV.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RhizomeTV";
+				TVOS_DEPLOYMENT_TARGET = 17.5;
+			};
+			name = Debug;
+		};
+		63294B2B2C21EB3200EF4A90 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9JALHNGRBQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.RhizomeTVTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RhizomeTV.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RhizomeTV";
+				TVOS_DEPLOYMENT_TARGET = 17.5;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		63294B2D2C21EB3200EF4A90 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9JALHNGRBQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.RhizomeTVUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TEST_TARGET_NAME = RhizomeTV;
+				TVOS_DEPLOYMENT_TARGET = 17.5;
+			};
+			name = Debug;
+		};
+		63294B2E2C21EB3200EF4A90 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9JALHNGRBQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.RhizomeTVUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TEST_TARGET_NAME = RhizomeTV;
+				TVOS_DEPLOYMENT_TARGET = 17.5;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		63294B5C2C22044400EF4A90 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"RhizomeVision/Preview Content\"";
+				DEVELOPMENT_TEAM = 9JALHNGRBQ;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Rhizome;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.RhizomeVision;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = xros;
+				SUPPORTED_PLATFORMS = "xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				XROS_DEPLOYMENT_TARGET = 1.2;
+			};
+			name = Debug;
+		};
+		63294B5D2C22044400EF4A90 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"RhizomeVision/Preview Content\"";
+				DEVELOPMENT_TEAM = 9JALHNGRBQ;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Rhizome;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.RhizomeVision;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = xros;
+				SUPPORTED_PLATFORMS = "xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				VALIDATE_PRODUCT = YES;
+				XROS_DEPLOYMENT_TARGET = 1.2;
+			};
+			name = Release;
+		};
+		63294B5F2C22044400EF4A90 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9JALHNGRBQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.RhizomeVisionTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = xros;
+				SUPPORTED_PLATFORMS = "xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RhizomeVision.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RhizomeVision";
+				XROS_DEPLOYMENT_TARGET = 1.2;
+			};
+			name = Debug;
+		};
+		63294B602C22044400EF4A90 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9JALHNGRBQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.RhizomeVisionTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = xros;
+				SUPPORTED_PLATFORMS = "xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RhizomeVision.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RhizomeVision";
+				VALIDATE_PRODUCT = YES;
+				XROS_DEPLOYMENT_TARGET = 1.2;
+			};
+			name = Release;
+		};
+		63294B882C22052200EF4A90 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = RhizomeMac/RhizomeMac.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"RhizomeMac/Preview Content\"";
+				DEVELOPMENT_TEAM = 9JALHNGRBQ;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Rhizome;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.RhizomeMac;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		63294B892C22052200EF4A90 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = RhizomeMac/RhizomeMac.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"RhizomeMac/Preview Content\"";
+				DEVELOPMENT_TEAM = 9JALHNGRBQ;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Rhizome;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.RhizomeMac;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		63294B8B2C22052200EF4A90 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9JALHNGRBQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.RhizomeMacTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RhizomeMac.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RhizomeMac";
+			};
+			name = Debug;
+		};
+		63294B8C2C22052200EF4A90 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9JALHNGRBQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.RhizomeMacTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RhizomeMac.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RhizomeMac";
+			};
+			name = Release;
+		};
+		63294B8E2C22052200EF4A90 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9JALHNGRBQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.RhizomeMacUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = RhizomeMac;
+			};
+			name = Debug;
+		};
+		63294B8F2C22052200EF4A90 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9JALHNGRBQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.RhizomeMacUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = RhizomeMac;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -616,7 +1606,86 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		63294B262C21EB3200EF4A90 /* Build configuration list for PBXNativeTarget "RhizomeTV" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				63294B272C21EB3200EF4A90 /* Debug */,
+				63294B282C21EB3200EF4A90 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		63294B292C21EB3200EF4A90 /* Build configuration list for PBXNativeTarget "RhizomeTVTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				63294B2A2C21EB3200EF4A90 /* Debug */,
+				63294B2B2C21EB3200EF4A90 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		63294B2C2C21EB3200EF4A90 /* Build configuration list for PBXNativeTarget "RhizomeTVUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				63294B2D2C21EB3200EF4A90 /* Debug */,
+				63294B2E2C21EB3200EF4A90 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		63294B5B2C22044400EF4A90 /* Build configuration list for PBXNativeTarget "RhizomeVision" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				63294B5C2C22044400EF4A90 /* Debug */,
+				63294B5D2C22044400EF4A90 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		63294B5E2C22044400EF4A90 /* Build configuration list for PBXNativeTarget "RhizomeVisionTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				63294B5F2C22044400EF4A90 /* Debug */,
+				63294B602C22044400EF4A90 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		63294B872C22052200EF4A90 /* Build configuration list for PBXNativeTarget "RhizomeMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				63294B882C22052200EF4A90 /* Debug */,
+				63294B892C22052200EF4A90 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		63294B8A2C22052200EF4A90 /* Build configuration list for PBXNativeTarget "RhizomeMacTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				63294B8B2C22052200EF4A90 /* Debug */,
+				63294B8C2C22052200EF4A90 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		63294B8D2C22052200EF4A90 /* Build configuration list for PBXNativeTarget "RhizomeMacUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				63294B8E2C22052200EF4A90 /* Debug */,
+				63294B8F2C22052200EF4A90 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		63294B452C22044300EF4A90 /* RealityKitContent */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = RealityKitContent;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 63294ACB2C21EB1100EF4A90 /* Project object */;
 }

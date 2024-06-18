@@ -1,12 +1,14 @@
 //
 //  ContentView.swift
-//  Rhizome
+//  RhizomeVision
 //
 //  Created by David Jensenius on 2024-06-18.
 //
 
 import SwiftUI
 import AVKit
+import RealityKit
+import RealityKitContent
 
 struct ContentView: View {
     var body: some View {
@@ -20,6 +22,6 @@ struct ContentView: View {
     }
 }
 
-#Preview {
+#Preview(windowStyle: .automatic) {
     ContentView()
 }
