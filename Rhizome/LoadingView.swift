@@ -56,7 +56,7 @@ struct LoadingView: View {
                 }
             }
         } else {
-            Text("Loading")
+            Image(systemName: "dog.circle")
         }
     }
 }
