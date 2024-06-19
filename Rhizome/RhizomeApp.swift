@@ -23,11 +23,11 @@ struct RhizomeApp: App {
                                 cameraURL = configResponse?.cameraURL ?? ""
                             }
                         }
-                        
+
                         if (object.userInfo?["updateKeychain"]) != nil {
                             whereWeAre.setPassword(password: object.userInfo!["updateKeychain"] as? String ?? "")
                         }
-                        
+
                         if ((object.userInfo?["keysFailed"]) != nil) == true {
                             whereWeAre.deleteKeyChainPasword()
                         }

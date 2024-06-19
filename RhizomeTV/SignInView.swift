@@ -16,7 +16,7 @@ struct SignInView: View {
     /// A binding that stores an authenticated user.
     var user: Binding<String?>
     var needLoginView: Bool
-    
+
     private var wantsManualPasswordAuthentication: Binding<Bool> {
         Binding(
             get: { controller.state.wantsManualPasswordAuthentication },
@@ -30,7 +30,7 @@ struct SignInView: View {
             set: { _ in controller.state.reset() }
         )
     }
-    
+
     var body: some View {
         if needLoginView && !loggedIn {
             SignInContentView()

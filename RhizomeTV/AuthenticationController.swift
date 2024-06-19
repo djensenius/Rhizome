@@ -12,12 +12,11 @@ import os.log
 final class AuthenticationController: NSObject, ASAuthorizationControllerDelegate, ObservableObject {
 
     var viewModel: LoginViewModel = LoginViewModel()
-    
+
     // MARK: - Properties
 
     /// The state of the authentication controller.
     @Published var state = AuthenticationState.ready
-    
 
     // MARK: - Public
 
@@ -25,12 +24,12 @@ final class AuthenticationController: NSObject, ASAuthorizationControllerDelegat
     func start() {
         state = .authenticating
 
-        let requests = [ASAuthorizationAppleIDProvider().createRequest(), ASAuthorizationPasswordProvider().createRequest()]
+        let requests = [ASAuthorizationPasswordProvider().createRequest()]
 
         let controller = ASAuthorizationController(authorizationRequests: requests)
         controller.delegate = self
         controller.customAuthorizationMethods = [.other]
-                
+
         print("Going to perform requests")
         controller.performRequests()
     }
@@ -41,7 +40,7 @@ final class AuthenticationController: NSObject, ASAuthorizationControllerDelegat
         // should exchange the email and password values with an authentication token
         // that can be stored in the keychain and used for future communication with
         // your back end services.
-        
+
         let user = "loggedIn"
         viewModel.password = password
         viewModel.login()
@@ -50,7 +49,10 @@ final class AuthenticationController: NSObject, ASAuthorizationControllerDelegat
 
     // MARK: - ASAuthorizationControllerDelegate
 
-    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+    func authorizationController(
+        controller: ASAuthorizationController,
+        didCompleteWithAuthorization authorization: ASAuthorization
+    ) {
         print("Completed with authorization: \(authorization)")
 
         if let credential = authorization.credential as? ASPasswordCredential {
@@ -59,7 +61,10 @@ final class AuthenticationController: NSObject, ASAuthorizationControllerDelegat
         }
     }
 
-    func authorizationController(_ controller: ASAuthorizationController, didCompleteWithCustomMethod method: ASAuthorizationCustomMethod) {
+    func authorizationController(
+        _ controller: ASAuthorizationController,
+        didCompleteWithCustomMethod method: ASAuthorizationCustomMethod
+    ) {
         print("Completed with custom method: \(method.rawValue)")
 
         if method == .other {
@@ -153,8 +158,8 @@ enum AuthenticationError: LocalizedError, Identifiable {
 
     private var undelying: Error {
         switch self {
-            case .cancelled: return ASAuthorizationError(.canceled)
-            case let .unknown(error): return error
+        case .cancelled: return ASAuthorizationError(.canceled)
+        case let .unknown(error): return error
         }
     }
 
@@ -170,15 +175,15 @@ enum AuthenticationError: LocalizedError, Identifiable {
     /// A value that indicates whether this error represents a user cancellation.
     var isCancelledError: Bool {
         switch self {
-            case .cancelled: return true
-            default: return false
+        case .cancelled: return true
+        default: return false
         }
     }
 
     init(_ error: Error) {
         switch error {
-            case ASAuthorizationError.canceled: self = .cancelled
-            default: self = .unknown(error)
+        case ASAuthorizationError.canceled: self = .cancelled
+        default: self = .unknown(error)
         }
     }
 }

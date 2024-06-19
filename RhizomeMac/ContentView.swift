@@ -12,7 +12,6 @@ struct ContentView: View {
     var cameraURL: String
     var body: some View {
         let asset = AVAsset(url: URL(string: cameraURL)!)
-        
         let playerItem = AVPlayerItem(asset: asset)
         let player = AVPlayer(playerItem: playerItem)
 
@@ -21,7 +20,6 @@ struct ContentView: View {
                 Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { _ in
                     player.play()
                 }
-                
             }
     }
 }

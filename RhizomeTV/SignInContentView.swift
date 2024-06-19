@@ -31,4 +31,3 @@ struct SignInContentView_Previews: PreviewProvider {
         SignInContentView().environmentObject(AuthenticationController())
     }
 }
-
