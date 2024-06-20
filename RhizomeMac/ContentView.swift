@@ -9,9 +9,9 @@ import SwiftUI
 import AVKit
 
 struct ContentView: View {
+    var cameraURL: String
     var body: some View {
-        let asset = AVAsset(url: URL(string: "https://stream-uc2-delta.dropcam.com/nexus_aac/94cabc14ffc2409f86662a9f7bd9ca5a/playlist.m3u8?public=EDvH1b9kI6")!)
-        
+        let asset = AVAsset(url: URL(string: cameraURL)!)
         let playerItem = AVPlayerItem(asset: asset)
         let player = AVPlayer(playerItem: playerItem)
 
@@ -20,11 +20,10 @@ struct ContentView: View {
                 Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { _ in
                     player.play()
                 }
-                
             }
     }
 }
 
 #Preview {
-    ContentView()
+    ContentView(cameraURL: "")
 }

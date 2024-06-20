@@ -13,14 +13,12 @@
 		63294ADF2C21EB1200EF4A90 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63294ADE2C21EB1200EF4A90 /* Preview Assets.xcassets */; };
 		63294AE92C21EB1200EF4A90 /* RhizomeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63294AE82C21EB1200EF4A90 /* RhizomeTests.swift */; };
 		63294AF32C21EB1200EF4A90 /* RhizomeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63294AF22C21EB1200EF4A90 /* RhizomeUITests.swift */; };
-		63294AF52C21EB1200EF4A90 /* RhizomeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63294AF42C21EB1200EF4A90 /* RhizomeUITestsLaunchTests.swift */; };
 		63294B082C21EB3100EF4A90 /* RhizomeTVApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63294B072C21EB3100EF4A90 /* RhizomeTVApp.swift */; };
 		63294B0A2C21EB3100EF4A90 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63294B092C21EB3100EF4A90 /* ContentView.swift */; };
 		63294B0C2C21EB3200EF4A90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63294B0B2C21EB3200EF4A90 /* Assets.xcassets */; };
 		63294B0F2C21EB3200EF4A90 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63294B0E2C21EB3200EF4A90 /* Preview Assets.xcassets */; };
 		63294B192C21EB3200EF4A90 /* RhizomeTVTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63294B182C21EB3200EF4A90 /* RhizomeTVTests.swift */; };
 		63294B232C21EB3200EF4A90 /* RhizomeTVUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63294B222C21EB3200EF4A90 /* RhizomeTVUITests.swift */; };
-		63294B252C21EB3200EF4A90 /* RhizomeTVUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63294B242C21EB3200EF4A90 /* RhizomeTVUITestsLaunchTests.swift */; };
 		63294B462C22044300EF4A90 /* RealityKitContent in Frameworks */ = {isa = PBXBuildFile; productRef = 63294B452C22044300EF4A90 /* RealityKitContent */; };
 		63294B482C22044300EF4A90 /* RhizomeVisionApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63294B472C22044300EF4A90 /* RhizomeVisionApp.swift */; };
 		63294B4A2C22044300EF4A90 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63294B492C22044300EF4A90 /* ContentView.swift */; };
@@ -33,9 +31,75 @@
 		63294B6F2C22052200EF4A90 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63294B6E2C22052200EF4A90 /* Preview Assets.xcassets */; };
 		63294B7A2C22052200EF4A90 /* RhizomeMacTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63294B792C22052200EF4A90 /* RhizomeMacTests.swift */; };
 		63294B842C22052200EF4A90 /* RhizomeMacUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63294B832C22052200EF4A90 /* RhizomeMacUITests.swift */; };
-		63294B862C22052200EF4A90 /* RhizomeMacUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63294B852C22052200EF4A90 /* RhizomeMacUITestsLaunchTests.swift */; };
 		635AAC0D2C22255F0003C041 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 635AAC0C2C22255F0003C041 /* AVKit.framework */; };
 		635AAC0F2C2225650003C041 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 635AAC0E2C2225650003C041 /* AVFoundation.framework */; };
+		635AAC112C22836F0003C041 /* WhereWeAre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC102C22836F0003C041 /* WhereWeAre.swift */; };
+		635AAC122C22836F0003C041 /* WhereWeAre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC102C22836F0003C041 /* WhereWeAre.swift */; };
+		635AAC132C22836F0003C041 /* WhereWeAre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC102C22836F0003C041 /* WhereWeAre.swift */; };
+		635AAC142C22836F0003C041 /* WhereWeAre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC102C22836F0003C041 /* WhereWeAre.swift */; };
+		635AAC152C22836F0003C041 /* WhereWeAre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC102C22836F0003C041 /* WhereWeAre.swift */; };
+		635AAC162C22836F0003C041 /* WhereWeAre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC102C22836F0003C041 /* WhereWeAre.swift */; };
+		635AAC172C22836F0003C041 /* WhereWeAre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC102C22836F0003C041 /* WhereWeAre.swift */; };
+		635AAC182C22836F0003C041 /* WhereWeAre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC102C22836F0003C041 /* WhereWeAre.swift */; };
+		635AAC192C22836F0003C041 /* WhereWeAre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC102C22836F0003C041 /* WhereWeAre.swift */; };
+		635AAC1A2C22836F0003C041 /* WhereWeAre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC102C22836F0003C041 /* WhereWeAre.swift */; };
+		635AAC1B2C22836F0003C041 /* WhereWeAre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC102C22836F0003C041 /* WhereWeAre.swift */; };
+		635AAC1D2C2283D20003C041 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC1C2C2283D20003C041 /* Login.swift */; };
+		635AAC1E2C2283D20003C041 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC1C2C2283D20003C041 /* Login.swift */; };
+		635AAC1F2C2283D20003C041 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC1C2C2283D20003C041 /* Login.swift */; };
+		635AAC202C2283D20003C041 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC1C2C2283D20003C041 /* Login.swift */; };
+		635AAC212C2283D20003C041 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC1C2C2283D20003C041 /* Login.swift */; };
+		635AAC222C2283D20003C041 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC1C2C2283D20003C041 /* Login.swift */; };
+		635AAC232C2283D20003C041 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC1C2C2283D20003C041 /* Login.swift */; };
+		635AAC242C2283D20003C041 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC1C2C2283D20003C041 /* Login.swift */; };
+		635AAC252C2283D20003C041 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC1C2C2283D20003C041 /* Login.swift */; };
+		635AAC262C2283D20003C041 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC1C2C2283D20003C041 /* Login.swift */; };
+		635AAC272C2283D20003C041 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC1C2C2283D20003C041 /* Login.swift */; };
+		635AAC292C2284400003C041 /* QueryFlux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC282C2284400003C041 /* QueryFlux.swift */; };
+		635AAC2A2C2284400003C041 /* QueryFlux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC282C2284400003C041 /* QueryFlux.swift */; };
+		635AAC2B2C2284400003C041 /* QueryFlux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC282C2284400003C041 /* QueryFlux.swift */; };
+		635AAC2C2C2284400003C041 /* QueryFlux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC282C2284400003C041 /* QueryFlux.swift */; };
+		635AAC2D2C2284400003C041 /* QueryFlux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC282C2284400003C041 /* QueryFlux.swift */; };
+		635AAC2E2C2284400003C041 /* QueryFlux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC282C2284400003C041 /* QueryFlux.swift */; };
+		635AAC2F2C2284400003C041 /* QueryFlux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC282C2284400003C041 /* QueryFlux.swift */; };
+		635AAC302C2284400003C041 /* QueryFlux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC282C2284400003C041 /* QueryFlux.swift */; };
+		635AAC312C2284400003C041 /* QueryFlux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC282C2284400003C041 /* QueryFlux.swift */; };
+		635AAC322C2284400003C041 /* QueryFlux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC282C2284400003C041 /* QueryFlux.swift */; };
+		635AAC332C2284400003C041 /* QueryFlux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC282C2284400003C041 /* QueryFlux.swift */; };
+		635AAC352C2284940003C041 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC342C2284940003C041 /* LoadingView.swift */; };
+		635AAC362C2284940003C041 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC342C2284940003C041 /* LoadingView.swift */; };
+		635AAC372C2284940003C041 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC342C2284940003C041 /* LoadingView.swift */; };
+		635AAC382C2284940003C041 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC342C2284940003C041 /* LoadingView.swift */; };
+		635AAC392C2284940003C041 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC342C2284940003C041 /* LoadingView.swift */; };
+		635AAC3A2C2284940003C041 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC342C2284940003C041 /* LoadingView.swift */; };
+		635AAC3B2C2284940003C041 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC342C2284940003C041 /* LoadingView.swift */; };
+		635AAC3C2C2284940003C041 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC342C2284940003C041 /* LoadingView.swift */; };
+		635AAC3D2C2284940003C041 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC342C2284940003C041 /* LoadingView.swift */; };
+		635AAC3E2C2284940003C041 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC342C2284940003C041 /* LoadingView.swift */; };
+		635AAC3F2C2284940003C041 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC342C2284940003C041 /* LoadingView.swift */; };
+		635AAC4D2C22853E0003C041 /* SystemNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC4C2C22853E0003C041 /* SystemNotifications.swift */; };
+		635AAC4E2C22853E0003C041 /* SystemNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC4C2C22853E0003C041 /* SystemNotifications.swift */; };
+		635AAC4F2C22853E0003C041 /* SystemNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC4C2C22853E0003C041 /* SystemNotifications.swift */; };
+		635AAC502C22853E0003C041 /* SystemNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC4C2C22853E0003C041 /* SystemNotifications.swift */; };
+		635AAC512C22853E0003C041 /* SystemNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC4C2C22853E0003C041 /* SystemNotifications.swift */; };
+		635AAC522C22853E0003C041 /* SystemNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC4C2C22853E0003C041 /* SystemNotifications.swift */; };
+		635AAC532C22853E0003C041 /* SystemNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC4C2C22853E0003C041 /* SystemNotifications.swift */; };
+		635AAC542C22853E0003C041 /* SystemNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC4C2C22853E0003C041 /* SystemNotifications.swift */; };
+		635AAC552C22853E0003C041 /* SystemNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC4C2C22853E0003C041 /* SystemNotifications.swift */; };
+		635AAC562C22853E0003C041 /* SystemNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC4C2C22853E0003C041 /* SystemNotifications.swift */; };
+		635AAC572C22853E0003C041 /* SystemNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC4C2C22853E0003C041 /* SystemNotifications.swift */; };
+		635AAC592C228B1C0003C041 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC582C228B1C0003C041 /* SignInView.swift */; };
+		635AAC5A2C228B1C0003C041 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC582C228B1C0003C041 /* SignInView.swift */; };
+		635AAC5B2C228B1C0003C041 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC582C228B1C0003C041 /* SignInView.swift */; };
+		635AAC5D2C228BAA0003C041 /* AuthenticationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC5C2C228BAA0003C041 /* AuthenticationController.swift */; };
+		635AAC5E2C228BAA0003C041 /* AuthenticationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC5C2C228BAA0003C041 /* AuthenticationController.swift */; };
+		635AAC5F2C228BAA0003C041 /* AuthenticationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC5C2C228BAA0003C041 /* AuthenticationController.swift */; };
+		635AAC612C228D630003C041 /* SignInContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC602C228D630003C041 /* SignInContentView.swift */; };
+		635AAC622C228D630003C041 /* SignInContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC602C228D630003C041 /* SignInContentView.swift */; };
+		635AAC632C228D630003C041 /* SignInContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC602C228D630003C041 /* SignInContentView.swift */; };
+		635AAC652C228D900003C041 /* PasswordSignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC642C228D900003C041 /* PasswordSignInView.swift */; };
+		635AAC662C228D900003C041 /* PasswordSignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC642C228D900003C041 /* PasswordSignInView.swift */; };
+		635AAC672C228D900003C041 /* PasswordSignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC642C228D900003C041 /* PasswordSignInView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,7 +165,6 @@
 		63294AE82C21EB1200EF4A90 /* RhizomeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RhizomeTests.swift; sourceTree = "<group>"; };
 		63294AEE2C21EB1200EF4A90 /* RhizomeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RhizomeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		63294AF22C21EB1200EF4A90 /* RhizomeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RhizomeUITests.swift; sourceTree = "<group>"; };
-		63294AF42C21EB1200EF4A90 /* RhizomeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RhizomeUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		63294B052C21EB3100EF4A90 /* RhizomeTV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RhizomeTV.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63294B072C21EB3100EF4A90 /* RhizomeTVApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RhizomeTVApp.swift; sourceTree = "<group>"; };
 		63294B092C21EB3100EF4A90 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -111,7 +174,6 @@
 		63294B182C21EB3200EF4A90 /* RhizomeTVTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RhizomeTVTests.swift; sourceTree = "<group>"; };
 		63294B1E2C21EB3200EF4A90 /* RhizomeTVUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RhizomeTVUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		63294B222C21EB3200EF4A90 /* RhizomeTVUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RhizomeTVUITests.swift; sourceTree = "<group>"; };
-		63294B242C21EB3200EF4A90 /* RhizomeTVUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RhizomeTVUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		63294B412C22044300EF4A90 /* RhizomeVision.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RhizomeVision.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63294B442C22044300EF4A90 /* RealityKitContent */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RealityKitContent; sourceTree = "<group>"; };
 		63294B472C22044300EF4A90 /* RhizomeVisionApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RhizomeVisionApp.swift; sourceTree = "<group>"; };
@@ -131,9 +193,17 @@
 		63294B792C22052200EF4A90 /* RhizomeMacTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RhizomeMacTests.swift; sourceTree = "<group>"; };
 		63294B7F2C22052200EF4A90 /* RhizomeMacUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RhizomeMacUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		63294B832C22052200EF4A90 /* RhizomeMacUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RhizomeMacUITests.swift; sourceTree = "<group>"; };
-		63294B852C22052200EF4A90 /* RhizomeMacUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RhizomeMacUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		635AAC0C2C22255F0003C041 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
 		635AAC0E2C2225650003C041 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		635AAC102C22836F0003C041 /* WhereWeAre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhereWeAre.swift; sourceTree = "<group>"; };
+		635AAC1C2C2283D20003C041 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		635AAC282C2284400003C041 /* QueryFlux.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryFlux.swift; sourceTree = "<group>"; };
+		635AAC342C2284940003C041 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		635AAC4C2C22853E0003C041 /* SystemNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemNotifications.swift; sourceTree = "<group>"; };
+		635AAC582C228B1C0003C041 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		635AAC5C2C228BAA0003C041 /* AuthenticationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationController.swift; sourceTree = "<group>"; };
+		635AAC602C228D630003C041 /* SignInContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInContentView.swift; sourceTree = "<group>"; };
+		635AAC642C228D900003C041 /* PasswordSignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordSignInView.swift; sourceTree = "<group>"; };
 		63BB895C2C2215B100A10C74 /* RhizomeTV.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RhizomeTV.entitlements; sourceTree = "<group>"; };
 		63BB895D2C2215CE00A10C74 /* RhizomeVision.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RhizomeVision.entitlements; sourceTree = "<group>"; };
 		63BB895E2C2218BE00A10C74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -267,8 +337,13 @@
 			isa = PBXGroup;
 			children = (
 				63BB895E2C2218BE00A10C74 /* Info.plist */,
-				63294AD62C21EB1100EF4A90 /* RhizomeApp.swift */,
 				63294AD82C21EB1100EF4A90 /* ContentView.swift */,
+				635AAC342C2284940003C041 /* LoadingView.swift */,
+				635AAC1C2C2283D20003C041 /* Login.swift */,
+				635AAC282C2284400003C041 /* QueryFlux.swift */,
+				63294AD62C21EB1100EF4A90 /* RhizomeApp.swift */,
+				635AAC4C2C22853E0003C041 /* SystemNotifications.swift */,
+				635AAC102C22836F0003C041 /* WhereWeAre.swift */,
 				63294ADA2C21EB1200EF4A90 /* Assets.xcassets */,
 				63294ADC2C21EB1200EF4A90 /* Rhizome.entitlements */,
 				63294ADD2C21EB1200EF4A90 /* Preview Content */,
@@ -296,7 +371,6 @@
 			isa = PBXGroup;
 			children = (
 				63294AF22C21EB1200EF4A90 /* RhizomeUITests.swift */,
-				63294AF42C21EB1200EF4A90 /* RhizomeUITestsLaunchTests.swift */,
 			);
 			path = RhizomeUITests;
 			sourceTree = "<group>";
@@ -304,10 +378,14 @@
 		63294B062C21EB3100EF4A90 /* RhizomeTV */ = {
 			isa = PBXGroup;
 			children = (
+				635AAC5C2C228BAA0003C041 /* AuthenticationController.swift */,
+				63294B092C21EB3100EF4A90 /* ContentView.swift */,
 				63BB895F2C2218C700A10C74 /* Info.plist */,
+				635AAC642C228D900003C041 /* PasswordSignInView.swift */,
 				63BB895C2C2215B100A10C74 /* RhizomeTV.entitlements */,
 				63294B072C21EB3100EF4A90 /* RhizomeTVApp.swift */,
-				63294B092C21EB3100EF4A90 /* ContentView.swift */,
+				635AAC602C228D630003C041 /* SignInContentView.swift */,
+				635AAC582C228B1C0003C041 /* SignInView.swift */,
 				63294B0B2C21EB3200EF4A90 /* Assets.xcassets */,
 				63294B0D2C21EB3200EF4A90 /* Preview Content */,
 			);
@@ -334,7 +412,6 @@
 			isa = PBXGroup;
 			children = (
 				63294B222C21EB3200EF4A90 /* RhizomeTVUITests.swift */,
-				63294B242C21EB3200EF4A90 /* RhizomeTVUITestsLaunchTests.swift */,
 			);
 			path = RhizomeTVUITests;
 			sourceTree = "<group>";
@@ -409,7 +486,6 @@
 			isa = PBXGroup;
 			children = (
 				63294B832C22052200EF4A90 /* RhizomeMacUITests.swift */,
-				63294B852C22052200EF4A90 /* RhizomeMacUITestsLaunchTests.swift */,
 			);
 			path = RhizomeMacUITests;
 			sourceTree = "<group>";
@@ -433,6 +509,7 @@
 				63294ACF2C21EB1100EF4A90 /* Sources */,
 				63294AD02C21EB1100EF4A90 /* Frameworks */,
 				63294AD12C21EB1100EF4A90 /* Resources */,
+				633B95852C23A34100CDF0AC /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -486,6 +563,7 @@
 				63294B012C21EB3100EF4A90 /* Sources */,
 				63294B022C21EB3100EF4A90 /* Frameworks */,
 				63294B032C21EB3100EF4A90 /* Resources */,
+				633B95862C23A35E00CDF0AC /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -539,6 +617,7 @@
 				63294B3D2C22044300EF4A90 /* Sources */,
 				63294B3E2C22044300EF4A90 /* Frameworks */,
 				63294B3F2C22044300EF4A90 /* Resources */,
+				633B95872C23A37100CDF0AC /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -577,6 +656,7 @@
 				63294B612C22052100EF4A90 /* Sources */,
 				63294B622C22052100EF4A90 /* Frameworks */,
 				63294B632C22052100EF4A90 /* Resources */,
+				633B95882C23A37C00CDF0AC /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -791,13 +871,93 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		633B95852C23A34100CDF0AC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n# Type a script or drag a script file from your workspace to insert its path.\nif [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint > /dev/null; then\n  swiftlint\nfi\n";
+		};
+		633B95862C23A35E00CDF0AC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint > /dev/null; then\n  swiftlint\nfi\n";
+		};
+		633B95872C23A37100CDF0AC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint > /dev/null; then\n  swiftlint\nfi\n";
+		};
+		633B95882C23A37C00CDF0AC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint > /dev/null; then\n  swiftlint\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		63294ACF2C21EB1100EF4A90 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				63294AD92C21EB1100EF4A90 /* ContentView.swift in Sources */,
+				635AAC292C2284400003C041 /* QueryFlux.swift in Sources */,
 				63294AD72C21EB1100EF4A90 /* RhizomeApp.swift in Sources */,
+				635AAC112C22836F0003C041 /* WhereWeAre.swift in Sources */,
+				635AAC1D2C2283D20003C041 /* Login.swift in Sources */,
+				635AAC4D2C22853E0003C041 /* SystemNotifications.swift in Sources */,
+				635AAC352C2284940003C041 /* LoadingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -805,7 +965,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				635AAC1E2C2283D20003C041 /* Login.swift in Sources */,
+				635AAC122C22836F0003C041 /* WhereWeAre.swift in Sources */,
 				63294AE92C21EB1200EF4A90 /* RhizomeTests.swift in Sources */,
+				635AAC362C2284940003C041 /* LoadingView.swift in Sources */,
+				635AAC2A2C2284400003C041 /* QueryFlux.swift in Sources */,
+				635AAC4E2C22853E0003C041 /* SystemNotifications.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -814,7 +979,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				63294AF32C21EB1200EF4A90 /* RhizomeUITests.swift in Sources */,
-				63294AF52C21EB1200EF4A90 /* RhizomeUITestsLaunchTests.swift in Sources */,
+				635AAC2B2C2284400003C041 /* QueryFlux.swift in Sources */,
+				635AAC132C22836F0003C041 /* WhereWeAre.swift in Sources */,
+				635AAC1F2C2283D20003C041 /* Login.swift in Sources */,
+				635AAC4F2C22853E0003C041 /* SystemNotifications.swift in Sources */,
+				635AAC372C2284940003C041 /* LoadingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -822,8 +991,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				635AAC5D2C228BAA0003C041 /* AuthenticationController.swift in Sources */,
 				63294B0A2C21EB3100EF4A90 /* ContentView.swift in Sources */,
+				635AAC2C2C2284400003C041 /* QueryFlux.swift in Sources */,
 				63294B082C21EB3100EF4A90 /* RhizomeTVApp.swift in Sources */,
+				635AAC142C22836F0003C041 /* WhereWeAre.swift in Sources */,
+				635AAC202C2283D20003C041 /* Login.swift in Sources */,
+				635AAC502C22853E0003C041 /* SystemNotifications.swift in Sources */,
+				635AAC592C228B1C0003C041 /* SignInView.swift in Sources */,
+				635AAC612C228D630003C041 /* SignInContentView.swift in Sources */,
+				635AAC382C2284940003C041 /* LoadingView.swift in Sources */,
+				635AAC652C228D900003C041 /* PasswordSignInView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -831,7 +1009,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				635AAC212C2283D20003C041 /* Login.swift in Sources */,
+				635AAC5A2C228B1C0003C041 /* SignInView.swift in Sources */,
+				635AAC152C22836F0003C041 /* WhereWeAre.swift in Sources */,
+				635AAC662C228D900003C041 /* PasswordSignInView.swift in Sources */,
 				63294B192C21EB3200EF4A90 /* RhizomeTVTests.swift in Sources */,
+				635AAC392C2284940003C041 /* LoadingView.swift in Sources */,
+				635AAC5E2C228BAA0003C041 /* AuthenticationController.swift in Sources */,
+				635AAC622C228D630003C041 /* SignInContentView.swift in Sources */,
+				635AAC2D2C2284400003C041 /* QueryFlux.swift in Sources */,
+				635AAC512C22853E0003C041 /* SystemNotifications.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -839,8 +1026,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				635AAC5F2C228BAA0003C041 /* AuthenticationController.swift in Sources */,
 				63294B232C21EB3200EF4A90 /* RhizomeTVUITests.swift in Sources */,
-				63294B252C21EB3200EF4A90 /* RhizomeTVUITestsLaunchTests.swift in Sources */,
+				635AAC2E2C2284400003C041 /* QueryFlux.swift in Sources */,
+				635AAC162C22836F0003C041 /* WhereWeAre.swift in Sources */,
+				635AAC222C2283D20003C041 /* Login.swift in Sources */,
+				635AAC522C22853E0003C041 /* SystemNotifications.swift in Sources */,
+				635AAC5B2C228B1C0003C041 /* SignInView.swift in Sources */,
+				635AAC632C228D630003C041 /* SignInContentView.swift in Sources */,
+				635AAC3A2C2284940003C041 /* LoadingView.swift in Sources */,
+				635AAC672C228D900003C041 /* PasswordSignInView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -849,7 +1044,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				63294B4A2C22044300EF4A90 /* ContentView.swift in Sources */,
+				635AAC2F2C2284400003C041 /* QueryFlux.swift in Sources */,
 				63294B482C22044300EF4A90 /* RhizomeVisionApp.swift in Sources */,
+				635AAC172C22836F0003C041 /* WhereWeAre.swift in Sources */,
+				635AAC232C2283D20003C041 /* Login.swift in Sources */,
+				635AAC532C22853E0003C041 /* SystemNotifications.swift in Sources */,
+				635AAC3B2C2284940003C041 /* LoadingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -857,7 +1057,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				635AAC242C2283D20003C041 /* Login.swift in Sources */,
+				635AAC182C22836F0003C041 /* WhereWeAre.swift in Sources */,
 				63294B5A2C22044400EF4A90 /* RhizomeVisionTests.swift in Sources */,
+				635AAC3C2C2284940003C041 /* LoadingView.swift in Sources */,
+				635AAC302C2284400003C041 /* QueryFlux.swift in Sources */,
+				635AAC542C22853E0003C041 /* SystemNotifications.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -866,7 +1071,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				63294B6A2C22052100EF4A90 /* ContentView.swift in Sources */,
+				635AAC312C2284400003C041 /* QueryFlux.swift in Sources */,
 				63294B682C22052100EF4A90 /* RhizomeMacApp.swift in Sources */,
+				635AAC192C22836F0003C041 /* WhereWeAre.swift in Sources */,
+				635AAC252C2283D20003C041 /* Login.swift in Sources */,
+				635AAC552C22853E0003C041 /* SystemNotifications.swift in Sources */,
+				635AAC3D2C2284940003C041 /* LoadingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -874,7 +1084,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				635AAC262C2283D20003C041 /* Login.swift in Sources */,
+				635AAC1A2C22836F0003C041 /* WhereWeAre.swift in Sources */,
 				63294B7A2C22052200EF4A90 /* RhizomeMacTests.swift in Sources */,
+				635AAC3E2C2284940003C041 /* LoadingView.swift in Sources */,
+				635AAC322C2284400003C041 /* QueryFlux.swift in Sources */,
+				635AAC562C22853E0003C041 /* SystemNotifications.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -883,7 +1098,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				63294B842C22052200EF4A90 /* RhizomeMacUITests.swift in Sources */,
-				63294B862C22052200EF4A90 /* RhizomeMacUITestsLaunchTests.swift in Sources */,
+				635AAC332C2284400003C041 /* QueryFlux.swift in Sources */,
+				635AAC1B2C22836F0003C041 /* WhereWeAre.swift in Sources */,
+				635AAC272C2283D20003C041 /* Login.swift in Sources */,
+				635AAC572C22853E0003C041 /* SystemNotifications.swift in Sources */,
+				635AAC3F2C2284940003C041 /* LoadingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1054,6 +1273,7 @@
 				DEVELOPMENT_TEAM = 9JALHNGRBQ;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Rhizome/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -1094,6 +1314,7 @@
 				DEVELOPMENT_TEAM = 9JALHNGRBQ;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Rhizome/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -1223,6 +1444,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"RhizomeTV/Preview Content\"";
 				DEVELOPMENT_TEAM = 9JALHNGRBQ;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RhizomeTV/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Rhizome;
@@ -1254,6 +1476,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"RhizomeTV/Preview Content\"";
 				DEVELOPMENT_TEAM = 9JALHNGRBQ;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RhizomeTV/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Rhizome;
@@ -1370,6 +1593,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"RhizomeVision/Preview Content\"";
 				DEVELOPMENT_TEAM = 9JALHNGRBQ;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Rhizome;
@@ -1400,6 +1624,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"RhizomeVision/Preview Content\"";
 				DEVELOPMENT_TEAM = 9JALHNGRBQ;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Rhizome;
@@ -1478,6 +1703,7 @@
 				DEVELOPMENT_TEAM = 9JALHNGRBQ;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RhizomeMac/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Rhizome;
@@ -1510,6 +1736,7 @@
 				DEVELOPMENT_TEAM = 9JALHNGRBQ;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RhizomeMac/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Rhizome;
