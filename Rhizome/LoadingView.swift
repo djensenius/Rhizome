@@ -15,7 +15,7 @@ struct LoadingView: View {
     @State var loggedIn: Bool = false
     var body: some View {
         if needLoginView && !loggedIn {
-            Text("FluxHaus Login")
+            Text("🐕 Rhizome 🐕")
                 .font(.title)
                 .padding(30)
             VStack {
