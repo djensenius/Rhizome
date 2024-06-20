@@ -26,7 +26,7 @@ struct PasswordSignInView: View {
             Button("Sign In") {
                 controller.signIn(email: "rhizome", password: password)
             }
-            .disabled(email.isEmpty || password.isEmpty)
+            .disabled(password.isEmpty)
         }
         .font(.system(.headline))
     }
