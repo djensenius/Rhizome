@@ -11,6 +11,9 @@ import SwiftUI
 struct RhizomeVisionApp: App {
     @State private var whereWeAre = WhereWeAre()
     @State var cameraURL = ""
+    @State var images: [String] = []
+    @State var rhizomeSchedule: Appointments?
+    @State var newsUrl: String?
 
     var body: some Scene {
         WindowGroup {
@@ -21,6 +24,9 @@ struct RhizomeVisionApp: App {
                             if object.object != nil {
                                 let configResponse = object.object! as? LoginResponse
                                 cameraURL = configResponse?.cameraURL ?? ""
+                                images = configResponse?.rhizomeData.photos ?? []
+                                newsUrl = configResponse?.rhizomeData.news ?? nil
+                                rhizomeSchedule = configResponse?.rhizomeSchedule.appointments
                             }
                         }
 
@@ -33,7 +39,20 @@ struct RhizomeVisionApp: App {
                         }
                 }
             } else {
-                ContentView(cameraURL: cameraURL)
+                TabView {
+                    ContentView(cameraURL: cameraURL, rhizomeSchedule: rhizomeSchedule)
+                        .tabItem {
+                            Label("Watch", systemImage: "tv")
+                        }
+                    Schedule(newsUrl: newsUrl, schedule: rhizomeSchedule)
+                        .tabItem {
+                            Label("Schedule", systemImage: "calendar")
+                        }
+                    Gallery(images: images)
+                        .tabItem {
+                            Label("Gallery", systemImage: "photo")
+                        }
+                }
             }
         }
     }
