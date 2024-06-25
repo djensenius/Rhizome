@@ -20,7 +20,7 @@ struct ContentView: View {
         let player = AVPlayer(playerItem: playerItem)
         HStack {
             if showVideo {
-                VideoPlayer(player: player).ignoresSafeArea(edges: [.top, .leading, .trailing])
+                VideoPlayer(player: player).ignoresSafeArea()
                     .onAppear { player.play() }
             } else {
                 VStack {
@@ -38,11 +38,10 @@ struct ContentView: View {
 
     func parseSchedule() {
         if rhizomeSchedule != nil && rhizomeSchedule?.daycare != nil && rhizomeSchedule?.daycare.count ?? 0 > 0 {
-            let date = Date().timeIntervalSince1970 * 1000
             for daycare in rhizomeSchedule!.daycare {
-                let startDate = Double(daycare.date - (60 * 60 * 100))
-                let endDate = Double(daycare.pickupDate + (60 * 60 * 100))
-                if date  > startDate && date < endDate {
+                let startDate = Date(timeIntervalSince1970: TimeInterval((daycare.date / 1000) - (60 * 60)))
+                let endDate = Date(timeIntervalSince1970: TimeInterval((daycare.pickupDate / 1000) + (60 * 60)))
+                if Date.now  > startDate && Date.now < endDate {
                     showVideo = true
                 }
             }
