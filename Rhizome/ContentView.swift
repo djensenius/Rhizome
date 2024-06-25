@@ -13,6 +13,7 @@ struct ContentView: View {
     var rhizomeSchedule: Appointments?
     @State var showVideo = false
     @State var toolBarStatus: Visibility = .automatic
+    @State var safeAreas: Edge.Set = .all
 
     var body: some View {
         let asset = AVAsset(url: URL(string: cameraURL)!)
@@ -21,14 +22,16 @@ struct ContentView: View {
         let player = AVPlayer(playerItem: playerItem)
         HStack {
             if showVideo {
-                VideoPlayer(player: player).ignoresSafeArea()
+                VideoPlayer(player: player).ignoresSafeArea(edges: safeAreas)
                     .onAppear {
                         player.play()
                         if UIDevice.current.orientation == .landscapeLeft ||
                             UIDevice.current.orientation == .landscapeRight {
                             toolBarStatus = .hidden
+                            safeAreas = .all
                         } else {
                             toolBarStatus = .automatic
+                            safeAreas = [.top]
                         }
                     }
                     .onReceive(
@@ -37,8 +40,10 @@ struct ContentView: View {
                         if UIDevice.current.orientation == .landscapeLeft ||
                             UIDevice.current.orientation == .landscapeRight {
                             toolBarStatus = .hidden
+                            safeAreas = .all
                         } else {
                             toolBarStatus = .automatic
+                            safeAreas = [.top]
                         }
                     }
             } else {
