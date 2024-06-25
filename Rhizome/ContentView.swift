@@ -12,6 +12,7 @@ struct ContentView: View {
     var cameraURL: String
     var rhizomeSchedule: Appointments?
     @State var showVideo = false
+    @State var toolBarStatus: Visibility = .automatic
 
     var body: some View {
         let asset = AVAsset(url: URL(string: cameraURL)!)
@@ -21,7 +22,25 @@ struct ContentView: View {
         HStack {
             if showVideo {
                 VideoPlayer(player: player).ignoresSafeArea()
-                    .onAppear { player.play() }
+                    .onAppear {
+                        player.play()
+                        if UIDevice.current.orientation == .landscapeLeft ||
+                            UIDevice.current.orientation == .landscapeRight {
+                            toolBarStatus = .hidden
+                        } else {
+                            toolBarStatus = .automatic
+                        }
+                    }
+                    .onReceive(
+                        NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)
+                    ) { _ in
+                        if UIDevice.current.orientation == .landscapeLeft ||
+                            UIDevice.current.orientation == .landscapeRight {
+                            toolBarStatus = .hidden
+                        } else {
+                            toolBarStatus = .automatic
+                        }
+                    }
             } else {
                 VStack {
                     Text("🐕 Rhizome is not in the playroom 🐕")
@@ -33,7 +52,9 @@ struct ContentView: View {
                     }
                 }
             }
-        }.onAppear(perform: parseSchedule)
+        }
+        .onAppear(perform: parseSchedule)
+        .toolbar(toolBarStatus, for: .tabBar)
     }
 
     func parseSchedule() {
