@@ -60,7 +60,3 @@ struct LoadingView: View {
         }
     }
 }
-
-#Preview {
-    LoadingView(needLoginView: false)
-}
