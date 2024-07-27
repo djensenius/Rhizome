@@ -7,6 +7,7 @@
 
 import SwiftUI
 import AVKit
+import AZVideoPlayer
 
 struct ContentView: View {
     var cameraURL: String
@@ -14,37 +15,38 @@ struct ContentView: View {
     @State var showVideo = false
     @State var toolBarStatus: Visibility = .automatic
     @State var safeAreas: Edge.Set = .all
+    @State var willBeginFullScreenPresentation: Bool = false
+    var player: AVPlayer?
+
+    init(cameraURL: String, rhizomeSchedule: Appointments?) {
+        self.cameraURL = cameraURL
+            self.player = AVPlayer(url: URL(string: cameraURL)!)
+        self.rhizomeSchedule = rhizomeSchedule
+        }
 
     var body: some View {
-        let asset = AVAsset(url: URL(string: cameraURL)!)
-
-        let playerItem = AVPlayerItem(asset: asset)
-        let player = AVPlayer(playerItem: playerItem)
         HStack {
             if showVideo {
-                VideoPlayer(player: player).ignoresSafeArea(edges: safeAreas)
+                AZVideoPlayer(
+                    player: player,
+                    willBeginFullScreenPresentationWithAnimationCoordinator: willBeginFullScreen,
+                    willEndFullScreenPresentationWithAnimationCoordinator: willEndFullScreen,
+                    statusDidChange: statusDidChange,
+                    showsPlaybackControls: true,
+                    entersFullScreenWhenPlaybackBegins: false,
+                    pausesWhenFullScreenPlaybackEnds: false
+                ).ignoresSafeArea(edges: safeAreas)
                     .onAppear {
-                        player.play()
-                        if UIDevice.current.orientation == .landscapeLeft ||
-                            UIDevice.current.orientation == .landscapeRight {
-                            toolBarStatus = .hidden
-                            safeAreas = .all
-                        } else {
-                            toolBarStatus = .automatic
-                            safeAreas = [.top]
-                        }
+                        player?.play()
+                        toolBarStatus = .automatic
+                        safeAreas = [.top]
                     }
-                    .onReceive(
-                        NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)
-                    ) { _ in
-                        if UIDevice.current.orientation == .landscapeLeft ||
-                            UIDevice.current.orientation == .landscapeRight {
-                            toolBarStatus = .hidden
-                            safeAreas = .all
-                        } else {
-                            toolBarStatus = .automatic
-                            safeAreas = [.top]
+                    .onDisappear {
+                        guard !willBeginFullScreenPresentation else {
+                            willBeginFullScreenPresentation = false
+                            return
                         }
+                        player?.pause()
                     }
             } else {
                 VStack {
@@ -73,8 +75,18 @@ struct ContentView: View {
             }
         }
     }
-}
 
-#Preview {
-    ContentView(cameraURL: "")
+    func willBeginFullScreen(_ playerViewController: AVPlayerViewController,
+                             _ coordinator: UIViewControllerTransitionCoordinator) {
+        willBeginFullScreenPresentation = true
+    }
+
+    func willEndFullScreen(_ playerViewController: AVPlayerViewController,
+                           _ coordinator: UIViewControllerTransitionCoordinator) {
+    }
+
+    func statusDidChange(_ status: AZVideoPlayerStatus) {
+        print(status.timeControlStatus.rawValue)
+        print(status.volume)
+    }
 }

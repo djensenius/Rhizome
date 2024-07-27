@@ -31,6 +31,7 @@
 		63294B6F2C22052200EF4A90 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63294B6E2C22052200EF4A90 /* Preview Assets.xcassets */; };
 		63294B7A2C22052200EF4A90 /* RhizomeMacTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63294B792C22052200EF4A90 /* RhizomeMacTests.swift */; };
 		63294B842C22052200EF4A90 /* RhizomeMacUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63294B832C22052200EF4A90 /* RhizomeMacUITests.swift */; };
+		632AA6472C51FBED00750355 /* AZVideoPlayer in Frameworks */ = {isa = PBXBuildFile; productRef = 632AA6462C51FBED00750355 /* AZVideoPlayer */; };
 		635AAC0D2C22255F0003C041 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 635AAC0C2C22255F0003C041 /* AVKit.framework */; };
 		635AAC0F2C2225650003C041 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 635AAC0E2C2225650003C041 /* AVFoundation.framework */; };
 		635AAC112C22836F0003C041 /* WhereWeAre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC102C22836F0003C041 /* WhereWeAre.swift */; };
@@ -239,6 +240,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				632AA6472C51FBED00750355 /* AZVideoPlayer in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -541,6 +543,9 @@
 			dependencies = (
 			);
 			name = Rhizome;
+			packageProductDependencies = (
+				632AA6462C51FBED00750355 /* AZVideoPlayer */,
+			);
 			productName = Rhizome;
 			productReference = 63294AD32C21EB1100EF4A90 /* Rhizome.app */;
 			productType = "com.apple.product-type.application";
@@ -789,6 +794,9 @@
 				Base,
 			);
 			mainGroup = 63294ACA2C21EB1100EF4A90;
+			packageReferences = (
+				632AA6452C51FBED00750355 /* XCRemoteSwiftPackageReference "AZVideoPlayer" */,
+			);
 			productRefGroup = 63294AD42C21EB1100EF4A90 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1314,7 +1322,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Rhizome/Rhizome.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1.0.1;
 				DEVELOPMENT_ASSET_PATHS = "\"Rhizome/Preview Content\"";
 				DEVELOPMENT_TEAM = 9JALHNGRBQ;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1336,7 +1344,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.5;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.Rhizome;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -1355,7 +1363,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Rhizome/Rhizome.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1.0.1;
 				DEVELOPMENT_ASSET_PATHS = "\"Rhizome/Preview Content\"";
 				DEVELOPMENT_TEAM = 9JALHNGRBQ;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1377,7 +1385,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.5;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.Rhizome;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -1500,7 +1508,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.Rhizome;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
@@ -1532,7 +1540,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.Rhizome;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
@@ -1647,7 +1655,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.Rhizome;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = xros;
@@ -1678,7 +1686,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.Rhizome;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = xros;
@@ -1760,7 +1768,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.5;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.Rhizome;
 				PRODUCT_NAME = Rhizome;
 				SDKROOT = macosx;
@@ -1793,7 +1801,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.5;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.Rhizome;
 				PRODUCT_NAME = Rhizome;
 				SDKROOT = macosx;
@@ -1993,10 +2001,26 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		632AA6452C51FBED00750355 /* XCRemoteSwiftPackageReference "AZVideoPlayer" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/adamzarn/AZVideoPlayer";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.4.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
 		63294B452C22044300EF4A90 /* RealityKitContent */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = RealityKitContent;
+		};
+		632AA6462C51FBED00750355 /* AZVideoPlayer */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 632AA6452C51FBED00750355 /* XCRemoteSwiftPackageReference "AZVideoPlayer" */;
+			productName = AZVideoPlayer;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
