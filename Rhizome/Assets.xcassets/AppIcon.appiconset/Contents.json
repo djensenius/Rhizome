@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "2.jpeg",
+      "filename" : "App Store.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"
@@ -37,7 +37,7 @@
       "size" : "128x128"
     },
     {
-      "filename" : "icon_128x128@2x.png",
+      "filename" : "icon_256x256 1.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "128x128"
