@@ -1,12 +1,12 @@
 {
   "images" : [
     {
-      "filename" : "tv backgound 400.jpeg",
+      "filename" : "tv400.png",
       "idiom" : "tv",
       "scale" : "1x"
     },
     {
-      "filename" : "tv backgound.jpeg",
+      "filename" : "tv800.png",
       "idiom" : "tv",
       "scale" : "2x"
     }
