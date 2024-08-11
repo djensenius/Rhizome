@@ -1,12 +1,12 @@
 {
   "images" : [
     {
-      "filename" : "TVOS400.png",
+      "filename" : "tv backgound 400.jpeg",
       "idiom" : "tv",
       "scale" : "1x"
     },
     {
-      "filename" : "TVOS 800.png",
+      "filename" : "tv backgound.jpeg",
       "idiom" : "tv",
       "scale" : "2x"
     }
