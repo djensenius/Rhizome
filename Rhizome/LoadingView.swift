@@ -15,9 +15,11 @@ struct LoadingView: View {
     @State var loggedIn: Bool = false
     var body: some View {
         if needLoginView && !loggedIn {
+            #if !os(watchOS)
             Text("🐕 Rhizome 🐕")
                 .font(.title)
                 .padding(30)
+            #endif
             VStack {
                 if error != nil {
                     Text(error!)
@@ -38,9 +40,11 @@ struct LoadingView: View {
                     action: viewModel.login
                 )
                 .padding(10)
+                #if !os(watchOS)
                 Text("In order to see Rhizome, you need to use your FluxHaus login")
                     .font(.footnote)
                     .fontWeight(.light)
+                #endif
             }
             .padding(30)
             .onReceive(NotificationCenter.default.publisher(for: Notification.Name.loginsUpdated)) { object in
