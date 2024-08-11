@@ -101,6 +101,18 @@
 		635AAC652C228D900003C041 /* PasswordSignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC642C228D900003C041 /* PasswordSignInView.swift */; };
 		635AAC662C228D900003C041 /* PasswordSignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC642C228D900003C041 /* PasswordSignInView.swift */; };
 		635AAC672C228D900003C041 /* PasswordSignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC642C228D900003C041 /* PasswordSignInView.swift */; };
+		6388A9F22C6977EB0080D664 /* RhizomeWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6388A9F12C6977EB0080D664 /* RhizomeWatchApp.swift */; };
+		6388A9F42C6977EB0080D664 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6388A9F32C6977EB0080D664 /* ContentView.swift */; };
+		6388A9F62C6977EB0080D664 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6388A9F52C6977EB0080D664 /* Assets.xcassets */; };
+		6388A9F92C6977EB0080D664 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6388A9F82C6977EB0080D664 /* Preview Assets.xcassets */; };
+		6388AA122C6977EC0080D664 /* Rhizome.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 6388A9EF2C6977EB0080D664 /* Rhizome.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		6388AA1D2C69795E0080D664 /* WhereWeAre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC102C22836F0003C041 /* WhereWeAre.swift */; };
+		6388AA1E2C6979630080D664 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC1C2C2283D20003C041 /* Login.swift */; };
+		6388AA1F2C6979740080D664 /* QueryFlux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC282C2284400003C041 /* QueryFlux.swift */; };
+		6388AA202C69797E0080D664 /* SystemNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC4C2C22853E0003C041 /* SystemNotifications.swift */; };
+		6388AA212C6979D60080D664 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC342C2284940003C041 /* LoadingView.swift */; };
+		6388AA262C697A850080D664 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6388AA222C697A4C0080D664 /* AVKit.framework */; };
+		6388AA272C697A920080D664 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6388AA242C697A540080D664 /* AVFoundation.framework */; };
 		63C485A82C2A515C00FF9163 /* Gallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C485A72C2A515C00FF9163 /* Gallery.swift */; };
 		63C485A92C2A515C00FF9163 /* Gallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C485A72C2A515C00FF9163 /* Gallery.swift */; };
 		63C485AA2C2A515C00FF9163 /* Gallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C485A72C2A515C00FF9163 /* Gallery.swift */; };
@@ -174,7 +186,28 @@
 			remoteGlobalIDString = 63294B642C22052100EF4A90;
 			remoteInfo = RhizomeMac;
 		};
+		6388AA102C6977EC0080D664 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 63294ACB2C21EB1100EF4A90 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6388A9EE2C6977EB0080D664;
+			remoteInfo = "RhizomeWatch Watch App";
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		6388AA132C6977EC0080D664 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				6388AA122C6977EC0080D664 /* Rhizome.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		63294AD32C21EB1100EF4A90 /* Rhizome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rhizome.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -226,6 +259,13 @@
 		635AAC5C2C228BAA0003C041 /* AuthenticationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationController.swift; sourceTree = "<group>"; };
 		635AAC602C228D630003C041 /* SignInContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInContentView.swift; sourceTree = "<group>"; };
 		635AAC642C228D900003C041 /* PasswordSignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordSignInView.swift; sourceTree = "<group>"; };
+		6388A9EF2C6977EB0080D664 /* Rhizome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rhizome.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6388A9F12C6977EB0080D664 /* RhizomeWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RhizomeWatchApp.swift; sourceTree = "<group>"; };
+		6388A9F32C6977EB0080D664 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		6388A9F52C6977EB0080D664 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6388A9F82C6977EB0080D664 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		6388AA222C697A4C0080D664 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS10.5.sdk/System/Library/Frameworks/AVKit.framework; sourceTree = DEVELOPER_DIR; };
+		6388AA242C697A540080D664 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS10.5.sdk/System/Library/Frameworks/AVFoundation.framework; sourceTree = DEVELOPER_DIR; };
 		63BB895C2C2215B100A10C74 /* RhizomeTV.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RhizomeTV.entitlements; sourceTree = "<group>"; };
 		63BB895D2C2215CE00A10C74 /* RhizomeVision.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RhizomeVision.entitlements; sourceTree = "<group>"; };
 		63BB895E2C2218BE00A10C74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -317,6 +357,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6388A9EC2C6977EB0080D664 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6388AA272C697A920080D664 /* AVFoundation.framework in Frameworks */,
+				6388AA262C697A850080D664 /* AVKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -335,6 +384,7 @@
 				63294B662C22052100EF4A90 /* RhizomeMac */,
 				63294B782C22052200EF4A90 /* RhizomeMacTests */,
 				63294B822C22052200EF4A90 /* RhizomeMacUITests */,
+				6388A9F02C6977EB0080D664 /* RhizomeWatch Watch App */,
 				63294AD42C21EB1100EF4A90 /* Products */,
 				635AAC0B2C22255F0003C041 /* Frameworks */,
 			);
@@ -354,6 +404,7 @@
 				63294B652C22052100EF4A90 /* Rhizome.app */,
 				63294B752C22052200EF4A90 /* RhizomeMacTests.xctest */,
 				63294B7F2C22052200EF4A90 /* RhizomeMacUITests.xctest */,
+				6388A9EF2C6977EB0080D664 /* Rhizome.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -520,10 +571,31 @@
 		635AAC0B2C22255F0003C041 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6388AA242C697A540080D664 /* AVFoundation.framework */,
+				6388AA222C697A4C0080D664 /* AVKit.framework */,
 				635AAC0E2C2225650003C041 /* AVFoundation.framework */,
 				635AAC0C2C22255F0003C041 /* AVKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6388A9F02C6977EB0080D664 /* RhizomeWatch Watch App */ = {
+			isa = PBXGroup;
+			children = (
+				6388A9F12C6977EB0080D664 /* RhizomeWatchApp.swift */,
+				6388A9F32C6977EB0080D664 /* ContentView.swift */,
+				6388A9F52C6977EB0080D664 /* Assets.xcassets */,
+				6388A9F72C6977EB0080D664 /* Preview Content */,
+			);
+			path = "RhizomeWatch Watch App";
+			sourceTree = "<group>";
+		};
+		6388A9F72C6977EB0080D664 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				6388A9F82C6977EB0080D664 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -537,10 +609,12 @@
 				63294AD02C21EB1100EF4A90 /* Frameworks */,
 				63294AD12C21EB1100EF4A90 /* Resources */,
 				633B95852C23A34100CDF0AC /* ShellScript */,
+				6388AA132C6977EC0080D664 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				6388AA112C6977EC0080D664 /* PBXTargetDependency */,
 			);
 			name = Rhizome;
 			packageProductDependencies = (
@@ -733,6 +807,23 @@
 			productReference = 63294B7F2C22052200EF4A90 /* RhizomeMacUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		6388A9EE2C6977EB0080D664 /* RhizomeWatch Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6388AA1A2C6977EC0080D664 /* Build configuration list for PBXNativeTarget "RhizomeWatch Watch App" */;
+			buildPhases = (
+				6388A9EB2C6977EB0080D664 /* Sources */,
+				6388A9EC2C6977EB0080D664 /* Frameworks */,
+				6388A9ED2C6977EB0080D664 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "RhizomeWatch Watch App";
+			productName = "RhizomeWatch Watch App";
+			productReference = 6388A9EF2C6977EB0080D664 /* Rhizome.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -783,6 +874,9 @@
 						CreatedOnToolsVersion = 15.4;
 						TestTargetID = 63294B642C22052100EF4A90;
 					};
+					6388A9EE2C6977EB0080D664 = {
+						CreatedOnToolsVersion = 15.4;
+					};
 				};
 			};
 			buildConfigurationList = 63294ACE2C21EB1100EF4A90 /* Build configuration list for PBXProject "Rhizome" */;
@@ -812,6 +906,7 @@
 				63294B642C22052100EF4A90 /* RhizomeMac */,
 				63294B742C22052200EF4A90 /* RhizomeMacTests */,
 				63294B7E2C22052200EF4A90 /* RhizomeMacUITests */,
+				6388A9EE2C6977EB0080D664 /* RhizomeWatch Watch App */,
 			);
 		};
 /* End PBXProject section */
@@ -899,6 +994,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6388A9ED2C6977EB0080D664 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6388A9F92C6977EB0080D664 /* Preview Assets.xcassets in Resources */,
+				6388A9F62C6977EB0080D664 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1160,6 +1264,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6388A9EB2C6977EB0080D664 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6388AA212C6979D60080D664 /* LoadingView.swift in Sources */,
+				6388AA202C69797E0080D664 /* SystemNotifications.swift in Sources */,
+				6388AA1F2C6979740080D664 /* QueryFlux.swift in Sources */,
+				6388AA1E2C6979630080D664 /* Login.swift in Sources */,
+				6388AA1D2C69795E0080D664 /* WhereWeAre.swift in Sources */,
+				6388A9F42C6977EB0080D664 /* ContentView.swift in Sources */,
+				6388A9F22C6977EB0080D664 /* RhizomeWatchApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1197,6 +1315,11 @@
 			isa = PBXTargetDependency;
 			target = 63294B642C22052100EF4A90 /* RhizomeMac */;
 			targetProxy = 63294B802C22052200EF4A90 /* PBXContainerItemProxy */;
+		};
+		6388AA112C6977EC0080D664 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6388A9EE2C6977EB0080D664 /* RhizomeWatch Watch App */;
+			targetProxy = 6388AA102C6977EC0080D664 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1318,6 +1441,7 @@
 		63294AF92C21EB1200EF4A90 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Rhizome/Rhizome.entitlements;
@@ -1344,7 +1468,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.5;
-				MARKETING_VERSION = 1.0.4;
+				MARKETING_VERSION = 1.0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.Rhizome;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -1359,6 +1483,7 @@
 		63294AFA2C21EB1200EF4A90 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Rhizome/Rhizome.entitlements;
@@ -1385,7 +1510,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.5;
-				MARKETING_VERSION = 1.0.4;
+				MARKETING_VERSION = 1.0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.Rhizome;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -1888,6 +2013,65 @@
 			};
 			name = Release;
 		};
+		6388AA142C6977EC0080D664 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"RhizomeWatch Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = 9JALHNGRBQ;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = org.davidjensenius.Rhizome;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.Rhizome.watchkitapp;
+				PRODUCT_NAME = Rhizome;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.5;
+			};
+			name = Debug;
+		};
+		6388AA152C6977EC0080D664 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"RhizomeWatch Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = 9JALHNGRBQ;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = org.davidjensenius.Rhizome;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.Rhizome.watchkitapp;
+				PRODUCT_NAME = Rhizome;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 10.5;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1995,6 +2179,15 @@
 			buildConfigurations = (
 				63294B8E2C22052200EF4A90 /* Debug */,
 				63294B8F2C22052200EF4A90 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6388AA1A2C6977EC0080D664 /* Build configuration list for PBXNativeTarget "RhizomeWatch Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6388AA142C6977EC0080D664 /* Debug */,
+				6388AA152C6977EC0080D664 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
