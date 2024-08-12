@@ -28,7 +28,8 @@ struct WhereWeAre {
             kSecClass as String: kSecClassInternetPassword,
             kSecAttrServer as String: "api.fluxhaus.io",
             kSecAttrAccount as String: "rhizome",
-            kSecValueData as String: password.data(using: String.Encoding.utf8)!
+            kSecValueData as String: password.data(using: String.Encoding.utf8)!,
+            kSecAttrAccessGroup as String: "org.davidjensenius.Rhizome"
         ]
         // Add user
         let status = SecItemAdd(attributes as CFDictionary, nil)
