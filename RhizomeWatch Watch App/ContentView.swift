@@ -14,6 +14,7 @@ struct ContentView: View {
     var rhizomeSchedule: Appointments?
     @State var inPlayroom = false
     @State var path = [Int]()
+    @State private var whereWeAre = WhereWeAre()
 
     var showRhizome: some View {
         VStack {
@@ -32,6 +33,16 @@ struct ContentView: View {
                 } else {
                     Text("View Anyway")
                 }
+            }
+            Button {
+                whereWeAre.deleteKeyChainPasword()
+                NotificationCenter.default.post(
+                    name: Notification.Name.logout,
+                    object: nil,
+                    userInfo: ["logout": true]
+                )
+            } label: {
+                Text("Logout")
             }
         }
     }

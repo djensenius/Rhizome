@@ -46,6 +46,13 @@ struct RhizomeWatchWatchAppApp: App {
                         .tabItem {
                             Label("Watch", systemImage: "tv")
                         }
+                        .onReceive(NotificationCenter.default.publisher(for: Notification.Name.logout)) { object in
+                            if (object.userInfo?["logout"]) != nil {
+                                DispatchQueue.main.async {
+                                    self.whereWeAre = WhereWeAre()
+                                }
+                            }
+                        }
                 }
         }
     }

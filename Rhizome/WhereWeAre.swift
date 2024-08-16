@@ -24,7 +24,7 @@ struct WhereWeAre {
 
     mutating func setPassword(password: String) {
         // Set attributes
-        let attributes: [String: Any] = [
+        var attributes: [String: Any] = [
             kSecClass as String: kSecClassInternetPassword,
             kSecAttrServer as String: "api.fluxhaus.io",
             kSecAttrAccount as String: "rhizome",
@@ -32,11 +32,24 @@ struct WhereWeAre {
             kSecAttrAccessGroup as String: "org.davidjensenius.Rhizome"
         ]
         // Add user
-        let status = SecItemAdd(attributes as CFDictionary, nil)
+        var status = SecItemAdd(attributes as CFDictionary, nil)
 
         if status == noErr {
             print("User saved successfully in the keychain")
+        } else {
+            attributes = [
+                kSecClass as String: kSecClassInternetPassword,
+                kSecAttrServer as String: "api.fluxhaus.io",
+                kSecAttrAccount as String: "rhizome",
+                kSecValueData as String: password.data(using: String.Encoding.utf8)!
+            ]
+            // Add user
+             status = SecItemAdd(attributes as CFDictionary, nil)
+            if status == noErr {
+                print("User saved successfully in the keychain without access group")
+            }
         }
+
         hasKeychainPassword(has: true)
         finishedLoading()
     }
