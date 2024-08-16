@@ -52,6 +52,17 @@ struct RhizomeApp: App {
                         .tabItem {
                             Label("Gallery", systemImage: "photo")
                         }
+                    SettingsView()
+                        .tabItem {
+                            Label("Settings", systemImage: "gear")
+                        }
+                }
+                .onReceive(NotificationCenter.default.publisher(for: Notification.Name.logout)) { object in
+                    if (object.userInfo?["logout"]) != nil {
+                        DispatchQueue.main.async {
+                            self.whereWeAre = WhereWeAre()
+                        }
+                    }
                 }
             }
         }
