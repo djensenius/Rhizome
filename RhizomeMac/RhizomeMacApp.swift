@@ -39,14 +39,31 @@ struct RhizomeMacApp: App {
                         }
                 }
             } else {
-                ContentView(cameraURL: cameraURL, rhizomeSchedule: rhizomeSchedule)
-                    .onReceive(NotificationCenter.default.publisher(for: Notification.Name.logout)) { object in
-                        if (object.userInfo?["logout"]) != nil {
-                            DispatchQueue.main.async {
-                                self.whereWeAre = WhereWeAre()
-                            }
+                TabView {
+                    ContentView(cameraURL: cameraURL, rhizomeSchedule: rhizomeSchedule)
+                        .tabItem {
+                            Label("Watch", systemImage: "tv")
+                        }
+                    Schedule(newsUrl: newsUrl, schedule: rhizomeSchedule)
+                        .tabItem {
+                            Label("Schedule", systemImage: "calendar")
+                        }
+                    GridView(images: images)
+                        .tabItem {
+                            Label("Gallery", systemImage: "photo")
+                        }
+                    SettingsView()
+                        .tabItem {
+                            Label("Settings", systemImage: "gear")
+                        }
+                }
+                .onReceive(NotificationCenter.default.publisher(for: Notification.Name.logout)) { object in
+                    if (object.userInfo?["logout"]) != nil {
+                        DispatchQueue.main.async {
+                            self.whereWeAre = WhereWeAre()
                         }
                     }
+                }.tabViewStyle(.sidebarAdaptable)
             }
         }
     }

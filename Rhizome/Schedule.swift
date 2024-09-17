@@ -43,9 +43,9 @@ struct Schedule: View {
                     if newsUrl != nil {
                         URLSession.shared.dataTask(with: URLRequest(url: URL(string: newsUrl!)!)) { data, _, _ in
                             if let data = data {
-                                let string = String(decoding: data, as: UTF8.self)
+                                let string = String(data: data, encoding: .utf8)
                                 DispatchQueue.main.async {
-                                    news = LocalizedStringKey(stringLiteral: string)
+                                    news = LocalizedStringKey(stringLiteral: string!)
                                 }
                             }
                         }.resume()

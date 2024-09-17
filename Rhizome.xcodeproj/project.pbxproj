@@ -101,6 +101,7 @@
 		635AAC652C228D900003C041 /* PasswordSignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC642C228D900003C041 /* PasswordSignInView.swift */; };
 		635AAC662C228D900003C041 /* PasswordSignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC642C228D900003C041 /* PasswordSignInView.swift */; };
 		635AAC672C228D900003C041 /* PasswordSignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC642C228D900003C041 /* PasswordSignInView.swift */; };
+		637153162C998AEB00CC828F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6376F9552C6FC127009119D9 /* SettingsView.swift */; };
 		6376F9562C6FC127009119D9 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6376F9552C6FC127009119D9 /* SettingsView.swift */; };
 		6376F9572C6FC127009119D9 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6376F9552C6FC127009119D9 /* SettingsView.swift */; };
 		6376F9582C6FC127009119D9 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6376F9552C6FC127009119D9 /* SettingsView.swift */; };
@@ -121,6 +122,18 @@
 		6388AA212C6979D60080D664 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC342C2284940003C041 /* LoadingView.swift */; };
 		6388AA262C697A850080D664 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6388AA222C697A4C0080D664 /* AVKit.framework */; };
 		6388AA272C697A920080D664 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6388AA242C697A540080D664 /* AVFoundation.framework */; };
+		63B8C3052C99E1CD004FAFAF /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B8C3042C99E1CD004FAFAF /* GridView.swift */; };
+		63B8C3062C99E1CD004FAFAF /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B8C3042C99E1CD004FAFAF /* GridView.swift */; };
+		63B8C3072C99E1CD004FAFAF /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B8C3042C99E1CD004FAFAF /* GridView.swift */; };
+		63B8C3092C99E235004FAFAF /* ColumnStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B8C3082C99E235004FAFAF /* ColumnStepper.swift */; };
+		63B8C30A2C99E235004FAFAF /* ColumnStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B8C3082C99E235004FAFAF /* ColumnStepper.swift */; };
+		63B8C30B2C99E235004FAFAF /* ColumnStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B8C3082C99E235004FAFAF /* ColumnStepper.swift */; };
+		63B8C30D2C99E26B004FAFAF /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B8C30C2C99E26B004FAFAF /* DetailView.swift */; };
+		63B8C30E2C99E26B004FAFAF /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B8C30C2C99E26B004FAFAF /* DetailView.swift */; };
+		63B8C30F2C99E26B004FAFAF /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B8C30C2C99E26B004FAFAF /* DetailView.swift */; };
+		63B8C3112C99E419004FAFAF /* GidItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B8C3102C99E418004FAFAF /* GidItemView.swift */; };
+		63B8C3122C99E419004FAFAF /* GidItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B8C3102C99E418004FAFAF /* GidItemView.swift */; };
+		63B8C3132C99E419004FAFAF /* GidItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B8C3102C99E418004FAFAF /* GidItemView.swift */; };
 		63C485A82C2A515C00FF9163 /* Gallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C485A72C2A515C00FF9163 /* Gallery.swift */; };
 		63C485A92C2A515C00FF9163 /* Gallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C485A72C2A515C00FF9163 /* Gallery.swift */; };
 		63C485AA2C2A515C00FF9163 /* Gallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C485A72C2A515C00FF9163 /* Gallery.swift */; };
@@ -276,6 +289,10 @@
 		6388AA222C697A4C0080D664 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS10.5.sdk/System/Library/Frameworks/AVKit.framework; sourceTree = DEVELOPER_DIR; };
 		6388AA242C697A540080D664 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS10.5.sdk/System/Library/Frameworks/AVFoundation.framework; sourceTree = DEVELOPER_DIR; };
 		639A0A182C698ACE006CCC96 /* RhizomeWatch Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "RhizomeWatch Watch App.entitlements"; sourceTree = "<group>"; };
+		63B8C3042C99E1CD004FAFAF /* GridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
+		63B8C3082C99E235004FAFAF /* ColumnStepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnStepper.swift; sourceTree = "<group>"; };
+		63B8C30C2C99E26B004FAFAF /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		63B8C3102C99E418004FAFAF /* GidItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GidItemView.swift; sourceTree = "<group>"; };
 		63BB895C2C2215B100A10C74 /* RhizomeTV.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RhizomeTV.entitlements; sourceTree = "<group>"; };
 		63BB895D2C2215CE00A10C74 /* RhizomeVision.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RhizomeVision.entitlements; sourceTree = "<group>"; };
 		63BB895E2C2218BE00A10C74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -548,6 +565,10 @@
 				63BB89602C2218E800A10C74 /* Info.plist */,
 				63294B672C22052100EF4A90 /* RhizomeMacApp.swift */,
 				63294B692C22052100EF4A90 /* ContentView.swift */,
+				63B8C3082C99E235004FAFAF /* ColumnStepper.swift */,
+				63B8C30C2C99E26B004FAFAF /* DetailView.swift */,
+				63B8C3102C99E418004FAFAF /* GidItemView.swift */,
+				63B8C3042C99E1CD004FAFAF /* GridView.swift */,
 				63294B6B2C22052200EF4A90 /* Assets.xcassets */,
 				63294B702C22052200EF4A90 /* RhizomeMac.entitlements */,
 				63294B6D2C22052200EF4A90 /* Preview Content */,
@@ -844,7 +865,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1540;
-				LastUpgradeCheck = 1540;
+				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					63294AD22C21EB1100EF4A90 = {
 						CreatedOnToolsVersion = 15.4;
@@ -1243,13 +1264,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				637153162C998AEB00CC828F /* SettingsView.swift in Sources */,
 				63294B6A2C22052100EF4A90 /* ContentView.swift in Sources */,
+				63B8C3052C99E1CD004FAFAF /* GridView.swift in Sources */,
 				635AAC312C2284400003C041 /* QueryFlux.swift in Sources */,
 				63C485BC2C2A59A100FF9163 /* Schedule.swift in Sources */,
 				63294B682C22052100EF4A90 /* RhizomeMacApp.swift in Sources */,
+				63B8C30D2C99E26B004FAFAF /* DetailView.swift in Sources */,
+				63B8C3092C99E235004FAFAF /* ColumnStepper.swift in Sources */,
 				635AAC192C22836F0003C041 /* WhereWeAre.swift in Sources */,
 				635AAC252C2283D20003C041 /* Login.swift in Sources */,
 				635AAC552C22853E0003C041 /* SystemNotifications.swift in Sources */,
+				63B8C3112C99E419004FAFAF /* GidItemView.swift in Sources */,
 				635AAC3D2C2284940003C041 /* LoadingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1263,9 +1289,13 @@
 				635AAC1A2C22836F0003C041 /* WhereWeAre.swift in Sources */,
 				63294B7A2C22052200EF4A90 /* RhizomeMacTests.swift in Sources */,
 				635AAC3E2C2284940003C041 /* LoadingView.swift in Sources */,
+				63B8C30E2C99E26B004FAFAF /* DetailView.swift in Sources */,
 				635AAC322C2284400003C041 /* QueryFlux.swift in Sources */,
 				63C485BD2C2A59A100FF9163 /* Schedule.swift in Sources */,
+				63B8C3062C99E1CD004FAFAF /* GridView.swift in Sources */,
 				635AAC562C22853E0003C041 /* SystemNotifications.swift in Sources */,
+				63B8C3122C99E419004FAFAF /* GidItemView.swift in Sources */,
+				63B8C30A2C99E235004FAFAF /* ColumnStepper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1278,9 +1308,13 @@
 				635AAC332C2284400003C041 /* QueryFlux.swift in Sources */,
 				635AAC1B2C22836F0003C041 /* WhereWeAre.swift in Sources */,
 				635AAC272C2283D20003C041 /* Login.swift in Sources */,
+				63B8C30F2C99E26B004FAFAF /* DetailView.swift in Sources */,
 				635AAC572C22853E0003C041 /* SystemNotifications.swift in Sources */,
 				63C485BE2C2A59A100FF9163 /* Schedule.swift in Sources */,
+				63B8C3072C99E1CD004FAFAF /* GridView.swift in Sources */,
 				635AAC3F2C2284940003C041 /* LoadingView.swift in Sources */,
+				63B8C3132C99E419004FAFAF /* GidItemView.swift in Sources */,
+				63B8C30B2C99E235004FAFAF /* ColumnStepper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1378,6 +1412,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -1439,6 +1474,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1461,12 +1497,12 @@
 		63294AF92C21EB1200EF4A90 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Rhizome/Rhizome.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.0.1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Rhizome/Preview Content\"";
 				DEVELOPMENT_TEAM = 9JALHNGRBQ;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1484,11 +1520,11 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 14.5;
-				MARKETING_VERSION = 1.0.7;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.Rhizome;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -1497,18 +1533,20 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,3,7";
+				TVOS_DEPLOYMENT_TARGET = 18.0;
+				XROS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Debug;
 		};
 		63294AFA2C21EB1200EF4A90 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Rhizome/Rhizome.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.0.1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Rhizome/Preview Content\"";
 				DEVELOPMENT_TEAM = 9JALHNGRBQ;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1526,11 +1564,11 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 14.5;
-				MARKETING_VERSION = 1.0.7;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.Rhizome;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -1539,20 +1577,22 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,3,7";
+				TVOS_DEPLOYMENT_TARGET = 18.0;
+				XROS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Release;
 		};
 		63294AFC2C21EB1200EF4A90 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 9JALHNGRBQ;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
-				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.RhizomeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1568,14 +1608,14 @@
 		63294AFD2C21EB1200EF4A90 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 9JALHNGRBQ;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
-				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.RhizomeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1591,13 +1631,13 @@
 		63294AFF2C21EB1200EF4A90 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 9JALHNGRBQ;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
-				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.RhizomeUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1613,13 +1653,13 @@
 		63294B002C21EB1200EF4A90 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 9JALHNGRBQ;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
-				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.RhizomeUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1653,14 +1693,14 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.7;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.Rhizome;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 17.5;
+				TVOS_DEPLOYMENT_TARGET = 18.0;
 			};
 			name = Debug;
 		};
@@ -1685,14 +1725,14 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.7;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.Rhizome;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 17.5;
+				TVOS_DEPLOYMENT_TARGET = 18.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1700,7 +1740,6 @@
 		63294B2A2C21EB3200EF4A90 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1714,14 +1753,13 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RhizomeTV.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RhizomeTV";
-				TVOS_DEPLOYMENT_TARGET = 17.5;
+				TVOS_DEPLOYMENT_TARGET = 18.0;
 			};
 			name = Debug;
 		};
 		63294B2B2C21EB3200EF4A90 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1735,7 +1773,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RhizomeTV.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RhizomeTV";
-				TVOS_DEPLOYMENT_TARGET = 17.5;
+				TVOS_DEPLOYMENT_TARGET = 18.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1743,7 +1781,6 @@
 		63294B2D2C21EB3200EF4A90 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9JALHNGRBQ;
@@ -1756,14 +1793,13 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TEST_TARGET_NAME = RhizomeTV;
-				TVOS_DEPLOYMENT_TARGET = 17.5;
+				TVOS_DEPLOYMENT_TARGET = 18.0;
 			};
 			name = Debug;
 		};
 		63294B2E2C21EB3200EF4A90 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9JALHNGRBQ;
@@ -1776,7 +1812,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TEST_TARGET_NAME = RhizomeTV;
-				TVOS_DEPLOYMENT_TARGET = 17.5;
+				TVOS_DEPLOYMENT_TARGET = 18.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1800,7 +1836,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.7;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.Rhizome;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = xros;
@@ -1808,7 +1844,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
-				XROS_DEPLOYMENT_TARGET = 1.2;
+				XROS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Debug;
 		};
@@ -1831,7 +1867,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.7;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.Rhizome;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = xros;
@@ -1840,14 +1876,13 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
 				VALIDATE_PRODUCT = YES;
-				XROS_DEPLOYMENT_TARGET = 1.2;
+				XROS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Release;
 		};
 		63294B5F2C22044400EF4A90 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1862,14 +1897,13 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RhizomeVision.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RhizomeVision";
-				XROS_DEPLOYMENT_TARGET = 1.2;
+				XROS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Debug;
 		};
 		63294B602C22044400EF4A90 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1885,7 +1919,7 @@
 				TARGETED_DEVICE_FAMILY = "1,2,7";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RhizomeVision.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RhizomeVision";
 				VALIDATE_PRODUCT = YES;
-				XROS_DEPLOYMENT_TARGET = 1.2;
+				XROS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Release;
 		};
@@ -1898,6 +1932,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"RhizomeMac/Preview Content\"";
 				DEVELOPMENT_TEAM = 9JALHNGRBQ;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1912,8 +1947,8 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 14.5;
-				MARKETING_VERSION = 1.0.7;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.Rhizome;
 				PRODUCT_NAME = Rhizome;
 				SDKROOT = macosx;
@@ -1931,6 +1966,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"RhizomeMac/Preview Content\"";
 				DEVELOPMENT_TEAM = 9JALHNGRBQ;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1945,8 +1981,8 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 14.5;
-				MARKETING_VERSION = 1.0.7;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.Rhizome;
 				PRODUCT_NAME = Rhizome;
 				SDKROOT = macosx;
@@ -1958,13 +1994,13 @@
 		63294B8B2C22052200EF4A90 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 9JALHNGRBQ;
 				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.RhizomeMacTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1978,13 +2014,13 @@
 		63294B8C2C22052200EF4A90 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 9JALHNGRBQ;
 				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.RhizomeMacTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1998,12 +2034,12 @@
 		63294B8E2C22052200EF4A90 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 9JALHNGRBQ;
 				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.RhizomeMacUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2017,12 +2053,12 @@
 		63294B8F2C22052200EF4A90 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 9JALHNGRBQ;
 				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.RhizomeMacUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2053,7 +2089,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.7;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.Rhizome.watchkitapp;
 				PRODUCT_NAME = Rhizome;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2062,7 +2098,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 10.5;
+				WATCHOS_DEPLOYMENT_TARGET = 11.0;
 			};
 			name = Debug;
 		};
@@ -2086,7 +2122,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.7;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.Rhizome.watchkitapp;
 				PRODUCT_NAME = Rhizome;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2096,7 +2132,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 10.5;
+				WATCHOS_DEPLOYMENT_TARGET = 11.0;
 			};
 			name = Release;
 		};
