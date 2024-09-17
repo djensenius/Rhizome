@@ -34,22 +34,12 @@ struct ContentView: View {
                         Text("View Anyway")
                     }
                 }
-                Button {
-                    whereWeAre.deleteKeyChainPasword()
-                    NotificationCenter.default.post(
-                        name: Notification.Name.logout,
-                        object: nil,
-                        userInfo: ["logout": true]
-                    )
-                } label: {
-                    Text("Logout")
-                }
             }
         }
     }
 
     var body: some View {
-        let asset = AVAsset(url: URL(string: cameraURL)!)
+        let asset = AVURLAsset(url: URL(string: cameraURL)!)
         let playerItem = AVPlayerItem(asset: asset)
         let player = AVPlayer(playerItem: playerItem)
         NavigationStack(path: $path) {
