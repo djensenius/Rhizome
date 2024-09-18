@@ -15,28 +15,30 @@ struct ContentView: View {
     @State var path = [Int]()
 
     var showRhizome: some View {
-        VStack {
-            if inPlayroom {
-                Text("🐕🎉 Rhizome is playing! 🎉🐕")
-                    .padding([.bottom], 20)
-            } else {
-                Text("🐕 Rhizome is not in the playroom 🐕")
-                    .padding([.bottom], 20)
-            }
-            Button {
-                path = [1]
-            } label: {
+        ZStack {
+            VStack {
                 if inPlayroom {
-                    Text("Watch Rhizome")
+                    Text("🐕🎉 Rhizome is playing! 🎉🐕")
+                        .padding([.bottom], 20)
                 } else {
-                    Text("View Anyway")
+                    Text("🐕 Rhizome is not in the playroom 🐕")
+                        .padding([.bottom], 20)
+                }
+                Button {
+                    path = [1]
+                } label: {
+                    if inPlayroom {
+                        Text("Watch Rhizome")
+                    } else {
+                        Text("View Anyway")
+                    }
                 }
             }
         }
     }
 
     var body: some View {
-        let asset = AVAsset(url: URL(string: cameraURL)!)
+        let asset = AVURLAsset(url: URL(string: cameraURL)!)
         let playerItem = AVPlayerItem(asset: asset)
         let player = AVPlayer(playerItem: playerItem)
         NavigationStack(path: $path) {

@@ -64,6 +64,7 @@ struct RhizomeApp: App {
                         }
                     }
                 }
+                .tabViewStyle(.sidebarAdaptable)
             }
         }
     }

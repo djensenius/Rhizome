@@ -48,7 +48,7 @@ struct ContentView: View {
     }
 
     var body: some View {
-        let asset = AVAsset(url: URL(string: cameraURL)!)
+        let asset = AVURLAsset(url: URL(string: cameraURL)!)
         let playerItem = AVPlayerItem(asset: asset)
         let player = AVPlayer(playerItem: playerItem)
         NavigationStack(path: $path) {

@@ -134,6 +134,9 @@
 		63B8C3112C99E419004FAFAF /* GidItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B8C3102C99E418004FAFAF /* GidItemView.swift */; };
 		63B8C3122C99E419004FAFAF /* GidItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B8C3102C99E418004FAFAF /* GidItemView.swift */; };
 		63B8C3132C99E419004FAFAF /* GidItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B8C3102C99E418004FAFAF /* GidItemView.swift */; };
+		63B8C3192C9A37F7004FAFAF /* RhizomeTabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B8C3182C9A37F7004FAFAF /* RhizomeTabs.swift */; };
+		63B8C31A2C9A37F7004FAFAF /* RhizomeTabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B8C3182C9A37F7004FAFAF /* RhizomeTabs.swift */; };
+		63B8C31B2C9A37F7004FAFAF /* RhizomeTabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B8C3182C9A37F7004FAFAF /* RhizomeTabs.swift */; };
 		63C485A82C2A515C00FF9163 /* Gallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C485A72C2A515C00FF9163 /* Gallery.swift */; };
 		63C485A92C2A515C00FF9163 /* Gallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C485A72C2A515C00FF9163 /* Gallery.swift */; };
 		63C485AA2C2A515C00FF9163 /* Gallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C485A72C2A515C00FF9163 /* Gallery.swift */; };
@@ -293,6 +296,7 @@
 		63B8C3082C99E235004FAFAF /* ColumnStepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnStepper.swift; sourceTree = "<group>"; };
 		63B8C30C2C99E26B004FAFAF /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		63B8C3102C99E418004FAFAF /* GidItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GidItemView.swift; sourceTree = "<group>"; };
+		63B8C3182C9A37F7004FAFAF /* RhizomeTabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RhizomeTabs.swift; sourceTree = "<group>"; };
 		63BB895C2C2215B100A10C74 /* RhizomeTV.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RhizomeTV.entitlements; sourceTree = "<group>"; };
 		63BB895D2C2215CE00A10C74 /* RhizomeVision.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RhizomeVision.entitlements; sourceTree = "<group>"; };
 		63BB895E2C2218BE00A10C74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -490,6 +494,7 @@
 				635AAC642C228D900003C041 /* PasswordSignInView.swift */,
 				63BB895C2C2215B100A10C74 /* RhizomeTV.entitlements */,
 				63294B072C21EB3100EF4A90 /* RhizomeTVApp.swift */,
+				63B8C3182C9A37F7004FAFAF /* RhizomeTabs.swift */,
 				635AAC602C228D630003C041 /* SignInContentView.swift */,
 				635AAC582C228B1C0003C041 /* SignInView.swift */,
 				63294B0B2C21EB3200EF4A90 /* Assets.xcassets */,
@@ -1184,6 +1189,7 @@
 				635AAC382C2284940003C041 /* LoadingView.swift in Sources */,
 				63C485B72C2A59A100FF9163 /* Schedule.swift in Sources */,
 				635AAC652C228D900003C041 /* PasswordSignInView.swift in Sources */,
+				63B8C31B2C9A37F7004FAFAF /* RhizomeTabs.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1199,6 +1205,7 @@
 				63294B192C21EB3200EF4A90 /* RhizomeTVTests.swift in Sources */,
 				63C485B82C2A59A100FF9163 /* Schedule.swift in Sources */,
 				635AAC392C2284940003C041 /* LoadingView.swift in Sources */,
+				63B8C31A2C9A37F7004FAFAF /* RhizomeTabs.swift in Sources */,
 				635AAC5E2C228BAA0003C041 /* AuthenticationController.swift in Sources */,
 				635AAC622C228D630003C041 /* SignInContentView.swift in Sources */,
 				635AAC2D2C2284400003C041 /* QueryFlux.swift in Sources */,
@@ -1219,6 +1226,7 @@
 				635AAC222C2283D20003C041 /* Login.swift in Sources */,
 				63C485B92C2A59A100FF9163 /* Schedule.swift in Sources */,
 				635AAC522C22853E0003C041 /* SystemNotifications.swift in Sources */,
+				63B8C3192C9A37F7004FAFAF /* RhizomeTabs.swift in Sources */,
 				635AAC5B2C228B1C0003C041 /* SignInView.swift in Sources */,
 				635AAC632C228D630003C041 /* SignInContentView.swift in Sources */,
 				635AAC3A2C2284940003C041 /* LoadingView.swift in Sources */,
