@@ -19,7 +19,6 @@ struct RhizomeTVApp: App {
 
     var body: some Scene {
         WindowGroup {
-            /*
             if whereWeAre.loading == true {
                 SignInView(user: $user, needLoginView: !whereWeAre.hasKeyChainPassword)
                     .transition(.opacity.animation(.linear))
@@ -43,8 +42,12 @@ struct RhizomeTVApp: App {
                         }
                 }
             } else {
-             */
-            RhizomeTabs()
+                RhizomeTabs(
+                    cameraUrl: cameraURL,
+                    rhizomeSchedule: rhizomeSchedule!,
+                    newsUrl: newsUrl!,
+                    images: images
+                )
                 .onReceive(NotificationCenter.default.publisher(for: Notification.Name.logout)) { object in
                     if (object.userInfo?["logout"]) != nil {
                         DispatchQueue.main.async {
@@ -52,7 +55,7 @@ struct RhizomeTVApp: App {
                         }
                     }
                 }
-            //}
+            }
         }
     }
 }

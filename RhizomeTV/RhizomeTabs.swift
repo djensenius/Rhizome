@@ -8,32 +8,42 @@
 import SwiftUI
 
 struct RhizomeTabs: View {
+    var cameraUrl: String
+    var rhizomeSchedule: Appointments
+    var newsUrl: String
+    var images: [String]
+
+    @State private var selectedTab = "0"
     var body: some View {
-        TabView {
-            Tab("Watch", systemImage: "tv") {
-                ContentView(cameraURL: "https://stream-uc2-delta.dropcam.com/nexus_aac/94cabc14ffc2409f86662a9f7bd9ca5a/playlist.m3u8?public=EDvH1b9kI6", rhizomeSchedule: nil)
+        TabView(selection: $selectedTab) {
+            Tab("Watch", systemImage: "tv", value: "0") {
+                ContentView(cameraURL: cameraUrl, rhizomeSchedule: rhizomeSchedule)
+                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+                    .edgesIgnoringSafeArea(.all)
             }
-            /*
-            Schedule(newsUrl: newsUrl, schedule: rhizomeSchedule)
-                .tabItem {
-                    Label("Schedule", systemImage: "calendar")
-                }
-            Gallery(images: images)
-                .tabItem {
-                    Label("Gallery", systemImage: "photo")
-                }
-             */
-            Tab("Settings", systemImage: "gear") {
+            .customizationID("0")
+
+            Tab("Schedule", systemImage: "calendar", value: "1") {
+                Schedule(newsUrl: newsUrl, schedule: rhizomeSchedule)
+                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+                    .edgesIgnoringSafeArea(.all)
+            }
+            .customizationID("1")
+
+            Tab("Images", systemImage: "photo", value: "2") {
+                Gallery(images: images)
+                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+                    .edgesIgnoringSafeArea(.all)
+            }
+            .customizationID("2")
+
+            Tab("Settings", systemImage: "gear", value: "3") {
                 SettingsView()
-                    .tabItem {
-                        Label("Settings", systemImage: "gear")
-                    }
+                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+                    .edgesIgnoringSafeArea(.all)
             }
+            .customizationID("3")
         }
         .tabViewStyle(.sidebarAdaptable)
     }
-}
-
-#Preview {
-    RhizomeTabs()
 }

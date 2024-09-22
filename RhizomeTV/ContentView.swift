@@ -15,23 +15,21 @@ struct ContentView: View {
     @State var path = [Int]()
 
     var showRhizome: some View {
-        ZStack {
-            VStack {
+        VStack {
+            if inPlayroom {
+                Text("🐕🎉 Rhizome is playing! 🎉🐕")
+                    .padding([.bottom], 20)
+            } else {
+                Text("🐕 Rhizome is not in the playroom 🐕")
+                    .padding([.bottom], 20)
+            }
+            Button {
+                path = [1]
+            } label: {
                 if inPlayroom {
-                    Text("🐕🎉 Rhizome is playing! 🎉🐕")
-                        .padding([.bottom], 20)
+                    Text("Watch Rhizome")
                 } else {
-                    Text("🐕 Rhizome is not in the playroom 🐕")
-                        .padding([.bottom], 20)
-                }
-                Button {
-                    path = [1]
-                } label: {
-                    if inPlayroom {
-                        Text("Watch Rhizome")
-                    } else {
-                        Text("View Anyway")
-                    }
+                    Text("View Anyway")
                 }
             }
         }
@@ -48,7 +46,6 @@ struct ContentView: View {
                 if selection == 1 {
                     VideoPlayer(player: player).ignoresSafeArea()
                         .onAppear { player.play() }
-                        .toolbar(.hidden, for: .tabBar)
                 }
             }
         }
