@@ -36,7 +36,7 @@ struct ContentView: View {
     }
 
     var body: some View {
-        let asset = AVAsset(url: URL(string: cameraURL)!)
+        let asset = AVURLAsset(url: URL(string: cameraURL)!)
         let playerItem = AVPlayerItem(asset: asset)
         let player = AVPlayer(playerItem: playerItem)
         NavigationStack(path: $path) {
@@ -46,7 +46,6 @@ struct ContentView: View {
                 if selection == 1 {
                     VideoPlayer(player: player).ignoresSafeArea()
                         .onAppear { player.play() }
-                        .toolbar(.hidden, for: .tabBar)
                 }
             }
         }

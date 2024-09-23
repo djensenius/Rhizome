@@ -17,12 +17,21 @@ struct SignInView: View {
     var user: Binding<String?>
     var needLoginView: Bool
 
+    #if targetEnvironment(simulator)
+    private var wantsManualPasswordAuthentication: Binding<Bool> {
+        Binding(
+            get: { true },
+            set: { _ in controller.state.reset() }
+        )
+    }
+    #else
     private var wantsManualPasswordAuthentication: Binding<Bool> {
         Binding(
             get: { controller.state.wantsManualPasswordAuthentication },
             set: { _ in controller.state.reset() }
         )
     }
+    #endif
 
     private var authenticationError: Binding<AuthenticationError?> {
         Binding(

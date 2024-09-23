@@ -42,24 +42,12 @@ struct RhizomeTVApp: App {
                         }
                 }
             } else {
-                TabView {
-                    ContentView(cameraURL: cameraURL, rhizomeSchedule: rhizomeSchedule)
-                        .tabItem {
-                            Label("Watch", systemImage: "tv")
-                        }
-                    Schedule(newsUrl: newsUrl, schedule: rhizomeSchedule)
-                        .tabItem {
-                            Label("Schedule", systemImage: "calendar")
-                        }
-                    Gallery(images: images)
-                        .tabItem {
-                            Label("Gallery", systemImage: "photo")
-                        }
-                    SettingsView()
-                        .tabItem {
-                            Label("Settings", systemImage: "gear")
-                        }
-                }
+                RhizomeTabs(
+                    cameraUrl: cameraURL,
+                    rhizomeSchedule: rhizomeSchedule!,
+                    newsUrl: newsUrl!,
+                    images: images
+                )
                 .onReceive(NotificationCenter.default.publisher(for: Notification.Name.logout)) { object in
                     if (object.userInfo?["logout"]) != nil {
                         DispatchQueue.main.async {
