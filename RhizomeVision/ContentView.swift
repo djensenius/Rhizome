@@ -16,14 +16,9 @@ struct ContentView: View {
     @State var showVideo = false
 
     var body: some View {
-        let asset = AVURLAsset(url: URL(string: cameraURL)!)
-        let playerItem = AVPlayerItem(asset: asset)
-        let player = AVPlayer(playerItem: playerItem)
-
         HStack {
             if showVideo {
-                VideoPlayer(player: player).ignoresSafeArea()
-                    .onAppear { player.play() }
+                VideoPlayerView(cameraURL: cameraURL)
             } else {
                 VStack {
                     Text("🐕 Rhizome is not in the playroom 🐕")
