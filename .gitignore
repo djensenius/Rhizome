@@ -1,0 +1,19 @@
+# Build artifacts
+.build/
+*.o
+*.a
+*.d
+*.swiftmodule
+*.pcm
+
+# Temporary files
+swiftlint
+swiftlint.zip
+
+# Xcode build artifacts
+DerivedData/
+*.xcuserstate
+
+# Swift Package Manager
+Packages/*/.build/
+.swiftpm/
