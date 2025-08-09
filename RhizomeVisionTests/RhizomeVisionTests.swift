@@ -11,6 +11,7 @@ import SwiftUI
 
 // MARK: - ContentView Tests
 
+@MainActor
 @Test func visionContentViewInitialization() throws {
     // Given: ContentView parameters for visionOS
     let cameraURL = "https://example.com/stream"
@@ -19,11 +20,12 @@ import SwiftUI
     // When: Creating ContentView
     let contentView = ContentView(cameraURL: cameraURL, rhizomeSchedule: appointments)
 
-    // Then: Should initialize correctly
-    #expect(contentView != nil)
+    // Then: Should initialize correctly (avoid comparing non-optional to nil)
+    #expect(type(of: contentView) == ContentView.self)
     // Note: Detailed testing of visionOS-specific features would require visionOS simulator
 }
 
+@MainActor
 @Test func visionContentViewWithNilSchedule() throws {
     // Given: ContentView parameters with nil schedule
     let cameraURL = "https://example.com/stream"
@@ -32,9 +34,10 @@ import SwiftUI
     let contentView = ContentView(cameraURL: cameraURL, rhizomeSchedule: nil)
 
     // Then: Should handle nil schedule gracefully
-    #expect(contentView != nil)
+    #expect(type(of: contentView) == ContentView.self)
 }
 
+@MainActor
 @Test func visionContentViewWithEmptyURL() throws {
     // Given: ContentView with empty camera URL
     let cameraURL = ""
@@ -43,12 +46,12 @@ import SwiftUI
     let contentView = ContentView(cameraURL: cameraURL, rhizomeSchedule: nil)
 
     // Then: Should handle empty URL gracefully
-    #expect(contentView != nil)
+    #expect(type(of: contentView) == ContentView.self)
 }
 
 // MARK: - Performance Tests
 
-@Test(.timeLimit(.seconds(5))) func visionContentViewPerformance() throws {
+@Test(.timeLimit(.minutes(1))) func visionContentViewPerformance() throws {
     let cameraURL = "https://example.com/stream"
     let appointments = Appointments(daycare: [])
 
@@ -57,6 +60,7 @@ import SwiftUI
 
 // MARK: - VisionOS Specific Tests
 
+@MainActor
 @Test func visionContentViewHandlesRealityKitIntegration() throws {
     // Given: Parameters that would use RealityKit
     let cameraURL = "https://example.com/stream"
@@ -66,10 +70,11 @@ import SwiftUI
     let contentView = ContentView(cameraURL: cameraURL, rhizomeSchedule: appointments)
 
     // Then: Should not crash when RealityKit components are involved
-    #expect(contentView != nil)
+    #expect(type(of: contentView) == ContentView.self)
     // Note: Full RealityKit testing would require visionOS environment
 }
 
+@MainActor
 @Test func visionContentViewWithComplexSchedule() throws {
     // Given: Complex schedule data
     let cameraURL = "https://example.com/stream"
@@ -92,5 +97,5 @@ import SwiftUI
     let contentView = ContentView(cameraURL: cameraURL, rhizomeSchedule: appointments)
 
     // Then: Should handle complex data gracefully
-    #expect(contentView != nil)
+    #expect(type(of: contentView) == ContentView.self)
 }

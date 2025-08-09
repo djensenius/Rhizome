@@ -5,109 +5,118 @@
 //  Created by David Jensenius on 2024-06-18.
 //
 
-import Testing
 import XCTest
 
-// MARK: - Swift Testing UI tests (uses XCUITest for automation)
+final class RhizomeMacUITests: XCTestCase {
 
-@MainActor
-@Suite("Rhizome macOS UI Tests")
-struct RhizomeMacUITests {
+    // Keep setUp nonisolated (matches XCTest's signature) and avoid touching UI APIs here.
+    override func setUpWithError() throws {
+        continueAfterFailure = false
+    }
 
-    // Helper to launch and wait for the first window/element to appear
+    // Launch helper runs on the main actor so we can safely access XCUI elements.
+    @MainActor
     @discardableResult
-    private func launchAppAndWait(timeout: TimeInterval = 5) -> XCUIApplication {
+    private func launchAppAndWait(timeout: TimeInterval = 10) -> XCUIApplication {
         let app = XCUIApplication()
+        app.launchArguments += ["-uiTesting"]
+        app.launchEnvironment["UI_TESTING"] = "1"
         app.launch()
 
         // Wait for a window or a commonly-present element to appear
-        if !app.windows.firstMatch.waitForExistence(timeout: timeout) {
-            _ = app.buttons.firstMatch.waitForExistence(timeout: 1)
+        let windowAppeared = app.windows.firstMatch.waitForExistence(timeout: timeout)
+        if !windowAppeared {
+            _ = app.buttons.firstMatch.waitForExistence(timeout: 2)
+            _ = app.staticTexts.firstMatch.waitForExistence(timeout: 2)
         }
         return app
     }
 
     // MARK: Tests
 
-    @Test
-    func macAppLaunch() {
+    @MainActor
+    func testAppLaunch() {
         let app = launchAppAndWait()
-        #expect(app.exists)
-        #expect(app.state == .runningForeground)
+        XCTAssertEqual(app.state, .runningForeground, "App should be running in foreground after launch.")
+        XCTAssertTrue(app.windows.firstMatch.exists, "Main window should exist after launch.")
     }
 
-    @Test
-    func macGridViewExists() {
+    @MainActor
+    func testGridViewExists() {
         let app = launchAppAndWait()
 
-        // Look for common "grid/gallery" related elements
-        let hasCollectionViews = app.collectionViews.firstMatch.exists || app.collectionViews.count > 0
-        let hasScrollViews = app.scrollViews.firstMatch.exists || app.scrollViews.count > 0
-        let hasImages = app.images.firstMatch.exists || app.images.count > 0
-        let hasAnyStaticText = app.staticTexts.count > 0
+        let visibleUI =
+            app.collectionViews.firstMatch.exists ||
+            app.scrollViews.firstMatch.exists ||
+            app.images.firstMatch.exists ||
+            app.staticTexts.firstMatch.exists
 
-        #expect(hasCollectionViews || hasScrollViews || hasImages || hasAnyStaticText,
-                "App should present visible UI (collection/scroll view, images, or labels).")
+        XCTAssertTrue(visibleUI, "App should present visible UI (collection/scroll view, images, or labels).")
     }
 
-    @Test
-    func macSidebarNavigation() {
+    @MainActor
+    func testSidebarNavigation() {
         let app = launchAppAndWait()
 
-        // macOS sidebars commonly show up as split groups in the UI tree
-        let sidebar = app.splitGroups.firstMatch
-        let hasSidebar = sidebar.waitForExistence(timeout: 2)
-        let hasButtons = app.buttons.firstMatch.waitForExistence(timeout: 1) || app.buttons.count > 0
+        let hasSidebar =
+            app.splitGroups.firstMatch.waitForExistence(timeout: 2) ||
+            app.outlines.firstMatch.waitForExistence(timeout: 2)
 
-        #expect(hasSidebar || hasButtons, "Mac app should expose navigation elements (sidebar or buttons).")
+        let hasButtons =
+            app.buttons.firstMatch.waitForExistence(timeout: 2) ||
+            app.toolbars.buttons.firstMatch.waitForExistence(timeout: 2)
+
+        XCTAssertTrue(hasSidebar || hasButtons,
+                      "Mac app should expose navigation elements (sidebar, outline, or toolbar/buttons)."
+        )
     }
 
-    @Test
-    func macColumnStepper() {
+    @MainActor
+    func testControlsPresence() {
         let app = launchAppAndWait()
 
-        let hasSteppers = app.steppers.firstMatch.exists || app.steppers.count > 0
-        let hasButtons = app.buttons.firstMatch.exists || app.buttons.count > 0
+        let hasControls =
+            app.steppers.firstMatch.exists ||
+            app.segmentedControls.firstMatch.exists ||
+            app.sliders.firstMatch.exists ||
+            app.buttons.firstMatch.exists
 
-        #expect(hasSteppers || hasButtons, "Mac app should expose control elements (steppers or buttons).")
+        XCTAssertTrue(hasControls, "Mac app should expose control elements (stepper/segmented control/slider/button).")
     }
 
-    @Test
-    func macWindowResizingBasicPresence() {
+    @MainActor
+    func testWindowPresence() {
         let app = launchAppAndWait()
-
-        let windowCount = app.windows.count
-        #expect(windowCount > 0, "Mac app should have at least one window.")
-
-        if windowCount > 0 {
-            let mainWindow = app.windows.firstMatch
-            #expect(mainWindow.exists, "Main window should exist.")
-        }
+        XCTAssertTrue(app.windows.firstMatch.exists, "Main window should exist.")
+        // Keep resize interactions out to avoid CI flakiness
     }
 }
 
-// MARK: - Performance (XCTest; annotate with @MainActor for concurrency)
-
-@MainActor
 final class RhizomeMacUIPerfTests: XCTestCase {
 
+    @MainActor
     func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
+        if #available(macOS 10.15, *) {
             measure(metrics: [XCTApplicationLaunchMetric()]) {
                 let app = XCUIApplication()
+                app.launchArguments += ["-uiTesting"]
+                app.launchEnvironment["UI_TESTING"] = "1"
                 app.launch()
             }
         } else {
-            throw XCTSkip("Performance metrics require macOS 10.15 / iOS 13 / tvOS 13 / watchOS 7 or later.")
+            throw XCTSkip("Performance metrics require macOS 10.15 or later.")
         }
     }
 
+    @MainActor
     func testMacMemoryPerformance() throws {
         if #available(macOS 10.15, *) {
             measure(metrics: [XCTMemoryMetric()]) {
                 let app = XCUIApplication()
+                app.launchArguments += ["-uiTesting"]
+                app.launchEnvironment["UI_TESTING"] = "1"
                 app.launch()
-                _ = app.windows.firstMatch.waitForExistence(timeout: 2)
+                _ = app.windows.firstMatch.waitForExistence(timeout: 3)
                 app.terminate()
             }
         } else {

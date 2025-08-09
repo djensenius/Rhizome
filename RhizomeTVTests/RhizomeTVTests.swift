@@ -10,18 +10,27 @@ import AuthenticationServices
 import SwiftUI
 @testable import RhizomeTV
 
+// Use the app's Appointments type in tests
+typealias Appointments = RhizomeTV.Appointments
+
 // MARK: - AuthenticationController Tests
 
-@Test func authenticationControllerInitialization() throws {
+@MainActor
+@Test
+func authenticationControllerInitialization() throws {
     // Given & When: Creating AuthenticationController
     let controller = AuthenticationController()
 
     // Then: Should initialize with ready state
-    #expect(controller.state == .ready)
-    #expect(controller.viewModel != nil)
+    #expect({
+        if case .ready = controller.state { return true } else { return false }
+    }(), "State should be .ready")
+    #expect(type(of: controller.viewModel) == LoginViewModel.self)
 }
 
-@Test func authenticationControllerSignIn() throws {
+@MainActor
+@Test
+func authenticationControllerSignIn() throws {
     // Given: AuthenticationController
     let controller = AuthenticationController()
     let email = "test@example.com"
@@ -41,7 +50,8 @@ import SwiftUI
 
 // MARK: - AuthenticationState Tests
 
-@Test func authenticationStateReady() throws {
+@Test
+func authenticationStateReady() throws {
     // Given & When: Ready state
     let state = AuthenticationState.ready
 
@@ -51,7 +61,8 @@ import SwiftUI
     #expect(state.user == nil)
 }
 
-@Test func authenticationStateAuthenticating() throws {
+@Test
+func authenticationStateAuthenticating() throws {
     // Given & When: Authenticating state
     let state = AuthenticationState.authenticating
 
@@ -61,7 +72,8 @@ import SwiftUI
     #expect(state.user == nil)
 }
 
-@Test func authenticationStateWantsManualPasswordAuthentication() throws {
+@Test
+func authenticationStateWantsManualPasswordAuthentication() throws {
     // Given & When: Manual password authentication state
     let state = AuthenticationState.wantsManualPasswordAuthentication
 
@@ -71,7 +83,8 @@ import SwiftUI
     #expect(state.user == nil)
 }
 
-@Test func authenticationStateAuthenticated() throws {
+@Test
+func authenticationStateAuthenticated() throws {
     // Given & When: Authenticated state
     let user = "testUser"
     let state = AuthenticationState.authenticated(user)
@@ -82,7 +95,8 @@ import SwiftUI
     #expect(state.user == user)
 }
 
-@Test func authenticationStateFailed() throws {
+@Test
+func authenticationStateFailed() throws {
     // Given & When: Failed state
     let error = AuthenticationError.cancelled
     let state = AuthenticationState.failed(error)
@@ -93,7 +107,8 @@ import SwiftUI
     #expect(state.user == nil)
 }
 
-@Test func authenticationStateReset() throws {
+@Test
+func authenticationStateReset() throws {
     // Given: A non-ready state
     var state = AuthenticationState.authenticating
 
@@ -101,12 +116,15 @@ import SwiftUI
     state.reset()
 
     // Then: Should be ready
-    #expect(state == .ready)
+    #expect({
+        if case .ready = state { return true } else { return false }
+    }(), "Expected state to be .ready after reset")
 }
 
 // MARK: - AuthenticationError Tests
 
-@Test func authenticationErrorCancelled() throws {
+@Test
+func authenticationErrorCancelled() throws {
     // Given & When: Cancelled error
     let error = AuthenticationError.cancelled
 
@@ -115,7 +133,8 @@ import SwiftUI
     #expect(error.errorDescription != nil)
 }
 
-@Test func authenticationErrorUnknown() throws {
+@Test
+func authenticationErrorUnknown() throws {
     // Given: Unknown error
     let underlyingError = NSError(domain: "TestDomain", code: 123, userInfo: nil)
     let error = AuthenticationError.unknown(underlyingError)
@@ -125,7 +144,8 @@ import SwiftUI
     #expect(error.errorDescription != nil)
 }
 
-@Test func authenticationErrorInitWithCancelledError() throws {
+@Test
+func authenticationErrorInitWithCancelledError() throws {
     // Given: ASAuthorization cancelled error
     let asError = ASAuthorizationError(.canceled)
 
@@ -136,7 +156,8 @@ import SwiftUI
     #expect(error.isCancelledError)
 }
 
-@Test func authenticationErrorInitWithOtherError() throws {
+@Test
+func authenticationErrorInitWithOtherError() throws {
     // Given: Other error
     let otherError = NSError(domain: "TestDomain", code: 456, userInfo: nil)
 
@@ -149,7 +170,9 @@ import SwiftUI
 
 // MARK: - RhizomeTabs Tests
 
-@Test func rhizomeTabsInitialization() throws {
+@MainActor
+@Test
+func rhizomeTabsInitialization() throws {
     // Given: RhizomeTabs parameters
     let cameraUrl = "https://example.com/stream"
     let appointments = Appointments(daycare: [])
@@ -165,7 +188,6 @@ import SwiftUI
     )
 
     // Then: Should initialize correctly
-    #expect(tabs != nil)
     #expect(tabs.cameraUrl == cameraUrl)
     #expect(tabs.newsUrl == newsUrl)
     #expect(tabs.images.count == 2)
@@ -173,12 +195,16 @@ import SwiftUI
 
 // MARK: - Performance Tests
 
-@Test(.timeLimit(.seconds(5))) func authenticationControllerPerformance() throws {
+@MainActor
+@Test(.timeLimit(.minutes(1)))
+func authenticationControllerPerformance() throws {
     let controller = AuthenticationController()
     controller.signIn(email: "test@example.com", password: "testPassword")
 }
 
-@Test(.timeLimit(.seconds(5))) func rhizomeTabsPerformance() throws {
+@MainActor
+@Test(.timeLimit(.minutes(1)))
+func rhizomeTabsPerformance() throws {
     let cameraUrl = "https://example.com/stream"
     let appointments = Appointments(daycare: [])
     let newsUrl = "https://example.com/news"
