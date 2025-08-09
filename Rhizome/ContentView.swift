@@ -7,7 +7,6 @@
 
 import SwiftUI
 import AVKit
-import AZVideoPlayer
 
 struct ContentView: View {
     var cameraURL: String
@@ -54,16 +53,25 @@ struct ContentView: View {
             }.navigationDestination(for: Int.self) { selection in
                 if selection == 1 {
                     HStack {
-                        AZVideoPlayerView(cameraURL: cameraURL)
+                        #if os(iOS)
+                        VideoPlayerView(player: player!)
                             .onAppear {
                                 toolBarStatus = .automatic
                             }
+                        #else
+                        VideoPlayerView(cameraURL: cameraURL)
+                            .onAppear {
+                                toolBarStatus = .automatic
+                            }
+                        #endif
                     }
                 }
             }
         }
         .onAppear(perform: parseSchedule)
+        #if os(iOS)
         .toolbar(toolBarStatus, for: .tabBar)
+        #endif
     }
 
     func parseSchedule() {
