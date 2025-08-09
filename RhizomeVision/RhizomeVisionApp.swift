@@ -59,7 +59,7 @@ struct RhizomeVisionApp: App {
                 }
                 .onReceive(NotificationCenter.default.publisher(for: Notification.Name.logout)) { object in
                     if (object.userInfo?["logout"]) != nil {
-                        DispatchQueue.main.async {
+                        DispatchQueue.main.async { @MainActor in
                             self.whereWeAre = WhereWeAre()
                         }
                     }

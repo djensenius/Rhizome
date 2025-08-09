@@ -29,12 +29,12 @@ func queryFlux(password: String) {
     request.addValue("application/json", forHTTPHeaderField: "Content-Type")
     request.addValue("application/json", forHTTPHeaderField: "Accept")
 
-    let task = URLSession.shared.dataTask(with: request) { data, _, _ in
+    let task = URLSession.shared.dataTask(with: request) { @Sendable data, _, _ in
         if let data = data {
             let response = try? JSONDecoder().decode(LoginResponse.self, from: data)
 
             if let response = response {
-                DispatchQueue.main.async {
+                DispatchQueue.main.async { @MainActor in
                     NotificationCenter.default.post(
                         name: Notification.Name.loginsUpdated,
                         object: response,
@@ -50,7 +50,7 @@ func queryFlux(password: String) {
             } else {
                 // Error: Unable to decode response JSON
                 // This also happens if the password is wrong!
-                DispatchQueue.main.async {
+                DispatchQueue.main.async { @MainActor in
                     NotificationCenter.default.post(
                         name: Notification.Name.loginsUpdated,
                         object: nil,
