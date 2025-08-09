@@ -9,9 +9,7 @@ import Foundation
 import AVKit
 import Combine
 import SwiftUI
-#if os(iOS)
 import AZVideoPlayer
-#endif
 
 struct PlayerError: Identifiable {
     let id = UUID()
@@ -99,7 +97,6 @@ struct VideoPlayerView: View {
     }
 }
 
-#if os(iOS)
 struct AZVideoPlayerView: View {
     let cameraURL: String
     @State private var player: AVPlayer?
@@ -123,9 +120,11 @@ struct AZVideoPlayerView: View {
                 .onAppear {
                     setupPlayer(url: url)
                     toolBarStatus = .automatic
+                    #if os(iOS)
                     if UIDevice.current.userInterfaceIdiom == .phone {
                         safeAreas = [.top]
                     }
+                    #endif
                 }
                 .onDisappear {
                     cleanupPlayer()
@@ -179,4 +178,3 @@ struct AZVideoPlayerView: View {
         print(status.volume)
     }
 }
-#endif

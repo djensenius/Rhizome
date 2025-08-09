@@ -9,6 +9,7 @@ import SwiftUI
 import AVKit
 import RealityKit
 import RealityKitContent
+import AZVideoPlayer
 
 struct ContentView: View {
     var cameraURL: String
@@ -18,7 +19,7 @@ struct ContentView: View {
     var body: some View {
         HStack {
             if showVideo {
-                VideoPlayerView(cameraURL: cameraURL)
+                AZVideoPlayerView(cameraURL: cameraURL)
             } else {
                 VStack {
                     Text("🐕 Rhizome is not in the playroom 🐕")
