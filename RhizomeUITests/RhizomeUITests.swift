@@ -5,34 +5,35 @@
 //  Created by David Jensenius on 2024-06-18.
 //
 
+import Testing
 import XCTest
 
-final class RhizomeUITests: XCTestCase {
 
-    override func setUpWithError() throws {
+
+    
         // Put setup code here. This method is called before the invocation of each test method in the class.
 
         // In UI tests it is usually best to stop immediately when a failure occurs.
-        continueAfterFailure = false
+        
 
         // In UI tests it’s important to set the initial state - such as interface orientation - required for
         // your tests before they run. The setUp method is a good place to do this.
     }
 
-    override func tearDownWithError() throws {
+    
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testAppLaunch() throws {
+    @Test func applaunch() throws {
         // UI tests must launch the application that they test.
         let app = XCUIApplication()
         app.launch()
 
         // Verify the app launches successfully
-        XCTAssertTrue(app.exists)
+        #expect(app.exists)
     }
     
-    func testMainTabsExist() throws {
+    @Test func maintabsexist() throws {
         // Given: App is launched
         let app = XCUIApplication()
         app.launch()
@@ -52,11 +53,11 @@ final class RhizomeUITests: XCTestCase {
             
             // At least some tabs should exist
             let tabExists = watchTab.exists || scheduleTab.exists || galleryTab.exists || settingsTab.exists
-            XCTAssertTrue(tabExists, "At least one main tab should be present")
+            #expect(tabExists, "At least one main tab should be present")
         }
     }
     
-    func testLoginFlowIfRequired() throws {
+    @Test func loginflowifrequired() throws {
         // Given: App is launched
         let app = XCUIApplication()
         app.launch()
@@ -73,19 +74,19 @@ final class RhizomeUITests: XCTestCase {
             let secureField = app.secureTextFields.firstMatch
             
             if textField.exists {
-                XCTAssertTrue(textField.isHittable)
+                #expect(textField.isHittable)
             }
             
             if secureField.exists {
-                XCTAssertTrue(secureField.isHittable)
+                #expect(secureField.isHittable)
             }
         }
         
         // Test should not fail if login isn't required
-        XCTAssertTrue(true, "Login flow test completed")
+        #expect(true, "Login flow test completed")
     }
     
-    func testNavigationBetweenTabs() throws {
+    @Test func navigationbetweentabs() throws {
         // Given: App is launched
         let app = XCUIApplication()
         app.launch()
@@ -110,12 +111,12 @@ final class RhizomeUITests: XCTestCase {
                         sleep(1)
                     }
                 }
-                XCTAssertTrue(true, "Tab navigation test completed")
+                #expect(true, "Tab navigation test completed")
             }
         }
     }
     
-    func testAccessibilityElements() throws {
+    @Test func accessibilityelements() throws {
         // Given: App is launched
         let app = XCUIApplication()
         app.launch()
@@ -130,10 +131,10 @@ final class RhizomeUITests: XCTestCase {
         
         // At least some elements should exist and be accessible
         let hasAccessibleElements = buttons.count > 0 || texts.count > 0
-        XCTAssertTrue(hasAccessibleElements, "App should have accessible UI elements")
+        #expect(hasAccessibleElements, "App should have accessible UI elements")
     }
 
-    func testLaunchPerformance() throws {
+    @Test func launchperformance() throws {
         if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
             // This measures how long it takes to launch your application.
             measure(metrics: [XCTApplicationLaunchMetric()]) {
@@ -142,7 +143,7 @@ final class RhizomeUITests: XCTestCase {
         }
     }
     
-    func testMemoryPerformance() throws {
+    @Test func memoryperformance() throws {
         if #available(iOS 13.0, *) {
             // This measures memory usage during app operation
             let app = XCUIApplication()

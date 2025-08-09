@@ -62,100 +62,93 @@ import SwiftUI
         #expect(gallery.currentIndex == 0)
     }
     
-    // MARK: - View Extension Tests
+// MARK: - View Extension Tests
+
+@Test func framedAspectRatioExtension() throws {
+    // Given: Image view
+    let imageView = Image(systemName: "photo")
     
-    func FramedAspectRatioExtension() throws {
-        // Given: Image view
-        let imageView = Image(systemName: "photo")
-        
-        // When: Applying framedAspectRatio
-        let framedView = imageView.framedAspectRatio(contentMode: .fit)
-        
-        // Then: Should not crash and return modified view
-        #expect(framedView != nil)
-    }
+    // When: Applying framedAspectRatio
+    let framedView = imageView.framedAspectRatio(contentMode: .fit)
     
-    func FixedAspectRatioExtension() throws {
-        // Given: Any view
-        let anyView = Text("Test")
-        
-        // When: Applying fixedAspectRatio
-        let fixedView = anyView.fixedAspectRatio(1.0, contentMode: .fit)
-        
-        // Then: Should not crash and return modified view
-        #expect(fixedView != nil)
-    }
+    // Then: Should not crash and return modified view
+    #expect(framedView != nil)
+}
+
+@Test func fixedAspectRatioExtension() throws {
+    // Given: Any view
+    let anyView = Text("Test")
     
-    func FixedAspectRatioWithNilAspect() throws {
-        // Given: Any view
-        let anyView = Rectangle()
-        
-        // When: Applying fixedAspectRatio with nil aspect
-        let fixedView = anyView.fixedAspectRatio(nil, contentMode: .fill)
-        
-        // Then: Should handle nil aspect correctly
-        #expect(fixedView != nil)
-    }
+    // When: Applying fixedAspectRatio
+    let fixedView = anyView.fixedAspectRatio(1.0, contentMode: .fit)
     
-    // MARK: - Performance Tests
+    // Then: Should not crash and return modified view
+    #expect(fixedView != nil)
+}
+
+@Test func fixedAspectRatioWithNilAspect() throws {
+    // Given: Any view
+    let anyView = Rectangle()
     
-    func GalleryInitializationPerformance() throws {
-        let images = Array(1...50).map { "image\($0).jpg" }
-        
-        measure {
-            let _ = Gallery(images: images)
-        }
-    }
+    // When: Applying fixedAspectRatio with nil aspect
+    let fixedView = anyView.fixedAspectRatio(nil, contentMode: .fill)
     
-    func LargeImageArrayPerformance() throws {
-        measure {
-            let images = Array(1...1000).map { "image\($0).jpg" }
-            let _ = Gallery(images: images)
-        }
-    }
+    // Then: Should handle nil aspect correctly
+    #expect(fixedView != nil)
+}
+// MARK: - Performance Tests
+
+@Test(.timeLimit(.seconds(5))) func galleryInitializationPerformance() throws {
+    let images = Array(1...50).map { "image\($0).jpg" }
+    let _ = Gallery(images: images)
+}
+
+@Test(.timeLimit(.seconds(5))) func largeImageArrayPerformance() throws {
+    let images = Array(1...1000).map { "image\($0).jpg" }
+    let _ = Gallery(images: images)
+}
+
+// MARK: - Edge Cases
+
+@Test func galleryWithInvalidImageURLs() throws {
+    // Given: Images with potentially invalid URLs
+    let images = ["", "invalid-url", "http://", "not-a-url"]
     
-    // MARK: - Edge Cases
+    // When: Creating Gallery
+    let gallery = Gallery(images: images)
     
-    func GalleryWithInvalidImageURLs() throws {
-        // Given: Images with potentially invalid URLs
-        let images = ["", "invalid-url", "http://", "not-a-url"]
-        
-        // When: Creating Gallery
-        let gallery = Gallery(images: images)
-        
-        // Then: Should handle invalid URLs gracefully
-        #expect(gallery.images.count == 4)
-        #expect(gallery.currentIndex == 0)
-    }
+    // Then: Should handle invalid URLs gracefully
+    #expect(gallery.images.count == 4)
+    #expect(gallery.currentIndex == 0)
+}
+
+@Test func galleryWithVeryLongImageURLs() throws {
+    // Given: Very long image URLs
+    let longURL = String(repeating: "a", count: 1000) + ".jpg"
+    let images = [longURL]
     
-    func GalleryWithVeryLongImageURLs() throws {
-        // Given: Very long image URLs
-        let longURL = String(repeating: "a", count: 1000) + ".jpg"
-        let images = [longURL]
-        
-        // When: Creating Gallery
-        let gallery = Gallery(images: images)
-        
-        // Then: Should handle long URLs
-        #expect(gallery.images.count == 1)
+    // When: Creating Gallery
+    let gallery = Gallery(images: images)
+    
+    // Then: Should handle long URLs
+    #expect(gallery.images.count == 1)
         #expect(gallery.images[0] == longURL)
     }
+
+@Test func galleryWithSpecialCharacters() throws {
+    // Given: Image URLs with special characters
+    let images = [
+        "image with spaces.jpg",
+        "image+with+plus.jpg",
+        "image%20encoded.jpg",
+        "image-with-unicode-🐕.jpg"
+    ]
     
-    func GalleryWithSpecialCharacters() throws {
-        // Given: Image URLs with special characters
-        let images = [
-            "image with spaces.jpg",
-            "image+with+plus.jpg",
-            "image%20encoded.jpg",
-            "image-with-unicode-🐕.jpg"
-        ]
-        
-        // When: Creating Gallery
-        let gallery = Gallery(images: images)
-        
-        // Then: Should handle special characters
-        #expect(gallery.images.count == 4)
-        #expect(gallery.images.contains("image with spaces.jpg"))
-        #expect(gallery.images.contains("image-with-unicode-🐕.jpg"))
-    }
+    // When: Creating Gallery
+    let gallery = Gallery(images: images)
+    
+    // Then: Should handle special characters
+    #expect(gallery.images.count == 4)
+    #expect(gallery.images.contains("image with spaces.jpg"))
+    #expect(gallery.images.contains("image-with-unicode-🐕.jpg"))
 }

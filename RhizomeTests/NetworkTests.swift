@@ -5,25 +5,15 @@
 //  Created by David Jensenius on 2024-06-18.
 //
 
-import XCTest
+import Testing
 import Foundation
 @testable import Rhizome
-
-final class NetworkTests: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Clear any existing notifications
-        NotificationCenter.default.removeObserver(self)
-    }
-
-    override func tearDownWithError() throws {
-        // Clean up after tests
         NotificationCenter.default.removeObserver(self)
     }
 
     // MARK: - URL Construction Tests
     
-    func testQueryFluxURLConstruction() throws {
+    @Test func queryfluxurlconstruction() throws {
         // Given: Password for API call
         let password = "testPassword123"
         
@@ -41,14 +31,14 @@ final class NetworkTests: XCTestCase {
             return
         }
         
-        XCTAssertEqual(url.scheme, "https")
-        XCTAssertEqual(url.host, "api.fluxhaus.io")
-        XCTAssertEqual(url.path, "/")
-        XCTAssertEqual(url.user, "rhizome")
-        XCTAssertEqual(url.password, password)
+        #expect(url.scheme == "https")
+        #expect(url.host == "api.fluxhaus.io")
+        #expect(url.path == "/")
+        #expect(url.user == "rhizome")
+        #expect(url.password == password)
     }
     
-    func testQueryFluxURLRequest() throws {
+    @Test func queryfluxurlrequest() throws {
         // Given: Valid URL components
         var components = URLComponents()
         components.scheme = "https"
@@ -69,14 +59,14 @@ final class NetworkTests: XCTestCase {
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
         // Then: Request should be configured correctly
-        XCTAssertEqual(request.httpMethod, "get")
-        XCTAssertEqual(request.value(forHTTPHeaderField: "Content-Type"), "application/json")
-        XCTAssertEqual(request.value(forHTTPHeaderField: "Accept"), "application/json")
+        #expect(request.httpMethod == "get")
+        #expect(request.value(forHTTPHeaderField: "Content-Type") == "application/json")
+        #expect(request.value(forHTTPHeaderField: "Accept") == "application/json")
     }
     
     // MARK: - Notification Tests
     
-    func testLoginNotificationPosting() throws {
+    @Test func loginnotificationposting() throws {
         // Given: Expectation for notification
         let expectation = expectation(description: "Login notification received")
         var receivedNotification: Notification?
@@ -113,14 +103,14 @@ final class NetworkTests: XCTestCase {
         
         // Then: Notification should be received
         waitForExpectations(timeout: 1.0)
-        XCTAssertNotNil(receivedNotification)
-        XCTAssertNotNil(receivedNotification?.userInfo?["keysComplete"])
+        #expect(receivedNotification != nil)
+        #expect(receivedNotification?.userInfo?["keysComplete"] != nil)
         
         // Clean up
         NotificationCenter.default.removeObserver(observer)
     }
     
-    func testLogoutNotificationPosting() throws {
+    @Test func logoutnotificationposting() throws {
         // Given: Expectation for logout notification
         let expectation = expectation(description: "Logout notification received")
         var receivedNotification: Notification?
@@ -143,8 +133,8 @@ final class NetworkTests: XCTestCase {
         
         // Then: Notification should be received
         waitForExpectations(timeout: 1.0)
-        XCTAssertNotNil(receivedNotification)
-        XCTAssertNotNil(receivedNotification?.userInfo?["logout"])
+        #expect(receivedNotification != nil)
+        #expect(receivedNotification?.userInfo?["logout"] != nil)
         
         // Clean up
         NotificationCenter.default.removeObserver(observer)
@@ -152,15 +142,15 @@ final class NetworkTests: XCTestCase {
     
     // MARK: - LoginViewModel Tests
     
-    func testLoginViewModelInitialization() throws {
+    @Test func loginviewmodelinitialization() throws {
         // Given & When: Creating LoginViewModel
         let viewModel = LoginViewModel()
         
         // Then: Should initialize with empty password
-        XCTAssertEqual(viewModel.password, "")
+        #expect(viewModel.password == "")
     }
     
-    func testLoginViewModelPasswordUpdate() throws {
+    @Test func loginviewmodelpasswordupdate() throws {
         // Given: LoginViewModel
         var viewModel = LoginViewModel()
         let testPassword = "newPassword123"
@@ -169,12 +159,12 @@ final class NetworkTests: XCTestCase {
         viewModel.password = testPassword
         
         // Then: Password should be updated
-        XCTAssertEqual(viewModel.password, testPassword)
+        #expect(viewModel.password == testPassword)
     }
     
     // MARK: - LoginAction Tests
     
-    func testLoginActionInitialization() throws {
+    @Test func loginactioninitialization() throws {
         // Given: LoginRequest parameters
         let request = LoginRequest(password: "testPassword")
         
@@ -182,12 +172,12 @@ final class NetworkTests: XCTestCase {
         let action = LoginAction(parameters: request)
         
         // Then: Should initialize correctly
-        XCTAssertEqual(action.parameters.password, "testPassword")
+        #expect(action.parameters.password == "testPassword")
     }
     
     // MARK: - Performance Tests
     
-    func testURLConstructionPerformance() throws {
+    @Test func urlconstructionperformance() throws {
         measure {
             var components = URLComponents()
             components.scheme = "https"
@@ -199,7 +189,7 @@ final class NetworkTests: XCTestCase {
         }
     }
     
-    func testNotificationPerformance() throws {
+    @Test func notificationperformance() throws {
         measure {
             NotificationCenter.default.post(
                 name: .loginsUpdated,
