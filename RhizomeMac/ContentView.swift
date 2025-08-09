@@ -7,7 +7,6 @@
 
 import SwiftUI
 import AVKit
-import AZVideoPlayer
 
 struct ContentView: View {
     var cameraURL: String
@@ -45,7 +44,7 @@ struct ContentView: View {
                 showRhizome
             }.navigationDestination(for: Int.self) { selection in
                 if selection == 1 {
-                    AZVideoPlayerView(cameraURL: cameraURL)
+                    VideoPlayerView(cameraURL: cameraURL)
                 }
             }
         }
