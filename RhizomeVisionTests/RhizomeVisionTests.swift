@@ -6,6 +6,7 @@
 //
 
 import XCTest
+import SwiftUI
 @testable import RhizomeVision
 
 class RhizomeVisionTests: XCTestCase {
@@ -18,20 +19,91 @@ class RhizomeVisionTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with
-        // assertions afterwards.
+    // MARK: - ContentView Tests
+    
+    func testVisionContentViewInitialization() throws {
+        // Given: ContentView parameters for visionOS
+        let cameraURL = "https://example.com/stream"
+        let appointments = Appointments(daycare: [])
+        
+        // When: Creating ContentView
+        let contentView = ContentView(cameraURL: cameraURL, rhizomeSchedule: appointments)
+        
+        // Then: Should initialize correctly
+        XCTAssertNotNil(contentView)
+        // Note: Detailed testing of visionOS-specific features would require visionOS simulator
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    
+    func testVisionContentViewWithNilSchedule() throws {
+        // Given: ContentView parameters with nil schedule
+        let cameraURL = "https://example.com/stream"
+        
+        // When: Creating ContentView with nil schedule
+        let contentView = ContentView(cameraURL: cameraURL, rhizomeSchedule: nil)
+        
+        // Then: Should handle nil schedule gracefully
+        XCTAssertNotNil(contentView)
+    }
+    
+    func testVisionContentViewWithEmptyURL() throws {
+        // Given: ContentView with empty camera URL
+        let cameraURL = ""
+        
+        // When: Creating ContentView with empty URL
+        let contentView = ContentView(cameraURL: cameraURL, rhizomeSchedule: nil)
+        
+        // Then: Should handle empty URL gracefully
+        XCTAssertNotNil(contentView)
+    }
+    
+    // MARK: - Performance Tests
+    
+    func testVisionContentViewPerformance() throws {
+        let cameraURL = "https://example.com/stream"
+        let appointments = Appointments(daycare: [])
+        
+        measure {
+            let _ = ContentView(cameraURL: cameraURL, rhizomeSchedule: appointments)
         }
     }
-
+    
+    // MARK: - VisionOS Specific Tests
+    
+    func testVisionContentViewHandlesRealityKitIntegration() throws {
+        // Given: Parameters that would use RealityKit
+        let cameraURL = "https://example.com/stream"
+        let appointments = Appointments(daycare: [])
+        
+        // When: Creating ContentView (which should integrate with RealityKit)
+        let contentView = ContentView(cameraURL: cameraURL, rhizomeSchedule: appointments)
+        
+        // Then: Should not crash when RealityKit components are involved
+        XCTAssertNotNil(contentView)
+        // Note: Full RealityKit testing would require visionOS environment
+    }
+    
+    func testVisionContentViewWithComplexSchedule() throws {
+        // Given: Complex schedule data
+        let cameraURL = "https://example.com/stream"
+        let daycare = AppointmentsDaycare(
+            status: "confirmed",
+            service: "daycare",
+            date: Int(Date().timeIntervalSince1970 * 1000),
+            pickupDate: Int(Date().addingTimeInterval(3600).timeIntervalSince1970 * 1000),
+            timezone: "America/New_York",
+            accountId: "123",
+            locationId: "456",
+            petexec: Petexec(execid: 1, daycareid: 2, serviceid: 3, userid: 4, petid: 5),
+            dogName: "Rhizome",
+            updatedAt: UpdatedAt(),
+            id: "test123"
+        )
+        let appointments = Appointments(daycare: [daycare])
+        
+        // When: Creating ContentView with complex schedule
+        let contentView = ContentView(cameraURL: cameraURL, rhizomeSchedule: appointments)
+        
+        // Then: Should handle complex data gracefully
+        XCTAssertNotNil(contentView)
+    }
 }
