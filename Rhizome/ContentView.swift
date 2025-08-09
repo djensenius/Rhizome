@@ -56,12 +56,10 @@ struct ContentView: View {
             }.navigationDestination(for: Int.self) { selection in
                 if selection == 1 {
                     HStack {
-                        #if os(iOS)
                         AZVideoPlayerView(cameraURL: cameraURL)
                             .onAppear {
                                 toolBarStatus = .automatic
                             }
-                        #endif
                     }
                 }
             }

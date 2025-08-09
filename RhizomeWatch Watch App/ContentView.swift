@@ -48,16 +48,12 @@ struct ContentView: View {
     }
 
     var body: some View {
-        let asset = AVURLAsset(url: URL(string: cameraURL)!)
-        let playerItem = AVPlayerItem(asset: asset)
-        let player = AVPlayer(playerItem: playerItem)
         NavigationStack(path: $path) {
             HStack {
                 showRhizome
             }.navigationDestination(for: Int.self) { selection in
                 if selection == 1 {
-                    VideoPlayer(player: player).ignoresSafeArea()
-                        .onAppear { player.play() }
+                    AZVideoPlayerView(cameraURL: cameraURL)
                 }
             }
         }

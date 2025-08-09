@@ -111,6 +111,8 @@ struct AZVideoPlayerView: View {
 
     var body: some View {
         if let url = URL(string: cameraURL) {
+            #if os(iOS)
+            // Use AZVideoPlayer on iOS where it's fully supported
             AZVideoPlayer(
                 player: player,
                 willBeginFullScreenPresentationWithAnimationCoordinator: willBeginFullScreen,
@@ -123,11 +125,9 @@ struct AZVideoPlayerView: View {
                 .onAppear {
                     setupPlayer(url: url)
                     toolBarStatus = .automatic
-                    #if os(iOS)
                     if UIDevice.current.userInterfaceIdiom == .phone {
                         safeAreas = [.top]
                     }
-                    #endif
                 }
                 .onDisappear {
                     cleanupPlayer()
@@ -136,13 +136,17 @@ struct AZVideoPlayerView: View {
                         return
                     }
                 }
-                .alert(item: $playerObserver.playerError) { playerError in
-                    Alert(
-                        title: Text("Playback Error"),
-                        message: Text(playerError.error.localizedDescription),
-                        dismissButton: .default(Text("OK"))
-                    )
+            #else
+            // Use native VideoPlayer on other platforms for consistent experience  
+            VideoPlayer(player: player)
+                .ignoresSafeArea()
+                .onAppear {
+                    setupPlayer(url: url)
                 }
+                .onDisappear {
+                    cleanupPlayer()
+                }
+            #endif
         } else {
             Text("Invalid URL")
         }
@@ -167,6 +171,7 @@ struct AZVideoPlayerView: View {
         playerItem = nil
     }
 
+    #if os(iOS)
     func willBeginFullScreen(_ playerViewController: AVPlayerViewController,
                              _ coordinator: UIViewControllerTransitionCoordinator) {
         willBeginFullScreenPresentation = true
@@ -180,5 +185,5 @@ struct AZVideoPlayerView: View {
         print(status.timeControlStatus.rawValue)
         print(status.volume)
     }
+    #endif
 }
-#endif
