@@ -11,8 +11,6 @@
 		631DDEB92E4782C7001D801D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63294B692C22052100EF4A90 /* ContentView.swift */; };
 		631DDEBA2E4782FA001D801D /* RhizomeMacApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63294B672C22052100EF4A90 /* RhizomeMacApp.swift */; };
 		631DDEBC2E478506001D801D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63294B092C21EB3100EF4A90 /* ContentView.swift */; };
-		631DDEFF2E47915A001D801D /* AZVideoPlayer in Frameworks */ = {isa = PBXBuildFile; productRef = 631DDEFE2E47915A001D801D /* AZVideoPlayer */; };
-		631DDF012E479160001D801D /* AZVideoPlayer in Frameworks */ = {isa = PBXBuildFile; productRef = 631DDF002E479160001D801D /* AZVideoPlayer */; };
 		63294AD72C21EB1100EF4A90 /* RhizomeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63294AD62C21EB1100EF4A90 /* RhizomeApp.swift */; };
 		63294AD92C21EB1100EF4A90 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63294AD82C21EB1100EF4A90 /* ContentView.swift */; };
 		63294ADB2C21EB1200EF4A90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63294ADA2C21EB1200EF4A90 /* Assets.xcassets */; };
@@ -37,7 +35,6 @@
 		63294B6F2C22052200EF4A90 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63294B6E2C22052200EF4A90 /* Preview Assets.xcassets */; };
 		63294B7A2C22052200EF4A90 /* RhizomeMacTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63294B792C22052200EF4A90 /* RhizomeMacTests.swift */; };
 		63294B842C22052200EF4A90 /* RhizomeMacUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63294B832C22052200EF4A90 /* RhizomeMacUITests.swift */; };
-		632AA6472C51FBED00750355 /* AZVideoPlayer in Frameworks */ = {isa = PBXBuildFile; productRef = 632AA6462C51FBED00750355 /* AZVideoPlayer */; };
 		635AAC0D2C22255F0003C041 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 635AAC0C2C22255F0003C041 /* AVKit.framework */; };
 		635AAC0F2C2225650003C041 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 635AAC0E2C2225650003C041 /* AVFoundation.framework */; };
 		635AAC112C22836F0003C041 /* WhereWeAre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635AAC102C22836F0003C041 /* WhereWeAre.swift */; };
@@ -282,7 +279,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				632AA6472C51FBED00750355 /* AZVideoPlayer in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,7 +286,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				631DDF012E479160001D801D /* AZVideoPlayer in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,7 +293,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				631DDEFF2E47915A001D801D /* AZVideoPlayer in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -630,7 +624,6 @@
 			);
 			name = Rhizome;
 			packageProductDependencies = (
-				632AA6462C51FBED00750355 /* AZVideoPlayer */,
 			);
 			productName = Rhizome;
 			productReference = 63294AD32C21EB1100EF4A90 /* Rhizome.app */;
@@ -901,7 +894,6 @@
 			);
 			mainGroup = 63294ACA2C21EB1100EF4A90;
 			packageReferences = (
-				632AA6452C51FBED00750355 /* XCRemoteSwiftPackageReference "AZVideoPlayer" */,
 			);
 			productRefGroup = 63294AD42C21EB1100EF4A90 /* Products */;
 			projectDirPath = "";
@@ -2189,35 +2181,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		632AA6452C51FBED00750355 /* XCRemoteSwiftPackageReference "AZVideoPlayer" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/adamzarn/AZVideoPlayer";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.4.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		631DDEFE2E47915A001D801D /* AZVideoPlayer */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 632AA6452C51FBED00750355 /* XCRemoteSwiftPackageReference "AZVideoPlayer" */;
-			productName = AZVideoPlayer;
-		};
-		631DDF002E479160001D801D /* AZVideoPlayer */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 632AA6452C51FBED00750355 /* XCRemoteSwiftPackageReference "AZVideoPlayer" */;
-			productName = AZVideoPlayer;
-		};
 		63294B452C22044300EF4A90 /* RealityKitContent */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = RealityKitContent;
-		};
-		632AA6462C51FBED00750355 /* AZVideoPlayer */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 632AA6452C51FBED00750355 /* XCRemoteSwiftPackageReference "AZVideoPlayer" */;
-			productName = AZVideoPlayer;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

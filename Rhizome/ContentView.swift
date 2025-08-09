@@ -7,9 +7,6 @@
 
 import SwiftUI
 import AVKit
-#if os(iOS)
-import AZVideoPlayer
-#endif
 
 struct ContentView: View {
     var cameraURL: String
@@ -57,14 +54,10 @@ struct ContentView: View {
                 if selection == 1 {
                     HStack {
                         #if os(iOS)
-                        AZVideoPlayer(
-                            player: player,
-                            showsPlaybackControls: true
-                        )
-                        .ignoresSafeArea()
-                        .onAppear {
-                            toolBarStatus = .automatic
-                        }
+                        VideoPlayerView(player: player!)
+                            .onAppear {
+                                toolBarStatus = .automatic
+                            }
                         #else
                         VideoPlayerView(cameraURL: cameraURL)
                             .onAppear {
@@ -87,6 +80,13 @@ struct ContentView: View {
                 let startDate = Date(timeIntervalSince1970: TimeInterval((daycare.date / 1000) - (60 * 60)))
                 let endDate = Date(timeIntervalSince1970: TimeInterval((daycare.pickupDate / 1000) + (60 * 60)))
                 if Date.now  > startDate && Date.now < endDate {
+                    showVideo = true
+                }
+            }
+        }
+    }
+}
+< endDate {
                     showVideo = true
                 }
             }

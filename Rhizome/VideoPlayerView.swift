@@ -49,49 +49,68 @@ class PlayerObserver: NSObject, ObservableObject {
     }
 }
 struct VideoPlayerView: View {
-    let cameraURL: String
+    let cameraURL: String?
+    let existingPlayer: AVPlayer?
     @State private var player: AVPlayer?
     @State private var playerItem: AVPlayerItem?
     @StateObject private var playerObserver = PlayerObserver()
 
-    var body: some View {
-        if let url = URL(string: cameraURL) {
-            VideoPlayer(player: player)
-                .ignoresSafeArea()
-                .onAppear {
-                    setupPlayer(url: url)
-                }
-                .onDisappear {
-                    cleanupPlayer()
-                }
-                .alert(item: $playerObserver.playerError) { playerError in
-                    Alert(
-                        title: Text("Playback Error"),
-                        message: Text(playerError.error.localizedDescription),
-                        dismissButton: .default(Text("OK"))
-                    )
-                }
-        } else {
-            Text("Invalid URL")
-        }
+    // Initializer for URL-based player (current behavior)
+    init(cameraURL: String) {
+        self.cameraURL = cameraURL
+        self.existingPlayer = nil
+    }
+    
+    // Initializer for existing player (replaces AZVideoPlayer)
+    init(player: AVPlayer) {
+        self.cameraURL = nil
+        self.existingPlayer = player
     }
 
-    private func setupPlayer(url: URL) {
-        let asset = AVURLAsset(url: url)
-        playerItem = AVPlayerItem(asset: asset)
-        player = AVPlayer(playerItem: playerItem)
-        player?.play()
+    var body: some View {
+        VideoPlayer(player: player)
+            .ignoresSafeArea()
+            .onAppear {
+                setupPlayer()
+            }
+            .onDisappear {
+                cleanupPlayer()
+            }
+            .alert(item: $playerObserver.playerError) { playerError in
+                Alert(
+                    title: Text("Playback Error"),
+                    message: Text(playerError.error.localizedDescription),
+                    dismissButton: .default(Text("OK"))
+                )
+            }
+    }
 
-        // Observe AVPlayerItem status and error using block-based KVO
-        if let playerItem = playerItem {
-            playerObserver.observe(playerItem: playerItem)
+    private func setupPlayer() {
+        if let existingPlayer = existingPlayer {
+            // Use existing player (replaces AZVideoPlayer functionality)
+            player = existingPlayer
+            player?.play()
+        } else if let cameraURL = cameraURL, let url = URL(string: cameraURL) {
+            // Create new player from URL (current VideoPlayerView behavior)
+            let asset = AVURLAsset(url: url)
+            playerItem = AVPlayerItem(asset: asset)
+            player = AVPlayer(playerItem: playerItem)
+            player?.play()
+
+            // Observe AVPlayerItem status and error using block-based KVO
+            if let playerItem = playerItem {
+                playerObserver.observe(playerItem: playerItem)
+            }
         }
     }
 
     private func cleanupPlayer() {
-        player?.pause()
-        playerObserver.stopObserving()
-        player = nil
-        playerItem = nil
+        // Only pause and cleanup if we created the player ourselves
+        if existingPlayer == nil {
+            player?.pause()
+            playerObserver.stopObserving()
+            player = nil
+            playerItem = nil
+        }
     }
 }
