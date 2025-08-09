@@ -49,12 +49,12 @@ struct LoadingView: View {
             .padding(30)
             .onReceive(NotificationCenter.default.publisher(for: Notification.Name.loginsUpdated)) { object in
                 if (object.userInfo?["loginError"]) != nil {
-                    DispatchQueue.main.async {
+                    DispatchQueue.main.async { @MainActor in
                         self.error = object.userInfo!["loginError"] as? String
                     }
                 }
                 if (object.userInfo?["keysComplete"]) != nil {
-                    DispatchQueue.main.async {
+                    DispatchQueue.main.async { @MainActor in
                         self.loggedIn = true
                     }
                 }

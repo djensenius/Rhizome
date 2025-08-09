@@ -18,6 +18,7 @@ struct PlayerError: Identifiable {
     let error: Error
 }
 
+@MainActor
 class PlayerObserver: NSObject, ObservableObject {
     @Published var playerError: PlayerError?
     private var playerItem: AVPlayerItem?
@@ -29,14 +30,18 @@ class PlayerObserver: NSObject, ObservableObject {
         statusObservation = playerItem.observe(\.status, options: [.new, .initial]) { [weak self] item, _ in
             if item.status == .failed {
                 if let error = item.error {
-                    self?.playerError = PlayerError(error: error)
+                    Task { @MainActor in
+                        self?.playerError = PlayerError(error: error)
+                    }
                 }
             }
         }
 
         errorObservation = playerItem.observe(\.error, options: [.new, .initial]) { [weak self] item, _ in
             if let error = item.error {
-                self?.playerError = PlayerError(error: error)
+                Task { @MainActor in
+                    self?.playerError = PlayerError(error: error)
+                }
             }
         }
     }
