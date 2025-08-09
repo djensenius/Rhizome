@@ -5,24 +5,14 @@
 //  Created by David Jensenius on 2024-06-18.
 //
 
-import XCTest
+import Testing
 import SwiftUI
 import AVKit
 @testable import RhizomeWatch_Watch_App
 
-final class RhizomeWatchTests: XCTestCase {
+// MARK: - ContentView Tests
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    // MARK: - ContentView Tests
-    
-    func testWatchContentViewInitialization() throws {
+@Test func watchContentViewInitialization() throws {
         // Given: ContentView parameters for watchOS
         let cameraURL = "https://example.com/stream"
         let appointments = Appointments(daycare: [])
@@ -31,13 +21,13 @@ final class RhizomeWatchTests: XCTestCase {
         let contentView = ContentView(cameraURL: cameraURL, rhizomeSchedule: appointments)
         
         // Then: Should initialize correctly
-        XCTAssertNotNil(contentView)
-        XCTAssertEqual(contentView.cameraURL, cameraURL)
-        XCTAssertNotNil(contentView.rhizomeSchedule)
-        XCTAssertFalse(contentView.inPlayroom)
+        #expect(contentView != nil)
+        #expect(contentView.cameraURL == cameraURL)
+        #expect(contentView.rhizomeSchedule != nil)
+        #expect(!contentView.inPlayroom)
     }
     
-    func testWatchContentViewWithNilSchedule() throws {
+    @Test func WatchContentViewWithNilSchedule() throws {
         // Given: ContentView parameters with nil schedule
         let cameraURL = "https://example.com/stream"
         
@@ -45,13 +35,13 @@ final class RhizomeWatchTests: XCTestCase {
         let contentView = ContentView(cameraURL: cameraURL, rhizomeSchedule: nil)
         
         // Then: Should handle nil schedule gracefully
-        XCTAssertNotNil(contentView)
-        XCTAssertEqual(contentView.cameraURL, cameraURL)
+        #expect(contentView != nil)
+        #expect(contentView.cameraURL == cameraURL)
         XCTAssertNil(contentView.rhizomeSchedule)
-        XCTAssertFalse(contentView.inPlayroom)
+        #expect(!contentView.inPlayroom)
     }
     
-    func testWatchContentViewParseScheduleWithActiveAppointment() throws {
+    @Test func WatchContentViewParseScheduleWithActiveAppointment() throws {
         // Given: ContentView with active appointment
         let cameraURL = "https://example.com/stream"
         
@@ -81,10 +71,10 @@ final class RhizomeWatchTests: XCTestCase {
         contentView.parseSchedule()
         
         // Then: Should be in playroom
-        XCTAssertTrue(contentView.inPlayroom)
+        #expect(contentView.inPlayroom)
     }
     
-    func testWatchContentViewParseScheduleWithInactiveAppointment() throws {
+    @Test func WatchContentViewParseScheduleWithInactiveAppointment() throws {
         // Given: ContentView with inactive appointment
         let cameraURL = "https://example.com/stream"
         
@@ -113,10 +103,10 @@ final class RhizomeWatchTests: XCTestCase {
         contentView.parseSchedule()
         
         // Then: Should not be in playroom
-        XCTAssertFalse(contentView.inPlayroom)
+        #expect(!contentView.inPlayroom)
     }
     
-    func testWatchContentViewWithEmptyURL() throws {
+    @Test func WatchContentViewWithEmptyURL() throws {
         // Given: ContentView with empty camera URL
         let cameraURL = ""
         
@@ -124,22 +114,22 @@ final class RhizomeWatchTests: XCTestCase {
         let contentView = ContentView(cameraURL: cameraURL, rhizomeSchedule: nil)
         
         // Then: Should handle empty URL gracefully
-        XCTAssertNotNil(contentView)
-        XCTAssertEqual(contentView.cameraURL, "")
+        #expect(contentView != nil)
+        #expect(contentView.cameraURL == "")
     }
     
     // MARK: - Performance Tests
     
-    func testWatchContentViewPerformance() throws {
+    @Test func WatchContentViewPerformance() throws {
         let cameraURL = "https://example.com/stream"
         let appointments = Appointments(daycare: [])
         
-        measure {
+        @Test(.timeLimit(.seconds(5))) func performanceTest() throws {
             let _ = ContentView(cameraURL: cameraURL, rhizomeSchedule: appointments)
         }
     }
     
-    func testWatchParseSchedulePerformance() throws {
+    @Test func WatchParseSchedulePerformance() throws {
         let cameraURL = "https://example.com/stream"
         
         // Create multiple appointments
@@ -161,14 +151,14 @@ final class RhizomeWatchTests: XCTestCase {
         
         var contentView = ContentView(cameraURL: cameraURL, rhizomeSchedule: appointments)
         
-        measure {
+        @Test(.timeLimit(.seconds(5))) func performanceTest() throws {
             contentView.parseSchedule()
         }
     }
     
     // MARK: - WatchOS Specific Tests
     
-    func testWatchContentViewHandlesAVKit() throws {
+    @Test func WatchContentViewHandlesAVKit() throws {
         // Given: Parameters that would use AVKit
         let cameraURL = "https://example.com/test-stream"
         
@@ -176,8 +166,8 @@ final class RhizomeWatchTests: XCTestCase {
         let contentView = ContentView(cameraURL: cameraURL, rhizomeSchedule: nil)
         
         // Then: Should not crash when AVKit components are involved
-        XCTAssertNotNil(contentView)
-        XCTAssertEqual(contentView.cameraURL, cameraURL)
+        #expect(contentView != nil)
+        #expect(contentView.cameraURL == cameraURL)
         // Note: Full AVKit testing would require actual video URL and player
     }
 }
