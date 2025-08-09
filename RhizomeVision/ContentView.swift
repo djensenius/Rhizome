@@ -18,7 +18,7 @@ struct ContentView: View {
     var body: some View {
         HStack {
             if showVideo {
-                AZVideoPlayerView(cameraURL: cameraURL)
+                VideoPlayerView(cameraURL: cameraURL)
             } else {
                 VStack {
                     Text("🐕 Rhizome is not in the playroom 🐕")

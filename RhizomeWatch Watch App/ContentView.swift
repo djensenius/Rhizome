@@ -1,22 +1,20 @@
 //
 //  ContentView.swift
-//  RhizomeTV
+//  RhizomeWatch Watch App
 //
 //  Created by David Jensenius on 2024-06-18.
 //
 
 import SwiftUI
 import AVKit
-import AVFoundation
 
 struct ContentView: View {
     var cameraURL: String
     var rhizomeSchedule: Appointments?
     @State var inPlayroom = false
-    @State var path = [Int]()
     @State private var whereWeAre = WhereWeAre()
 
-    var showRhizome: some View {
+    var body: some View {
         VStack {
             if inPlayroom {
                 Text("🐕🎉 Rhizome is playing! 🎉🐕")
@@ -24,15 +22,6 @@ struct ContentView: View {
             } else {
                 Text("🐕 Rhizome is not in the playroom 🐕")
                     .padding([.bottom], 20)
-            }
-            Button {
-                path = [1]
-            } label: {
-                if inPlayroom {
-                    Text("Watch Rhizome")
-                } else {
-                    Text("View Anyway")
-                }
             }
             Button {
                 whereWeAre.deleteKeyChainPasword()
@@ -45,18 +34,6 @@ struct ContentView: View {
                 Text("Logout")
             }
         }
-    }
-
-    var body: some View {
-        NavigationStack(path: $path) {
-            HStack {
-                showRhizome
-            }.navigationDestination(for: Int.self) { selection in
-                if selection == 1 {
-                    AZVideoPlayerView(cameraURL: cameraURL)
-                }
-            }
-        }
         .onAppear(perform: parseSchedule)
     }
 
@@ -67,9 +44,6 @@ struct ContentView: View {
                 let endDate = Date(timeIntervalSince1970: TimeInterval((daycare.pickupDate / 1000) + (60 * 60)))
                 if Date.now  > startDate && Date.now < endDate {
                     inPlayroom = true
-                    path.append(1)
-                } else {
-                    inPlayroom = false
                 }
             }
         }

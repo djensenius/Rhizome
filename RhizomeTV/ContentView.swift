@@ -41,7 +41,7 @@ struct ContentView: View {
                 showRhizome
             }.navigationDestination(for: Int.self) { selection in
                 if selection == 1 {
-                    AZVideoPlayerView(cameraURL: cameraURL)
+                    VideoPlayerView(cameraURL: cameraURL)
                 }
             }
         }
