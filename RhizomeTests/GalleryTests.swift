@@ -5,69 +5,66 @@
 //  Created by David Jensenius on 2024-06-18.
 //
 
-import XCTest
+import Testing
 import SwiftUI
 @testable import Rhizome
 
-final class GalleryTests: XCTestCase {
+@Test func galleryInitializationWithEmptyImages() throws {
+    // Given: Empty images array
+    let images: [String] = []
+    
+    // When: Creating Gallery
+    let gallery = Gallery(images: images)
+    
+    // Then: Should initialize correctly
+    #expect(gallery.images.count == 0)
+    #expect(gallery.currentIndex == 0)
+}
 
-    func testGalleryInitializationWithEmptyImages() throws {
-        // Given: Empty images array
-        let images: [String] = []
-        
-        // When: Creating Gallery
-        let gallery = Gallery(images: images)
-        
-        // Then: Should initialize correctly
-        XCTAssertEqual(gallery.images.count, 0)
-        XCTAssertEqual(gallery.currentIndex, 0)
-    }
+@Test func galleryInitializationWithImages() throws {
+    // Given: Images array
+    let images = ["image1.jpg", "image2.jpg", "image3.jpg"]
     
-    func testGalleryInitializationWithImages() throws {
-        // Given: Images array
-        let images = ["image1.jpg", "image2.jpg", "image3.jpg"]
-        
-        // When: Creating Gallery
+    // When: Creating Gallery
         let gallery = Gallery(images: images)
-        
-        // Then: Should initialize correctly
-        XCTAssertEqual(gallery.images.count, 3)
-        XCTAssertEqual(gallery.images[0], "image1.jpg")
-        XCTAssertEqual(gallery.images[1], "image2.jpg")
-        XCTAssertEqual(gallery.images[2], "image3.jpg")
-        XCTAssertEqual(gallery.currentIndex, 0)
-    }
+    // Then: Should initialize correctly
+    #expect(gallery.images.count == 3)
+    #expect(gallery.images[0] == "image1.jpg")
+    #expect(gallery.images[1] == "image2.jpg")
+    #expect(gallery.images[2] == "image3.jpg")
+    #expect(gallery.currentIndex == 0)
+}
+
+@Test func galleryWithSingleImage() throws {
+    // Given: Single image
+    let images = ["single-image.jpg"]
     
-    func testGalleryWithSingleImage() throws {
-        // Given: Single image
-        let images = ["single-image.jpg"]
-        
-        // When: Creating Gallery
-        let gallery = Gallery(images: images)
-        
-        // Then: Should handle single image correctly
-        XCTAssertEqual(gallery.images.count, 1)
-        XCTAssertEqual(gallery.images[0], "single-image.jpg")
-        XCTAssertEqual(gallery.currentIndex, 0)
-    }
+    // When: Creating Gallery
+    let gallery = Gallery(images: images)
     
-    func testGalleryWithLargeImageArray() throws {
-        // Given: Large images array
-        let images = Array(1...100).map { "image\($0).jpg" }
-        
-        // When: Creating Gallery
-        let gallery = Gallery(images: images)
-        
-        // Then: Should handle large array correctly
-        XCTAssertEqual(gallery.images.count, 100)
-        XCTAssertEqual(gallery.images[0], "image1.jpg")
-        XCTAssertEqual(gallery.images[99], "image100.jpg")
-        XCTAssertEqual(gallery.currentIndex, 0)
+    // Then: Should handle single image correctly
+    #expect(gallery.images.count == 1)
+    #expect(gallery.images[0] == "single-image.jpg")
+    #expect(gallery.currentIndex == 0)
+}
+
+@Test func galleryWithLargeImageArray() throws {
+    // Given: Large images array
+    let images = Array(1...100).map { "image\($0).jpg" }
+    
+    // When: Creating Gallery
+    let gallery = Gallery(images: images)
+    
+    // Then: Should handle large array correctly
+    #expect(gallery.images.count == 100)
+        #expect(gallery.images[0] == "image1.jpg")
+        #expect(gallery.images[99] == "image100.jpg")
+        #expect(gallery.currentIndex == 0)
     }
     
     // MARK: - View Extension Tests
     
-    func testFramedAspectRatioExtension() throws {
+    func FramedAspectRatioExtension() throws {
         // Given: Image view
         let imageView = Image(systemName: "photo")
         
@@ -75,10 +72,10 @@ final class GalleryTests: XCTestCase {
         let framedView = imageView.framedAspectRatio(contentMode: .fit)
         
         // Then: Should not crash and return modified view
-        XCTAssertNotNil(framedView)
+        #expect(framedView != nil)
     }
     
-    func testFixedAspectRatioExtension() throws {
+    func FixedAspectRatioExtension() throws {
         // Given: Any view
         let anyView = Text("Test")
         
@@ -86,10 +83,10 @@ final class GalleryTests: XCTestCase {
         let fixedView = anyView.fixedAspectRatio(1.0, contentMode: .fit)
         
         // Then: Should not crash and return modified view
-        XCTAssertNotNil(fixedView)
+        #expect(fixedView != nil)
     }
     
-    func testFixedAspectRatioWithNilAspect() throws {
+    func FixedAspectRatioWithNilAspect() throws {
         // Given: Any view
         let anyView = Rectangle()
         
@@ -97,12 +94,12 @@ final class GalleryTests: XCTestCase {
         let fixedView = anyView.fixedAspectRatio(nil, contentMode: .fill)
         
         // Then: Should handle nil aspect correctly
-        XCTAssertNotNil(fixedView)
+        #expect(fixedView != nil)
     }
     
     // MARK: - Performance Tests
     
-    func testGalleryInitializationPerformance() throws {
+    func GalleryInitializationPerformance() throws {
         let images = Array(1...50).map { "image\($0).jpg" }
         
         measure {
@@ -110,7 +107,7 @@ final class GalleryTests: XCTestCase {
         }
     }
     
-    func testLargeImageArrayPerformance() throws {
+    func LargeImageArrayPerformance() throws {
         measure {
             let images = Array(1...1000).map { "image\($0).jpg" }
             let _ = Gallery(images: images)
@@ -119,7 +116,7 @@ final class GalleryTests: XCTestCase {
     
     // MARK: - Edge Cases
     
-    func testGalleryWithInvalidImageURLs() throws {
+    func GalleryWithInvalidImageURLs() throws {
         // Given: Images with potentially invalid URLs
         let images = ["", "invalid-url", "http://", "not-a-url"]
         
@@ -127,11 +124,11 @@ final class GalleryTests: XCTestCase {
         let gallery = Gallery(images: images)
         
         // Then: Should handle invalid URLs gracefully
-        XCTAssertEqual(gallery.images.count, 4)
-        XCTAssertEqual(gallery.currentIndex, 0)
+        #expect(gallery.images.count == 4)
+        #expect(gallery.currentIndex == 0)
     }
     
-    func testGalleryWithVeryLongImageURLs() throws {
+    func GalleryWithVeryLongImageURLs() throws {
         // Given: Very long image URLs
         let longURL = String(repeating: "a", count: 1000) + ".jpg"
         let images = [longURL]
@@ -140,11 +137,11 @@ final class GalleryTests: XCTestCase {
         let gallery = Gallery(images: images)
         
         // Then: Should handle long URLs
-        XCTAssertEqual(gallery.images.count, 1)
-        XCTAssertEqual(gallery.images[0], longURL)
+        #expect(gallery.images.count == 1)
+        #expect(gallery.images[0] == longURL)
     }
     
-    func testGalleryWithSpecialCharacters() throws {
+    func GalleryWithSpecialCharacters() throws {
         // Given: Image URLs with special characters
         let images = [
             "image with spaces.jpg",
@@ -157,8 +154,8 @@ final class GalleryTests: XCTestCase {
         let gallery = Gallery(images: images)
         
         // Then: Should handle special characters
-        XCTAssertEqual(gallery.images.count, 4)
-        XCTAssertTrue(gallery.images.contains("image with spaces.jpg"))
-        XCTAssertTrue(gallery.images.contains("image-with-unicode-🐕.jpg"))
+        #expect(gallery.images.count == 4)
+        #expect(gallery.images.contains("image with spaces.jpg"))
+        #expect(gallery.images.contains("image-with-unicode-🐕.jpg"))
     }
 }
