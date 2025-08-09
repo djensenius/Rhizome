@@ -8,129 +8,127 @@
 import Testing
 import XCTest
 
+// MARK: - Swift Testing (uses XCUITest APIs for UI automation)
 
+@Suite("Rhizome TV UI Tests")
+struct RhizomeTVUITests {
 
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required
-        // for your tests before they run. The setUp method is a good place to do this.
-    }
-
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    @Test func TVAppLaunch() throws {
-        // UI tests must launch the application that they test.
+    // Helper to launch and wait for some UI to appear
+    @MainActor
+    @discardableResult
+    private func launchAppAndWait(timeout: TimeInterval = 5) -> XCUIApplication {
         let app = XCUIApplication()
         app.launch()
 
-        // Verify the app launches successfully
+        // Wait for a likely-first element to exist (buttons or any other element)
+        if !app.buttons.firstMatch.waitForExistence(timeout: timeout) {
+            _ = app.otherElements.firstMatch.waitForExistence(timeout: 1)
+        }
+        return app
+    }
+
+    // MARK: Tests
+
+    @Test
+    @MainActor
+    func TVAppLaunch() {
+        let app = launchAppAndWait()
         #expect(app.exists)
+        #expect(app.state == .runningForeground)
     }
-    
-    @Test func TVFocusNavigation() throws {
-        // Given: TV app is launched
-        let app = XCUIApplication()
-        app.launch()
-        
-        // Wait for app to load
-        sleep(3)
-        
-        // When: App is fully loaded
-        // Then: Should have focusable elements for TV remote navigation
-        let buttons = app.buttons
-        let tabBars = app.tabBars
-        
-        // TV apps should have focusable UI elements
-        let hasFocusableElements = buttons.count > 0 || tabBars.count > 0
-        #expect(hasFocusableElements, "TV app should have focusable elements")
+
+    @Test
+    @MainActor
+    func TVFocusNavigation() {
+        let app = launchAppAndWait()
+
+        // Then: app should expose focusable elements
+        let hasButtons = app.buttons.count > 0 || app.buttons.firstMatch.exists
+        let hasTabBars = app.tabBars.count > 0 || app.tabBars.firstMatch.exists
+        #expect(hasButtons || hasTabBars)
     }
-    
-    @Test func TVTabNavigation() throws {
-        // Given: TV app is launched
-        let app = XCUIApplication()
-        app.launch()
-        
-        // Wait for app to load
-        sleep(3)
-        
-        // When: Checking for tab navigation
+
+    @Test
+    @MainActor
+    func TVTabNavigation() throws {
+        let app = launchAppAndWait()
+
         let tabBar = app.tabBars.firstMatch
-        if tabBar.exists {
-            let tabs = tabBar.buttons
-            
-            // Then: Should have TV-appropriate tabs
-            #expect(tabs.count, 0 > "TV app should have navigation tabs")
-            
-            // Test focusing on different tabs
-            for tabIndex in 0..<min(tabs.count, 4) {
-                let tab = tabs.element(boundBy: tabIndex)
-                if tab.exists && tab.isHittable {
-                    tab.tap()
-                    sleep(1) // Allow time for navigation
-                }
+        guard tabBar.waitForExistence(timeout: 3) else {
+            // If your tvOS UI doesn't use a tab bar, skip rather than fail
+            throw Skip("No tab bar found; skipping tab navigation test for this configuration.")
+        }
+
+        let tabs = tabBar.buttons
+        #expect(tabs.count > 0)
+
+        // Try focusing different tabs (up to 4)
+        let maxToTest = min(tabs.count, 4)
+        for index in 0..<maxToTest {
+            let tab = tabs.element(boundBy: index)
+            if tab.exists && tab.isHittable {
+                tab.tap()
+                _ = app.otherElements.firstMatch.waitForExistence(timeout: 1)
             }
         }
     }
-    
-    @Test func TVAuthenticationFlow() throws {
-        // Given: TV app is launched
-        let app = XCUIApplication()
-        app.launch()
-        
-        // Wait for app to load
-        sleep(3)
-        
-        // When: App may show authentication UI
+
+    @Test
+    @MainActor
+    func TVAuthenticationFlow() throws {
+        let app = launchAppAndWait()
+
         let textFields = app.textFields
         let secureTextFields = app.secureTextFields
         let buttons = app.buttons
-        
-        // Then: Authentication elements should be focusable if present
+
+        // If auth fields are present, ensure there are actionable buttons too.
         if textFields.count > 0 || secureTextFields.count > 0 {
-            #expect(buttons.count, 0 > "Authentication should have actionable buttons")
+            #expect(buttons.count > 0)
+        } else {
+            throw Skip("No authentication fields present; skipping auth flow checks.")
         }
-        
-        // Test always passes - just checking UI exists
-        #expect(true, "TV authentication flow test completed")
-    }
-    
-    @Test func TVRemoteControlSupport() throws {
-        // Given: TV app is launched
-        let app = XCUIApplication()
-        app.launch()
-        
-        // Wait for app to load
-        sleep(2)
-        
-        // When: App is ready for remote control
-        // Then: Should have elements that support remote control interaction
-        let interactiveElements = app.buttons.count + app.tabBars.count + app.textFields.count
-        
-        #expect(interactiveElements, 0 > "TV app should have remote-controllable elements")
     }
 
-    @Test func LaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-            // This measures how long it takes to launch your application.
+    @Test
+    @MainActor
+    func TVRemoteControlSupport() {
+        let app = launchAppAndWait()
+
+        // Count interactive elements commonly used on tvOS
+        let interactiveElements =
+            app.buttons.count +
+            app.tabBars.count +
+            app.textFields.count +
+            app.secureTextFields.count
+
+        #expect(interactiveElements > 0)
+    }
+}
+
+// MARK: - Performance (kept as XCTest since measure(...) is an XCTestCase API)
+
+final class RhizomeTVUIPerfTests: XCTestCase {
+    func testLaunchPerformance() throws {
+        if #available(tvOS 13.0, iOS 13.0, macOS 10.15, watchOS 7.0, *) {
             measure(metrics: [XCTApplicationLaunchMetric()]) {
                 XCUIApplication().launch()
             }
+        } else {
+            throw XCTSkip("Performance metrics require tvOS 13 / iOS 13 / macOS 10.15 / watchOS 7 or later.")
         }
     }
-    
-    @Test func TVMemoryPerformance() throws {
+
+    func testTVMemoryPerformance() throws {
         if #available(tvOS 13.0, *) {
-            // This measures memory usage during TV app operation
             let app = XCUIApplication()
-            
             measure(metrics: [XCTMemoryMetric()]) {
                 app.launch()
-                sleep(2)
+                _ = app.otherElements.firstMatch.waitForExistence(timeout: 2)
                 app.terminate()
             }
+        } else {
+            throw XCTSkip("Memory metric requires tvOS 13 or later.")
         }
     }
 }

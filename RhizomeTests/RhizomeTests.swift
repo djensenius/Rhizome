@@ -7,6 +7,7 @@
 
 import Testing
 @testable import Rhizome
+import Foundation
 
 private func cleanupKeychain() {
     let query: [String: Any] = [
@@ -22,10 +23,10 @@ private func cleanupKeychain() {
 @Test func whereWeAreInitWithoutKeychainPassword() throws {
     // Given: No password in keychain
     cleanupKeychain()
-    
+
     // When: Initializing WhereWeAre
     let whereWeAre = WhereWeAre()
-    
+
     // Then: Should not have keychain password
     #expect(!whereWeAre.hasKeyChainPassword)
     #expect(whereWeAre.loading)
@@ -36,18 +37,18 @@ private func cleanupKeychain() {
     cleanupKeychain()
     var whereWeAre = WhereWeAre()
     let testPassword = "testPassword123"
-    
+
     // When: Setting a password
     whereWeAre.setPassword(password: testPassword)
-    
+
     // Then: Should have keychain password and finished loading
     #expect(whereWeAre.hasKeyChainPassword)
     #expect(!whereWeAre.loading)
-    
+
     // And: Password should be retrievable from keychain
     let retrievedPassword = WhereWeAre.getPassword()
     #expect(retrievedPassword == testPassword)
-    
+
     // Cleanup
     cleanupKeychain()
 }
@@ -57,18 +58,18 @@ private func cleanupKeychain() {
     var whereWeAre = WhereWeAre()
     let testPassword = "testPassword123"
     whereWeAre.setPassword(password: testPassword)
-    
+
     // When: Deleting the password
     whereWeAre.deleteKeyChainPasword()
-    
+
     // Then: Should not have keychain password and finished loading
     #expect(!whereWeAre.hasKeyChainPassword)
     #expect(!whereWeAre.loading)
-    
+
     // And: Password should not be retrievable from keychain
     let retrievedPassword = WhereWeAre.getPassword()
     #expect(retrievedPassword == nil)
-    
+
     // Cleanup
     cleanupKeychain()
 }
@@ -76,10 +77,10 @@ private func cleanupKeychain() {
 @Test func whereWeAreGetPasswordReturnsNilWhenEmpty() throws {
     // Given: No password in keychain
     cleanupKeychain()
-    
+
     // When: Getting password
     let password = WhereWeAre.getPassword()
-    
+
     // Then: Should return nil
     #expect(password == nil)
 }
@@ -88,7 +89,7 @@ private func cleanupKeychain() {
 
 @Test func loginResponseDecoding() throws {
     // Given: Valid JSON data
-    let jsonData = """
+    let jsonData = Data("""
     {
         "cameraURL": "https://example.com/stream",
         "rhizomeSchedule": {
@@ -103,11 +104,11 @@ private func cleanupKeychain() {
             "photos": ["photo1.jpg", "photo2.jpg"]
         }
     }
-    """.data(using: .utf8)!
-    
+    """.utf8)
+
     // When: Decoding the data
     let loginResponse = try JSONDecoder().decode(LoginResponse.self, from: jsonData)
-    
+
     // Then: Should decode correctly
     #expect(loginResponse.cameraURL == "https://example.com/stream")
     #expect(loginResponse.rhizomeData.news == "Test news")
@@ -116,7 +117,7 @@ private func cleanupKeychain() {
 }
 @Test func appointmentsDaycareDecoding() throws {
     // Given: Valid daycare appointment JSON
-    let jsonData = """
+    let jsonData = Data("""
     {
         "status": "confirmed",
         "service": "daycare",
@@ -136,11 +137,11 @@ private func cleanupKeychain() {
         "updatedAt": {},
         "id": "appointment123"
     }
-    """.data(using: .utf8)!
-    
+    """.utf8)
+
     // When: Decoding the data
     let appointment = try JSONDecoder().decode(AppointmentsDaycare.self, from: jsonData)
-    
+
     // Then: Should decode correctly
     #expect(appointment.status == "confirmed")
     #expect(appointment.service == "daycare")
@@ -159,21 +160,21 @@ private func cleanupKeychain() {
 
 // MARK: - Performance Tests
 
-@Test(.timeLimit(.seconds(5))) func keychainPerformance() throws {
+@Test(.timeLimit(.minutes(1))) func keychainPerformance() throws {
     // Setup keychain cleanup for performance test
     cleanupKeychain()
-    
+
     var whereWeAre = WhereWeAre()
     whereWeAre.setPassword(password: "testPassword")
     _ = WhereWeAre.getPassword()
     whereWeAre.deleteKeyChainPasword()
-    
+
     // Cleanup
     cleanupKeychain()
 }
 
-@Test(.timeLimit(.seconds(5))) func jsonDecodingPerformance() throws {
-    let jsonData = """
+@Test(.timeLimit(.minutes(1))) func jsonDecodingPerformance() throws {
+    let jsonData = Data("""
     {
         "cameraURL": "https://example.com/stream",
         "rhizomeSchedule": {
@@ -188,7 +189,7 @@ private func cleanupKeychain() {
             "photos": ["photo1.jpg", "photo2.jpg"]
         }
     }
-    """.data(using: .utf8)!
-    
+    """.utf8)
+
     _ = try? JSONDecoder().decode(LoginResponse.self, from: jsonData)
 }

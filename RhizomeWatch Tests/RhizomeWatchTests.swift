@@ -6,50 +6,55 @@
 //
 
 import Testing
+import Foundation
 import SwiftUI
 import AVKit
 @testable import RhizomeWatch_Watch_App
 
-// MARK: - ContentView Tests
+@MainActor
+@Suite("Rhizome watchOS ContentView Tests")
+struct RhizomeWatchTests {
 
-@Test func watchContentViewInitialization() throws {
-        // Given: ContentView parameters for watchOS
+    // MARK: - ContentView Tests
+
+    @Test
+    func watchContentViewInitialization() {
+        // Given
         let cameraURL = "https://example.com/stream"
         let appointments = Appointments(daycare: [])
-        
-        // When: Creating ContentView
+
+        // When
         let contentView = ContentView(cameraURL: cameraURL, rhizomeSchedule: appointments)
-        
-        // Then: Should initialize correctly
-        #expect(contentView != nil)
+
+        // Then
         #expect(contentView.cameraURL == cameraURL)
         #expect(contentView.rhizomeSchedule != nil)
         #expect(!contentView.inPlayroom)
     }
-    
-    @Test func WatchContentViewWithNilSchedule() throws {
-        // Given: ContentView parameters with nil schedule
+
+    @Test
+    func watchContentViewWithNilSchedule() {
+        // Given
         let cameraURL = "https://example.com/stream"
-        
-        // When: Creating ContentView with nil schedule
+
+        // When
         let contentView = ContentView(cameraURL: cameraURL, rhizomeSchedule: nil)
-        
-        // Then: Should handle nil schedule gracefully
-        #expect(contentView != nil)
+
+        // Then
         #expect(contentView.cameraURL == cameraURL)
-        XCTAssertNil(contentView.rhizomeSchedule)
+        #expect(contentView.rhizomeSchedule == nil)
         #expect(!contentView.inPlayroom)
     }
-    
-    @Test func WatchContentViewParseScheduleWithActiveAppointment() throws {
-        // Given: ContentView with active appointment
+
+    @Test
+    func watchContentViewParseScheduleWithActiveAppointment() {
+        // Given
         let cameraURL = "https://example.com/stream"
-        
-        // Create an appointment that should be active (current time within range)
+
         let now = Date()
         let twoHoursAgo = now.addingTimeInterval(-2 * 60 * 60)
         let twoHoursFromNow = now.addingTimeInterval(2 * 60 * 60)
-        
+
         let daycare = AppointmentsDaycare(
             status: "confirmed",
             service: "daycare",
@@ -63,25 +68,25 @@ import AVKit
             updatedAt: UpdatedAt(),
             id: "test123"
         )
-        
+
         let appointments = Appointments(daycare: [daycare])
         var contentView = ContentView(cameraURL: cameraURL, rhizomeSchedule: appointments)
-        
-        // When: Parsing the schedule
+
+        // When
         contentView.parseSchedule()
-        
-        // Then: Should be in playroom
+
+        // Then
         #expect(contentView.inPlayroom)
     }
-    
-    @Test func WatchContentViewParseScheduleWithInactiveAppointment() throws {
-        // Given: ContentView with inactive appointment
+
+    @Test
+    func watchContentViewParseScheduleWithInactiveAppointment() {
+        // Given
         let cameraURL = "https://example.com/stream"
-        
-        // Create an appointment that is in the future
+
         let tomorrow = Date().addingTimeInterval(24 * 60 * 60)
         let dayAfterTomorrow = tomorrow.addingTimeInterval(24 * 60 * 60)
-        
+
         let daycare = AppointmentsDaycare(
             status: "confirmed",
             service: "daycare",
@@ -95,44 +100,44 @@ import AVKit
             updatedAt: UpdatedAt(),
             id: "test123"
         )
-        
+
         let appointments = Appointments(daycare: [daycare])
         var contentView = ContentView(cameraURL: cameraURL, rhizomeSchedule: appointments)
-        
-        // When: Parsing the schedule
+
+        // When
         contentView.parseSchedule()
-        
-        // Then: Should not be in playroom
+
+        // Then
         #expect(!contentView.inPlayroom)
     }
-    
-    @Test func WatchContentViewWithEmptyURL() throws {
-        // Given: ContentView with empty camera URL
+
+    @Test
+    func watchContentViewWithEmptyURL() {
+        // Given
         let cameraURL = ""
-        
-        // When: Creating ContentView with empty URL
+
+        // When
         let contentView = ContentView(cameraURL: cameraURL, rhizomeSchedule: nil)
-        
-        // Then: Should handle empty URL gracefully
-        #expect(contentView != nil)
+
+        // Then
         #expect(contentView.cameraURL == "")
     }
-    
+
     // MARK: - Performance Tests
-    
-    @Test func WatchContentViewPerformance() throws {
+
+    @Test(.timeLimit(.seconds(5)))
+    func watchContentViewPerformance() {
         let cameraURL = "https://example.com/stream"
         let appointments = Appointments(daycare: [])
-        
-        @Test(.timeLimit(.seconds(5))) func performanceTest() throws {
-            let _ = ContentView(cameraURL: cameraURL, rhizomeSchedule: appointments)
+        measure {
+            _ = ContentView(cameraURL: cameraURL, rhizomeSchedule: appointments)
         }
     }
-    
-    @Test func WatchParseSchedulePerformance() throws {
+
+    @Test(.timeLimit(.seconds(5)))
+    func watchParseSchedulePerformance() {
         let cameraURL = "https://example.com/stream"
-        
-        // Create multiple appointments
+
         let appointments = Appointments(daycare: Array(1...10).map { index in
             AppointmentsDaycare(
                 status: "confirmed",
@@ -148,26 +153,24 @@ import AVKit
                 id: "test\(index)"
             )
         })
-        
-        var contentView = ContentView(cameraURL: cameraURL, rhizomeSchedule: appointments)
-        
-        @Test(.timeLimit(.seconds(5))) func performanceTest() throws {
+
+        measure {
+            var contentView = ContentView(cameraURL: cameraURL, rhizomeSchedule: appointments)
             contentView.parseSchedule()
         }
     }
-    
-    // MARK: - WatchOS Specific Tests
-    
-    @Test func WatchContentViewHandlesAVKit() throws {
-        // Given: Parameters that would use AVKit
+
+    // MARK: - watchOS Specific
+
+    @Test
+    func watchContentViewHandlesAVKit() {
+        // Given
         let cameraURL = "https://example.com/test-stream"
-        
-        // When: Creating ContentView (which uses AVKit for video)
+
+        // When
         let contentView = ContentView(cameraURL: cameraURL, rhizomeSchedule: nil)
-        
-        // Then: Should not crash when AVKit components are involved
-        #expect(contentView != nil)
+
+        // Then (sanity check; full AVKit playback requires integration tests)
         #expect(contentView.cameraURL == cameraURL)
-        // Note: Full AVKit testing would require actual video URL and player
     }
 }
