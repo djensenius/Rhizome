@@ -86,10 +86,3 @@ struct ContentView: View {
         }
     }
 }
-< endDate {
-                    showVideo = true
-                }
-            }
-        }
-    }
-}

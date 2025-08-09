@@ -113,4 +113,3 @@ struct VideoPlayerView: View {
             playerItem = nil
         }
     }
-}
