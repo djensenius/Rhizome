@@ -41,8 +41,10 @@ struct Gallery: View {
                          */
                     }
                 }
+                #if os(iOS)
                 .tabViewStyle(PageTabViewStyle())
                 .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
+                #endif
             }
             .onReceive(timer) {_ in
                 withAnimation {

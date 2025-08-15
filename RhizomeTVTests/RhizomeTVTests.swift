@@ -5,33 +5,215 @@
 //  Created by David Jensenius on 2024-06-18.
 //
 
-import XCTest
+import Testing
+import AuthenticationServices
+import SwiftUI
 @testable import RhizomeTV
 
-final class RhizomeTVTests: XCTestCase {
+// Use the app's Appointments type in tests
+typealias Appointments = RhizomeTV.Appointments
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+// MARK: - AuthenticationController Tests
+
+@MainActor
+@Test
+func authenticationControllerInitialization() throws {
+    // Given & When: Creating AuthenticationController
+    let controller = AuthenticationController()
+
+    // Then: Should initialize with ready state
+    #expect({
+        if case .ready = controller.state { return true } else { return false }
+    }(), "State should be .ready")
+    #expect(type(of: controller.viewModel) == LoginViewModel.self)
+}
+
+@MainActor
+@Test
+func authenticationControllerSignIn() throws {
+    // Given: AuthenticationController
+    let controller = AuthenticationController()
+    let email = "test@example.com"
+    let password = "testPassword"
+
+    // When: Signing in
+    controller.signIn(email: email, password: password)
+
+    // Then: Should update state and viewModel
+    if case .authenticated(let user) = controller.state {
+        #expect(user == "loggedIn")
+    } else {
+        #expect(Bool(false), "Expected authenticated state")
     }
+    #expect(controller.viewModel.password == password)
+}
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
+// MARK: - AuthenticationState Tests
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete.
-        // Check the results with assertions afterwards.
-    }
+@Test
+func authenticationStateReady() throws {
+    // Given & When: Ready state
+    let state = AuthenticationState.ready
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
+    // Then: Should have correct properties
+    #expect(!state.wantsManualPasswordAuthentication)
+    #expect(state.error == nil)
+    #expect(state.user == nil)
+}
 
+@Test
+func authenticationStateAuthenticating() throws {
+    // Given & When: Authenticating state
+    let state = AuthenticationState.authenticating
+
+    // Then: Should have correct properties
+    #expect(!state.wantsManualPasswordAuthentication)
+    #expect(state.error == nil)
+    #expect(state.user == nil)
+}
+
+@Test
+func authenticationStateWantsManualPasswordAuthentication() throws {
+    // Given & When: Manual password authentication state
+    let state = AuthenticationState.wantsManualPasswordAuthentication
+
+    // Then: Should have correct properties
+    #expect(state.wantsManualPasswordAuthentication)
+    #expect(state.error == nil)
+    #expect(state.user == nil)
+}
+
+@Test
+func authenticationStateAuthenticated() throws {
+    // Given & When: Authenticated state
+    let user = "testUser"
+    let state = AuthenticationState.authenticated(user)
+
+    // Then: Should have correct properties
+    #expect(!state.wantsManualPasswordAuthentication)
+    #expect(state.error == nil)
+    #expect(state.user == user)
+}
+
+@Test
+func authenticationStateFailed() throws {
+    // Given & When: Failed state
+    let error = AuthenticationError.cancelled
+    let state = AuthenticationState.failed(error)
+
+    // Then: Should have correct properties
+    #expect(!state.wantsManualPasswordAuthentication)
+    #expect(state.error != nil)
+    #expect(state.user == nil)
+}
+
+@Test
+func authenticationStateReset() throws {
+    // Given: A non-ready state
+    var state = AuthenticationState.authenticating
+
+    // When: Resetting state
+    state.reset()
+
+    // Then: Should be ready
+    #expect({
+        if case .ready = state { return true } else { return false }
+    }(), "Expected state to be .ready after reset")
+}
+
+// MARK: - AuthenticationError Tests
+
+@Test
+func authenticationErrorCancelled() throws {
+    // Given & When: Cancelled error
+    let error = AuthenticationError.cancelled
+
+    // Then: Should be cancelled
+    #expect(error.isCancelledError)
+    #expect(error.errorDescription != nil)
+}
+
+@Test
+func authenticationErrorUnknown() throws {
+    // Given: Unknown error
+    let underlyingError = NSError(domain: "TestDomain", code: 123, userInfo: nil)
+    let error = AuthenticationError.unknown(underlyingError)
+
+    // When & Then: Should not be cancelled
+    #expect(!error.isCancelledError)
+    #expect(error.errorDescription != nil)
+}
+
+@Test
+func authenticationErrorInitWithCancelledError() throws {
+    // Given: ASAuthorization cancelled error
+    let asError = ASAuthorizationError(.canceled)
+
+    // When: Creating AuthenticationError
+    let error = AuthenticationError(asError)
+
+    // Then: Should be cancelled
+    #expect(error.isCancelledError)
+}
+
+@Test
+func authenticationErrorInitWithOtherError() throws {
+    // Given: Other error
+    let otherError = NSError(domain: "TestDomain", code: 456, userInfo: nil)
+
+    // When: Creating AuthenticationError
+    let error = AuthenticationError(otherError)
+
+    // Then: Should not be cancelled
+    #expect(!error.isCancelledError)
+}
+
+// MARK: - RhizomeTabs Tests
+
+@MainActor
+@Test
+func rhizomeTabsInitialization() throws {
+    // Given: RhizomeTabs parameters
+    let cameraUrl = "https://example.com/stream"
+    let appointments = Appointments(daycare: [])
+    let newsUrl = "https://example.com/news"
+    let images = ["image1.jpg", "image2.jpg"]
+
+    // When: Creating RhizomeTabs
+    let tabs = RhizomeTabs(
+        cameraUrl: cameraUrl,
+        rhizomeSchedule: appointments,
+        newsUrl: newsUrl,
+        images: images
+    )
+
+    // Then: Should initialize correctly
+    #expect(tabs.cameraUrl == cameraUrl)
+    #expect(tabs.newsUrl == newsUrl)
+    #expect(tabs.images.count == 2)
+}
+
+// MARK: - Performance Tests
+
+@MainActor
+@Test(.timeLimit(.minutes(1)))
+func authenticationControllerPerformance() throws {
+    let controller = AuthenticationController()
+    controller.signIn(email: "test@example.com", password: "testPassword")
+}
+
+@MainActor
+@Test(.timeLimit(.minutes(1)))
+func rhizomeTabsPerformance() throws {
+    let cameraUrl = "https://example.com/stream"
+    let appointments = Appointments(daycare: [])
+    let newsUrl = "https://example.com/news"
+    let images = Array(1...50).map { "image\($0).jpg" }
+
+    _ = RhizomeTabs(
+        cameraUrl: cameraUrl,
+        rhizomeSchedule: appointments,
+        newsUrl: newsUrl,
+        images: images
+    )
 }
