@@ -60,7 +60,7 @@ struct VideoPlayerView: View {
         self.cameraURL = cameraURL
         self.existingPlayer = nil
     }
-    
+
     // Initializer for existing player (replaces AZVideoPlayer)
     init(player: AVPlayer) {
         self.cameraURL = nil

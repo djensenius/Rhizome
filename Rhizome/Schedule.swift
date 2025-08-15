@@ -14,11 +14,12 @@ struct Schedule: View {
 
     var body: some View {
         ScrollView {
-            if schedule != nil && schedule?.daycare != nil {
+            /*
+            if schedule != nil && schedule?.next_reservation != nil {
                 Text("Daycare Schedule")
                     .font(.title)
                     .padding([.bottom], 20)
-                ForEach(schedule!.daycare) { daycare in
+                ForEach(schedule!.next_reservation) { daycare in
                     Text((parseDate(timestamp: TimeInterval(daycare.date / 1000), timezone: daycare.timezone)) +
                        " - " +
                         (parseDate(
@@ -29,10 +30,11 @@ struct Schedule: View {
                         .padding([.bottom], 20)
                 }
             } else {
+             */
                 Text("No Daycare Appointments Scheduled")
                     .font(.title)
                     .padding([.bottom], 20)
-            }
+            // }
             Spacer()
             Text("Other news")
                 .font(.title)
