@@ -175,7 +175,12 @@ func authenticationErrorInitWithOtherError() throws {
 func rhizomeTabsInitialization() throws {
     // Given: RhizomeTabs parameters
     let cameraUrl = "https://example.com/stream"
-    let appointments = Appointments(daycare: [])
+    let daycare = AppointmentsDaycare(
+        startDate: "Thursday, 8/14/2025 9:00 am",
+        rId: 1,
+        type: "Daycare | Full Day"
+    )
+    let appointments = Appointments(nextReservation: daycare)
     let newsUrl = "https://example.com/news"
     let images = ["image1.jpg", "image2.jpg"]
 
@@ -206,7 +211,12 @@ func authenticationControllerPerformance() throws {
 @Test(.timeLimit(.minutes(1)))
 func rhizomeTabsPerformance() throws {
     let cameraUrl = "https://example.com/stream"
-    let appointments = Appointments(daycare: [])
+    let daycare = AppointmentsDaycare(
+        startDate: "Thursday, 8/14/2025 9:00 am",
+        rId: 1,
+        type: "Daycare | Full Day"
+    )
+    let appointments = Appointments(nextReservation: daycare)
     let newsUrl = "https://example.com/news"
     let images = Array(1...50).map { "image\($0).jpg" }
 

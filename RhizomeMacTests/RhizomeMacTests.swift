@@ -103,7 +103,12 @@ import SwiftUI
     @Test func macContentViewWithSchedule() throws {
         // Given: ContentView parameters with schedule
         let images = ["image1.jpg", "image2.jpg"]
-        let appointments = Appointments(daycare: [])
+        let daycare = AppointmentsDaycare(
+            startDate: "Thursday, 8/14/2025 9:00 am",
+            rId: 1,
+            type: "Daycare | Full Day"
+        )
+        let appointments = Appointments(nextReservateion: daycare)
 
         // When: Creating ContentView with schedule
         let contentView = ContentView(images: images, rhizomeSchedule: appointments)

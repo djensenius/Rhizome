@@ -15,7 +15,12 @@ import SwiftUI
 @Test func visionContentViewInitialization() throws {
     // Given: ContentView parameters for visionOS
     let cameraURL = "https://example.com/stream"
-    let appointments = Appointments(daycare: [])
+    let daycare = AppointmentsDaycare(
+        startDate: "Thursday, 8/14/2025 9:00 am",
+        rId: 1,
+        type: "Daycare | Full Day"
+    )
+    let appointments = Appointments(nextReservation: daycare)
 
     // When: Creating ContentView
     let contentView = ContentView(cameraURL: cameraURL, rhizomeSchedule: appointments)
@@ -53,7 +58,12 @@ import SwiftUI
 
 @Test(.timeLimit(.minutes(1))) func visionContentViewPerformance() throws {
     let cameraURL = "https://example.com/stream"
-    let appointments = Appointments(daycare: [])
+    let daycare = AppointmentsDaycare(
+        startDate: "Thursday, 8/14/2025 9:00 am",
+        rId: 1,
+        type: "Daycare | Full Day"
+    )
+    let appointments = Appointments(nextReservation: daycare)
 
     _ = ContentView(cameraURL: cameraURL, rhizomeSchedule: appointments)
 }
@@ -64,7 +74,12 @@ import SwiftUI
 @Test func visionContentViewHandlesRealityKitIntegration() throws {
     // Given: Parameters that would use RealityKit
     let cameraURL = "https://example.com/stream"
-    let appointments = Appointments(daycare: [])
+    let daycare = AppointmentsDaycare(
+        startDate: "Thursday, 8/14/2025 9:00 am",
+        rId: 1,
+        type: "Daycare | Full Day"
+    )
+    let appointments = Appointments(nextReservation: daycare)
 
     // When: Creating ContentView (which should integrate with RealityKit)
     let contentView = ContentView(cameraURL: cameraURL, rhizomeSchedule: appointments)
@@ -79,19 +94,11 @@ import SwiftUI
     // Given: Complex schedule data
     let cameraURL = "https://example.com/stream"
     let daycare = AppointmentsDaycare(
-        status: "confirmed",
-        service: "daycare",
-        date: Int(Date().timeIntervalSince1970 * 1000),
-        pickupDate: Int(Date().addingTimeInterval(3600).timeIntervalSince1970 * 1000),
-        timezone: "America/New_York",
-        accountId: "123",
-        locationId: "456",
-        petexec: Petexec(execid: 1, daycareid: 2, serviceid: 3, userid: 4, petid: 5),
-        dogName: "Rhizome",
-        updatedAt: UpdatedAt(),
-        id: "test123"
+        startDate: "Thursday, 8/14/2025 9:00 am",
+        rId: 1,
+        type: "Daycare | Full Day"
     )
-    let appointments = Appointments(daycare: [daycare])
+    let appointments = Appointments(nextReservation: daycare)
 
     // When: Creating ContentView with complex schedule
     let contentView = ContentView(cameraURL: cameraURL, rhizomeSchedule: appointments)

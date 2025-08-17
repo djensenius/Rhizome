@@ -29,21 +29,37 @@ struct RhizomeSchedule: Codable {
         case rawData = "raw_data"
     }
 }
-
+/*
+ "next_reservation": {
+         "start_date": "Thursday, 8/14/2025 9:00 am",
+         "type": "Daycare | Full Day",
+         "first_name": "David",
+         "r_id": "2833",
+         "precheck_reservation_id": null
+     },
+ */
 // MARK: - Appointments
 struct Appointments: Codable {
-    let daycare: [AppointmentsDaycare]
+    let nextReservation: AppointmentsDaycare
+
+    private enum CodingKeys: String, CodingKey {
+        case nextReservation = "next_reservation"
+    }
 }
 
 // MARK: - AppointmentsDaycare
 struct AppointmentsDaycare: Codable, Identifiable {
-    let status, service: String
-    let date, pickupDate: Int
-    let timezone, accountId, locationId: String
-    let petexec: Petexec
-    let dogName: String
-    let updatedAt: UpdatedAt
-    let id: String
+    let startDate: String
+   let rId: Int
+   let type: String
+
+   var id: Int { rId }
+
+   private enum CodingKeys: String, CodingKey {
+       case startDate = "start_date"
+       case rId = "r_id"
+       case type
+   }
 }
 
 // MARK: - Petexec
