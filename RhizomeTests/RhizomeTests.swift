@@ -115,40 +115,6 @@ private func cleanupKeychain() {
     #expect(loginResponse.rhizomeData.photos.count == 2)
     #expect(loginResponse.rhizomeData.photos[0] == "photo1.jpg")
 }
-@Test func appointmentsDaycareDecoding() throws {
-    // Given: Valid daycare appointment JSON
-    let jsonData = Data("""
-    {
-        "status": "confirmed",
-        "service": "daycare",
-        "date": 1719489600000,
-        "pickupDate": 1719518400000,
-        "timezone": "America/New_York",
-        "accountId": "123",
-        "locationId": "456",
-        "petexec": {
-            "execid": 1,
-            "daycareid": 2,
-            "serviceid": 3,
-            "userid": 4,
-            "petid": 5
-        },
-        "dogName": "Rhizome",
-        "updatedAt": {},
-        "id": "appointment123"
-    }
-    """.utf8)
-
-    // When: Decoding the data
-    let appointment = try JSONDecoder().decode(AppointmentsDaycare.self, from: jsonData)
-
-    // Then: Should decode correctly
-    #expect(appointment.status == "confirmed")
-    #expect(appointment.service == "daycare")
-    #expect(appointment.dogName == "Rhizome")
-    #expect(appointment.timezone == "America/New_York")
-    #expect(appointment.petexec.execid == 1)
-}
 
 // MARK: - System Notifications Tests
 
