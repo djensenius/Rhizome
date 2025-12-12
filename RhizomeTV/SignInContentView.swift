@@ -15,14 +15,16 @@ struct SignInContentView: View {
         VStack(spacing: 48) {
             Image(uiImage: UIImage(named: "AppIcon") ?? UIImage())
             Text("🐕 Rhizome 🐕")
-                .font(.system(.largeTitle))
+                .font(Theme.Fonts.header4XL())
+                .foregroundColor(Theme.Colors.textPrimary)
                 .bold()
 
             Button("Sign In") {
                 controller.start()
             }
+            .buttonStyle(.card)
         }
-        .font(.system(.headline))
+        .font(Theme.Fonts.bodyLarge)
     }
 }
 

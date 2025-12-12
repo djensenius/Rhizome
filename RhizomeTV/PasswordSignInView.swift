@@ -15,7 +15,8 @@ struct PasswordSignInView: View {
     var body: some View {
         VStack(spacing: 48) {
             Text("🐕 Rhizome 🐕")
-                .font(.system(.largeTitle))
+                .font(Theme.Fonts.header4XL())
+                .foregroundColor(Theme.Colors.textPrimary)
                 .bold()
 
             VStack(spacing: 16) {
@@ -26,9 +27,10 @@ struct PasswordSignInView: View {
             Button("Sign In") {
                 controller.signIn(email: "rhizome", password: password)
             }
+            .buttonStyle(.card)
             .disabled(password.isEmpty)
         }
-        .font(.system(.headline))
+        .font(Theme.Fonts.bodyLarge)
     }
 }
 

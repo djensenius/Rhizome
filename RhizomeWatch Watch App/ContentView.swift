@@ -18,10 +18,14 @@ struct ContentView: View {
         VStack {
             if inPlayroom {
                 Text("🐕🎉 Rhizome is playing! 🎉🐕")
-                    .padding([.bottom], 20)
+                    .font(Theme.Fonts.bodyMedium)
+                    .foregroundColor(Theme.Colors.textPrimary)
+                    .padding([.bottom], 5)
             } else {
                 Text("🐕 Rhizome is not in the playroom 🐕")
-                    .padding([.bottom], 20)
+                    .font(Theme.Fonts.bodyMedium)
+                    .foregroundColor(Theme.Colors.textPrimary)
+                    .padding([.bottom], 5)
             }
             Button {
                 whereWeAre.deleteKeyChainPasword()
@@ -33,6 +37,7 @@ struct ContentView: View {
             } label: {
                 Text("Logout")
             }
+            .buttonStyle(.bordered)
         }
         .onAppear(perform: parseSchedule)
     }

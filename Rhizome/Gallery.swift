@@ -44,6 +44,9 @@ struct Gallery: View {
                 #if os(iOS)
                 .tabViewStyle(PageTabViewStyle())
                 .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
+                #elseif os(tvOS)
+                .tabViewStyle(.page)
+                .indexViewStyle(.page(backgroundDisplayMode: .always))
                 #endif
             }
             .onReceive(timer) {_ in

@@ -20,6 +20,11 @@ struct SettingsView: View {
         } label: {
             Text("Logout")
         }
+        #if os(tvOS)
+        .buttonStyle(.card)
+        #else
+        .buttonStyle(.rhizomePrimary)
+        #endif
     }
 }
 

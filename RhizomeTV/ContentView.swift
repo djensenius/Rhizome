@@ -18,9 +18,13 @@ struct ContentView: View {
         VStack {
             if inPlayroom {
                 Text("🐕🎉 Rhizome is playing! 🎉🐕")
+                    .font(Theme.Fonts.headerLarge())
+                    .foregroundColor(Theme.Colors.textPrimary)
                     .padding([.bottom], 20)
             } else {
                 Text("🐕 Rhizome is not in the playroom 🐕")
+                    .font(Theme.Fonts.headerLarge())
+                    .foregroundColor(Theme.Colors.textPrimary)
                     .padding([.bottom], 20)
             }
             Button {
@@ -32,6 +36,7 @@ struct ContentView: View {
                     Text("View Anyway")
                 }
             }
+            .buttonStyle(.card)
         }
     }
 
