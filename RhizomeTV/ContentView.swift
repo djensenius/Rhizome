@@ -15,25 +15,27 @@ struct ContentView: View {
     @State var path = [Int]()
 
     var showRhizome: some View {
-        VStack {
+        VStack(spacing: 50) {
             if inPlayroom {
                 Text("🐕🎉 Rhizome is playing! 🎉🐕")
                     .font(Theme.Fonts.headerLarge())
                     .foregroundColor(Theme.Colors.textPrimary)
-                    .padding([.bottom], 20)
             } else {
                 Text("🐕 See if Rhizome is playing! 🐕")
                     .font(Theme.Fonts.headerLarge())
                     .foregroundColor(Theme.Colors.textPrimary)
-                    .padding([.bottom], 20)
             }
             Button {
                 path = [1]
             } label: {
                 if inPlayroom {
                     Text("Watch Rhizome")
+                        .padding(.vertical, 10)
+                        .padding(.horizontal, 20)
                 } else {
                     Text("Check to see")
+                        .padding(.vertical, 10)
+                        .padding(.horizontal, 20)
                 }
             }
             .buttonStyle(.card)

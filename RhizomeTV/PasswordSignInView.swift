@@ -13,7 +13,7 @@ struct PasswordSignInView: View {
     @State private var password = ""
 
     var body: some View {
-        VStack(spacing: 48) {
+        VStack(spacing: 60) {
             Text("🐕 Rhizome 🐕")
                 .font(Theme.Fonts.header4XL())
                 .foregroundColor(Theme.Colors.textPrimary)
@@ -29,6 +29,7 @@ struct PasswordSignInView: View {
             }
             .buttonStyle(.card)
             .disabled(password.isEmpty)
+            .padding()
         }
         .font(Theme.Fonts.bodyLarge)
         .frame(maxWidth: .infinity, maxHeight: .infinity)

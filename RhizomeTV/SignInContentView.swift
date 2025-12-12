@@ -12,12 +12,12 @@ struct SignInContentView: View {
     @EnvironmentObject private var controller: AuthenticationController
 
     var body: some View {
-        VStack(spacing: 48) {
+        VStack(spacing: 60) {
             Image(uiImage: UIImage(named: "AppIcon") ?? UIImage())
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 200, height: 200)
-                .cornerRadius(20)
+                .cornerRadius(40)
                 .shadow(radius: 10)
 
             Text("🐕 Rhizome 🐕")
@@ -29,6 +29,7 @@ struct SignInContentView: View {
             Button("Sign In") {
                 controller.start()
             }
+            .padding()
             .buttonStyle(.card)
             .padding(.top, 20)
             .scaleEffect(1.2)
