@@ -107,7 +107,7 @@ struct VideoPlayerView: View {
                 VideoPlayer(player: player)
                 #endif
             }
-            #if os(iOS)
+            #if os(iOS) || os(tvOS) || os(visionOS)
             .ignoresSafeArea()
             #endif
 
@@ -148,7 +148,7 @@ struct VideoPlayerView: View {
             .zIndex(100)
             #endif
         }
-            #if os(iOS) || os(macOS)
+            #if os(iOS) || os(tvOS) || os(visionOS)
             .ignoresSafeArea()
             #endif
             .onAppear {

@@ -13,10 +13,10 @@ import RealityKitContent
 struct ContentView: View {
     var cameraURL: String
     var rhizomeSchedule: Appointments?
-    @State var path = [Int]()
+    @State private var showVideo = false
 
     var body: some View {
-        NavigationStack(path: $path) {
+        NavigationStack {
             HStack {
                 VStack {
                     Text("🐕 See if Rhizome is playing! 🐕")
@@ -24,17 +24,16 @@ struct ContentView: View {
                         .foregroundColor(Theme.Colors.textPrimary)
                         .padding([.bottom], 20)
                     Button("Check to see") {
-                        path.append(1)
+                        showVideo = true
                     }
                     .buttonStyle(.rhizomePrimary)
                 }
             }
-            .navigationDestination(for: Int.self) { selection in
-                if selection == 1 {
-                    VideoPlayerView(cameraURL: cameraURL)
-                }
-            }
-        }.onAppear(perform: parseSchedule)
+        }
+        .fullScreenCover(isPresented: $showVideo) {
+            VideoPlayerView(cameraURL: cameraURL)
+        }
+        .onAppear(perform: parseSchedule)
     }
 
     func parseSchedule() {
