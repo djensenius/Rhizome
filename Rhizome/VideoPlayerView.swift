@@ -117,6 +117,22 @@ struct VideoPlayerView: View {
             .padding(.leading, 16)
             .padding(.top, 48)
             #endif
+
+            #if os(macOS)
+            Button(action: {
+                NSApp.keyWindow?.toggleFullScreen(nil)
+            }, label: {
+                Image(systemName: "arrow.up.left.and.arrow.down.right")
+                    .font(.title3)
+                    .foregroundColor(.white)
+                    .padding(12)
+                    .background(Color.black.opacity(0.5))
+                    .clipShape(Circle())
+            })
+            .padding(.trailing, 16)
+            .padding(.top, 16)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
+            #endif
         }
             .ignoresSafeArea()
             .onAppear {

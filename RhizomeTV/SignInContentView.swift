@@ -14,6 +14,12 @@ struct SignInContentView: View {
     var body: some View {
         VStack(spacing: 48) {
             Image(uiImage: UIImage(named: "AppIcon") ?? UIImage())
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 200, height: 200)
+                .cornerRadius(20)
+                .shadow(radius: 10)
+
             Text("🐕 Rhizome 🐕")
                 .font(Theme.Fonts.header4XL())
                 .foregroundColor(Theme.Colors.textPrimary)
@@ -23,10 +29,13 @@ struct SignInContentView: View {
                 controller.start()
             }
             .buttonStyle(.card)
+            .padding(.top, 20)
         }
+        .padding(50)
         .font(Theme.Fonts.bodyLarge)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Theme.Colors.background)
+        .edgesIgnoringSafeArea(.all)
     }
 }
 

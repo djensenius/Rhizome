@@ -42,18 +42,22 @@ struct RhizomeTVApp: App {
                         }
                 }
             } else {
-                RhizomeTabs(
-                    cameraUrl: cameraURL,
-                    rhizomeSchedule: rhizomeSchedule!,
-                    newsUrl: newsUrl!,
-                    images: images
-                )
-                .onReceive(NotificationCenter.default.publisher(for: Notification.Name.logout)) { object in
-                    if (object.userInfo?["logout"]) != nil {
-                        DispatchQueue.main.async { @MainActor in
-                            self.whereWeAre = WhereWeAre()
+                if let schedule = rhizomeSchedule, let news = newsUrl {
+                    RhizomeTabs(
+                        cameraUrl: cameraURL,
+                        rhizomeSchedule: schedule,
+                        newsUrl: news,
+                        images: images
+                    )
+                    .onReceive(NotificationCenter.default.publisher(for: Notification.Name.logout)) { object in
+                        if (object.userInfo?["logout"]) != nil {
+                            DispatchQueue.main.async { @MainActor in
+                                self.whereWeAre = WhereWeAre()
+                            }
                         }
                     }
+                } else {
+                    ProgressView()
                 }
             }
         }

@@ -13,22 +13,25 @@ import RealityKitContent
 struct ContentView: View {
     var cameraURL: String
     var rhizomeSchedule: Appointments?
-    @State var showVideo = false
+    @State var path = [Int]()
 
     var body: some View {
-        HStack {
-            if showVideo {
-                VideoPlayerView(cameraURL: cameraURL)
-            } else {
+        NavigationStack(path: $path) {
+            HStack {
                 VStack {
                     Text("🐕 See if Rhizome is playing! 🐕")
                         .font(Theme.Fonts.headerLarge())
                         .foregroundColor(Theme.Colors.textPrimary)
                         .padding([.bottom], 20)
                     Button("Check to see") {
-                        showVideo = true
+                        path.append(1)
                     }
                     .buttonStyle(.rhizomePrimary)
+                }
+            }
+            .navigationDestination(for: Int.self) { selection in
+                if selection == 1 {
+                    VideoPlayerView(cameraURL: cameraURL)
                 }
             }
         }.onAppear(perform: parseSchedule)
@@ -46,7 +49,7 @@ struct ContentView: View {
             // Parse the date
             guard let parsedDate = formatter.date(from: dateString) else {
                 print("Failed to parse date")
-                showVideo = false
+                // showVideo = false
                 return
             }
             var calendar = Calendar.current
@@ -69,7 +72,7 @@ struct ContentView: View {
                   parsedComponents.month == nowComponents.month,
                   parsedComponents.day == nowComponents.day
             else {
-                showVideo = false
+                // showVideo = false
                 return
             }
 
@@ -86,12 +89,14 @@ struct ContentView: View {
                   let sevenPM = calendar.date(from: sevenPMComponents)
             else {
                 print("Failed to build 7am/7pm dates")
-                showVideo = false
+                // showVideo = false
                 return
             }
 
             // Check if nowToronto is between 7am and 7pm
-            showVideo = nowToronto >= sevenAM && nowToronto <= sevenPM
+            if nowToronto >= sevenAM && nowToronto <= sevenPM {
+                // showVideo = true
+            }
         }
     }
 }

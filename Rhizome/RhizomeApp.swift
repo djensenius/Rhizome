@@ -44,10 +44,12 @@ struct RhizomeApp: App {
                         .tabItem {
                             Label("Watch", systemImage: "tv")
                         }
+                    /*
                     Schedule(newsUrl: newsUrl, schedule: rhizomeSchedule)
                         .tabItem {
                             Label("Schedule", systemImage: "calendar")
                         }
+                     */
                     Gallery(images: images)
                         .tabItem {
                             Label("Gallery", systemImage: "photo")
