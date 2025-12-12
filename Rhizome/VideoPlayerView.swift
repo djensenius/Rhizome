@@ -9,6 +9,9 @@ import Foundation
 import AVKit
 import Combine
 import SwiftUI
+#if canImport(AVFoundation)
+import AVFoundation
+#endif
 
 struct PlayerError: Identifiable {
     let id = UUID()
@@ -72,9 +75,11 @@ struct VideoPlayerView: View {
             .ignoresSafeArea()
             .onAppear {
                 setupPlayer()
+                configureAudioAndScreen()
             }
             .onDisappear {
                 cleanupPlayer()
+                restoreAudioAndScreen()
             }
             .alert(item: $playerObserver.playerError) { playerError in
                 Alert(
@@ -112,5 +117,29 @@ struct VideoPlayerView: View {
             player = nil
             playerItem = nil
         }
+    }
+
+    private func configureAudioAndScreen() {
+        #if os(iOS) || os(tvOS) || os(visionOS)
+        // Play audio even in silent mode
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .moviePlayback)
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch {
+            print("Failed to set audio session category: \(error)")
+        }
+        #endif
+
+        #if os(iOS)
+        // Keep screen awake
+        UIApplication.shared.isIdleTimerDisabled = true
+        #endif
+    }
+
+    private func restoreAudioAndScreen() {
+        #if os(iOS)
+        // Allow screen to sleep
+        UIApplication.shared.isIdleTimerDisabled = false
+        #endif
     }
 }
