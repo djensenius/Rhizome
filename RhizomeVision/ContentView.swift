@@ -13,24 +13,27 @@ import RealityKitContent
 struct ContentView: View {
     var cameraURL: String
     var rhizomeSchedule: Appointments?
-    @State var showVideo = false
+    @State private var showVideo = false
 
     var body: some View {
-        HStack {
-            if showVideo {
-                VideoPlayerView(cameraURL: cameraURL)
-            } else {
+        NavigationStack {
+            HStack {
                 VStack {
-                    Text("🐕 Rhizome is not in the playroom 🐕")
+                    Text("🐕 See if Rhizome is playing! 🐕")
+                        .font(Theme.Fonts.headerLarge())
+                        .foregroundColor(Theme.Colors.textPrimary)
                         .padding([.bottom], 20)
-                    Button {
+                    Button("Check to see") {
                         showVideo = true
-                    } label: {
-                        Text("View Anyway")
                     }
+                    .buttonStyle(.rhizomePrimary)
                 }
             }
-        }.onAppear(perform: parseSchedule)
+        }
+        .fullScreenCover(isPresented: $showVideo) {
+            VideoPlayerView(cameraURL: cameraURL)
+        }
+        .onAppear(perform: parseSchedule)
     }
 
     func parseSchedule() {
@@ -45,7 +48,7 @@ struct ContentView: View {
             // Parse the date
             guard let parsedDate = formatter.date(from: dateString) else {
                 print("Failed to parse date")
-                showVideo = false
+                // showVideo = false
                 return
             }
             var calendar = Calendar.current
@@ -68,7 +71,7 @@ struct ContentView: View {
                   parsedComponents.month == nowComponents.month,
                   parsedComponents.day == nowComponents.day
             else {
-                showVideo = false
+                // showVideo = false
                 return
             }
 
@@ -85,12 +88,14 @@ struct ContentView: View {
                   let sevenPM = calendar.date(from: sevenPMComponents)
             else {
                 print("Failed to build 7am/7pm dates")
-                showVideo = false
+                // showVideo = false
                 return
             }
 
             // Check if nowToronto is between 7am and 7pm
-            showVideo = nowToronto >= sevenAM && nowToronto <= sevenPM
+            if nowToronto >= sevenAM && nowToronto <= sevenPM {
+                // showVideo = true
+            }
         }
     }
 }

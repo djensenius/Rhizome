@@ -19,6 +19,9 @@ struct RhizomeApp: App {
         WindowGroup {
             if whereWeAre.loading == true {
                 LoadingView(needLoginView: !whereWeAre.hasKeyChainPassword)
+                    .onAppear {
+                        whereWeAre.load()
+                    }
                     .onReceive(NotificationCenter.default.publisher(for: Notification.Name.loginsUpdated)) { object in
                         if ((object.userInfo?["keysComplete"]) != nil) == true {
                             if object.object != nil {
@@ -44,10 +47,12 @@ struct RhizomeApp: App {
                         .tabItem {
                             Label("Watch", systemImage: "tv")
                         }
+                    /*
                     Schedule(newsUrl: newsUrl, schedule: rhizomeSchedule)
                         .tabItem {
                             Label("Schedule", systemImage: "calendar")
                         }
+                     */
                     Gallery(images: images)
                         .tabItem {
                             Label("Gallery", systemImage: "photo")

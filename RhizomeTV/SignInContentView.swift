@@ -12,17 +12,31 @@ struct SignInContentView: View {
     @EnvironmentObject private var controller: AuthenticationController
 
     var body: some View {
-        VStack(spacing: 48) {
+        VStack(spacing: 60) {
             Image(uiImage: UIImage(named: "AppIcon") ?? UIImage())
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 200, height: 200)
+                .cornerRadius(40)
+                .shadow(radius: 10)
+
             Text("🐕 Rhizome 🐕")
-                .font(.system(.largeTitle))
+                .font(Theme.Fonts.header4XL())
+                .foregroundColor(Theme.Colors.textPrimary)
                 .bold()
+                .padding(.bottom, 40)
 
             Button("Sign In") {
                 controller.start()
             }
+            .padding()
+            .buttonStyle(.card)
+            .padding(.top, 20)
         }
-        .font(.system(.headline))
+        .padding(50)
+        .font(Theme.Fonts.bodyLarge)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Theme.Colors.background)
     }
 }
 

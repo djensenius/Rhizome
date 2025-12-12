@@ -9,6 +9,12 @@ import Foundation
 import AVKit
 import Combine
 import SwiftUI
+#if canImport(AVFoundation)
+import AVFoundation
+#endif
+#if os(macOS)
+import AppKit
+#endif
 
 struct PlayerError: Identifiable {
     let id = UUID()
@@ -48,6 +54,26 @@ class PlayerObserver: NSObject, ObservableObject {
         errorObservation?.invalidate()
     }
 }
+
+#if os(iOS) || os(tvOS) || os(visionOS)
+struct PlayerViewController: UIViewControllerRepresentable {
+    var player: AVPlayer?
+
+    func makeUIViewController(context: Context) -> AVPlayerViewController {
+        let controller = AVPlayerViewController()
+        controller.player = player
+        controller.showsPlaybackControls = true
+        return controller
+    }
+
+    func updateUIViewController(_ uiViewController: AVPlayerViewController, context: Context) {
+        if uiViewController.player != player {
+            uiViewController.player = player
+        }
+    }
+}
+#endif
+
 struct VideoPlayerView: View {
     let cameraURL: String?
     let existingPlayer: AVPlayer?
@@ -56,25 +82,85 @@ struct VideoPlayerView: View {
     @StateObject private var playerObserver = PlayerObserver()
 
     // Initializer for URL-based player (current behavior)
-    init(cameraURL: String) {
+    init(cameraURL: String, onDismiss: (() -> Void)? = nil) {
         self.cameraURL = cameraURL
         self.existingPlayer = nil
+        self.onDismiss = onDismiss
     }
 
     // Initializer for existing player (replaces AZVideoPlayer)
-    init(player: AVPlayer) {
+    init(player: AVPlayer, onDismiss: (() -> Void)? = nil) {
         self.cameraURL = nil
         self.existingPlayer = player
+        self.onDismiss = onDismiss
     }
 
+    @Environment(\.dismiss) var dismiss
+    var onDismiss: (() -> Void)?
+
     var body: some View {
-        VideoPlayer(player: player)
+        ZStack(alignment: .topLeading) {
+            Group {
+                #if os(iOS) || os(tvOS) || os(visionOS)
+                PlayerViewController(player: player)
+                #else
+                VideoPlayer(player: player)
+                #endif
+            }
+            #if os(iOS) || os(tvOS) || os(visionOS)
             .ignoresSafeArea()
+            #endif
+
+            #if os(iOS)
+            Button(action: {
+                if let onDismiss = onDismiss {
+                    onDismiss()
+                } else {
+                    dismiss()
+                }
+            }, label: {
+                Image(systemName: "chevron.left")
+                    .font(.title3)
+                    .foregroundColor(.white)
+                    .padding(12)
+                    .background(Color.black.opacity(0.5))
+                    .clipShape(Circle())
+            })
+            .padding(.leading, 16)
+            .padding(.top, 48)
+            .zIndex(1)
+            #endif
+
+            #if os(macOS)
+            Button(action: {
+                NSApplication.shared.windows.first?.toggleFullScreen(nil)
+            }, label: {
+                Image(systemName: "arrow.up.left.and.arrow.down.right")
+                    .font(.title3)
+                    .foregroundColor(.white)
+                    .padding(12)
+                    .background(Color.black.opacity(0.5))
+                    .clipShape(Circle())
+            })
+            .padding(.trailing, 16)
+            .padding(.top, 16)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
+            .zIndex(100)
+            #endif
+        }
+            #if os(iOS) || os(tvOS) || os(visionOS)
+            .ignoresSafeArea()
+            #endif
+            #if os(tvOS)
+            .toolbar(.hidden, for: .tabBar)
+            #endif
             .onAppear {
                 setupPlayer()
+                configureAudioAndScreen()
             }
             .onDisappear {
                 cleanupPlayer()
+                restoreAudioAndScreen()
             }
             .alert(item: $playerObserver.playerError) { playerError in
                 Alert(
@@ -112,5 +198,29 @@ struct VideoPlayerView: View {
             player = nil
             playerItem = nil
         }
+    }
+
+    private func configureAudioAndScreen() {
+        #if os(iOS) || os(tvOS) || os(visionOS)
+        // Play audio even in silent mode
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .moviePlayback)
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch {
+            print("Failed to set audio session category: \(error)")
+        }
+        #endif
+
+        #if os(iOS)
+        // Keep screen awake
+        UIApplication.shared.isIdleTimerDisabled = true
+        #endif
+    }
+
+    private func restoreAudioAndScreen() {
+        #if os(iOS)
+        // Allow screen to sleep
+        UIApplication.shared.isIdleTimerDisabled = false
+        #endif
     }
 }

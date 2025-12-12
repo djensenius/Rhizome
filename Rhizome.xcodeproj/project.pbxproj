@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		14F048548A6669A6A5F247A7 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FC4A8BA962926D690372DF /* Theme.swift */; };
 		631DDEB82E4782B6001D801D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6376F9552C6FC127009119D9 /* SettingsView.swift */; };
 		631DDEB92E4782C7001D801D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63294B692C22052100EF4A90 /* ContentView.swift */; };
 		631DDEBA2E4782FA001D801D /* RhizomeMacApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63294B672C22052100EF4A90 /* RhizomeMacApp.swift */; };
@@ -125,6 +126,11 @@
 		63FEEC6D2D33007C004BF4EF /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FEEC652D33007C004BF4EF /* VideoPlayerView.swift */; };
 		63FEEC6E2D33007C004BF4EF /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FEEC652D33007C004BF4EF /* VideoPlayerView.swift */; };
 		63FEEC6F2D33007C004BF4EF /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FEEC652D33007C004BF4EF /* VideoPlayerView.swift */; };
+		63THEME00000000000000002 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63THEME00000000000000001 /* Theme.swift */; };
+		63THEME00000000000000003 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63THEME00000000000000001 /* Theme.swift */; };
+		63THEME00000000000000004 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63THEME00000000000000001 /* Theme.swift */; };
+		63THEME00000000000000005 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63THEME00000000000000001 /* Theme.swift */; };
+		63THEME00000000000000006 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63THEME00000000000000001 /* Theme.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -272,6 +278,8 @@
 		63C485A72C2A515C00FF9163 /* Gallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gallery.swift; sourceTree = "<group>"; };
 		63C485B32C2A59A100FF9163 /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
 		63FEEC652D33007C004BF4EF /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VideoPlayerView.swift; path = Rhizome/VideoPlayerView.swift; sourceTree = SOURCE_ROOT; };
+		63THEME00000000000000001 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		B0FC4A8BA962926D690372DF /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Theme.swift; path = Rhizome/Theme.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -385,6 +393,7 @@
 				6388A9F02C6977EB0080D664 /* RhizomeWatch Watch App */,
 				63294AD42C21EB1100EF4A90 /* Products */,
 				635AAC0B2C22255F0003C041 /* Frameworks */,
+				B0FC4A8BA962926D690372DF /* Theme.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -412,6 +421,7 @@
 			children = (
 				63BB895E2C2218BE00A10C74 /* Info.plist */,
 				63294AD82C21EB1100EF4A90 /* ContentView.swift */,
+				63THEME00000000000000001 /* Theme.swift */,
 				63C485A72C2A515C00FF9163 /* Gallery.swift */,
 				635AAC342C2284940003C041 /* LoadingView.swift */,
 				635AAC1C2C2283D20003C041 /* Login.swift */,
@@ -837,7 +847,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1540;
-				LastUpgradeCheck = 1640;
+				LastUpgradeCheck = 2610;
 				TargetAttributes = {
 					63294AD22C21EB1100EF4A90 = {
 						CreatedOnToolsVersion = 15.4;
@@ -1093,6 +1103,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				63294AD92C21EB1100EF4A90 /* ContentView.swift in Sources */,
+				63THEME00000000000000002 /* Theme.swift in Sources */,
 				635AAC292C2284400003C041 /* QueryFlux.swift in Sources */,
 				63C485A82C2A515C00FF9163 /* Gallery.swift in Sources */,
 				63C485B42C2A59A100FF9163 /* Schedule.swift in Sources */,
@@ -1128,6 +1139,7 @@
 				635AAC4F2C22853E0003C041 /* SystemNotifications.swift in Sources */,
 				63C485B62C2A59A100FF9163 /* Schedule.swift in Sources */,
 				635AAC372C2284940003C041 /* LoadingView.swift in Sources */,
+				14F048548A6669A6A5F247A7 /* Theme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1137,6 +1149,7 @@
 			files = (
 				635AAC5D2C228BAA0003C041 /* AuthenticationController.swift in Sources */,
 				63294B0A2C21EB3100EF4A90 /* ContentView.swift in Sources */,
+				63THEME00000000000000003 /* Theme.swift in Sources */,
 				63C485AB2C2A515C00FF9163 /* Gallery.swift in Sources */,
 				635AAC2C2C2284400003C041 /* QueryFlux.swift in Sources */,
 				635AAC142C22836F0003C041 /* WhereWeAre.swift in Sources */,
@@ -1188,6 +1201,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				63294B4A2C22044300EF4A90 /* ContentView.swift in Sources */,
+				63THEME00000000000000004 /* Theme.swift in Sources */,
 				635AAC2F2C2284400003C041 /* QueryFlux.swift in Sources */,
 				63C485AE2C2A515C00FF9163 /* Gallery.swift in Sources */,
 				63C485BA2C2A59A100FF9163 /* Schedule.swift in Sources */,
@@ -1215,6 +1229,7 @@
 			files = (
 				637153162C998AEB00CC828F /* SettingsView.swift in Sources */,
 				63294B6A2C22052100EF4A90 /* ContentView.swift in Sources */,
+				63THEME00000000000000005 /* Theme.swift in Sources */,
 				63B8C3052C99E1CD004FAFAF /* GridView.swift in Sources */,
 				635AAC312C2284400003C041 /* QueryFlux.swift in Sources */,
 				63C485BC2C2A59A100FF9163 /* Schedule.swift in Sources */,
@@ -1270,6 +1285,7 @@
 				6388AA1E2C6979630080D664 /* Login.swift in Sources */,
 				6388AA1D2C69795E0080D664 /* WhereWeAre.swift in Sources */,
 				6388A9F42C6977EB0080D664 /* ContentView.swift in Sources */,
+				63THEME00000000000000006 /* Theme.swift in Sources */,
 				6388A9F22C6977EB0080D664 /* RhizomeWatchApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1378,6 +1394,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -1434,6 +1451,7 @@
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 			};
 			name = Release;
@@ -1445,12 +1463,15 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Rhizome/Rhizome.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.1;
+				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Rhizome/Preview Content\"";
+				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Rhizome/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -1463,10 +1484,10 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
 				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.Rhizome;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1476,8 +1497,8 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TVOS_DEPLOYMENT_TARGET = 18.0;
-				XROS_DEPLOYMENT_TARGET = 2.0;
+				TVOS_DEPLOYMENT_TARGET = 26.0;
+				XROS_DEPLOYMENT_TARGET = 26.0;
 			};
 			name = Debug;
 		};
@@ -1488,12 +1509,15 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Rhizome/Rhizome.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.1;
+				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Rhizome/Preview Content\"";
+				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Rhizome/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -1506,10 +1530,10 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
 				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.Rhizome;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1519,8 +1543,8 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TVOS_DEPLOYMENT_TARGET = 18.0;
-				XROS_DEPLOYMENT_TARGET = 2.0;
+				TVOS_DEPLOYMENT_TARGET = 26.0;
+				XROS_DEPLOYMENT_TARGET = 26.0;
 			};
 			name = Release;
 		};
@@ -1532,8 +1556,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
-				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.RhizomeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1554,8 +1578,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
-				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.RhizomeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1575,8 +1599,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
-				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.RhizomeUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1596,8 +1620,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
-				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.RhizomeUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1637,7 +1661,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 18.0;
+				TVOS_DEPLOYMENT_TARGET = 26.0;
 			};
 			name = Debug;
 		};
@@ -1668,7 +1692,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 18.0;
+				TVOS_DEPLOYMENT_TARGET = 26.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1688,7 +1712,7 @@
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RhizomeTV.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RhizomeTV";
-				TVOS_DEPLOYMENT_TARGET = 18.0;
+				TVOS_DEPLOYMENT_TARGET = 26.0;
 			};
 			name = Debug;
 		};
@@ -1707,7 +1731,7 @@
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RhizomeTV.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RhizomeTV";
-				TVOS_DEPLOYMENT_TARGET = 18.0;
+				TVOS_DEPLOYMENT_TARGET = 26.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1726,7 +1750,7 @@
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TEST_TARGET_NAME = RhizomeTV;
-				TVOS_DEPLOYMENT_TARGET = 18.0;
+				TVOS_DEPLOYMENT_TARGET = 26.0;
 			};
 			name = Debug;
 		};
@@ -1744,7 +1768,7 @@
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TEST_TARGET_NAME = RhizomeTV;
-				TVOS_DEPLOYMENT_TARGET = 18.0;
+				TVOS_DEPLOYMENT_TARGET = 26.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1775,7 +1799,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
-				XROS_DEPLOYMENT_TARGET = 2.0;
+				XROS_DEPLOYMENT_TARGET = 26.0;
 			};
 			name = Debug;
 		};
@@ -1806,7 +1830,7 @@
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
 				VALIDATE_PRODUCT = YES;
-				XROS_DEPLOYMENT_TARGET = 2.0;
+				XROS_DEPLOYMENT_TARGET = 26.0;
 			};
 			name = Release;
 		};
@@ -1826,7 +1850,7 @@
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RhizomeVision.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RhizomeVision";
-				XROS_DEPLOYMENT_TARGET = 2.0;
+				XROS_DEPLOYMENT_TARGET = 26.0;
 			};
 			name = Debug;
 		};
@@ -1847,7 +1871,7 @@
 				TARGETED_DEVICE_FAMILY = "1,2,7";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RhizomeVision.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RhizomeVision";
 				VALIDATE_PRODUCT = YES;
-				XROS_DEPLOYMENT_TARGET = 2.0;
+				XROS_DEPLOYMENT_TARGET = 26.0;
 			};
 			name = Release;
 		};
@@ -1863,9 +1887,12 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"RhizomeMac/Preview Content\"";
+				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RhizomeMac/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Rhizome;
@@ -1875,7 +1902,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
 				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.Rhizome;
 				PRODUCT_NAME = Rhizome;
@@ -1897,9 +1924,12 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"RhizomeMac/Preview Content\"";
+				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RhizomeMac/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Rhizome;
@@ -1909,7 +1939,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
 				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.Rhizome;
 				PRODUCT_NAME = Rhizome;
@@ -1927,7 +1957,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.RhizomeMacTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1946,7 +1976,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.RhizomeMacTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1964,7 +1994,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.RhizomeMacUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1982,7 +2012,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.davidjensenius.RhizomeMacUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2021,7 +2051,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 11.0;
+				WATCHOS_DEPLOYMENT_TARGET = 26.0;
 			};
 			name = Debug;
 		};
@@ -2054,7 +2084,7 @@
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 11.0;
+				WATCHOS_DEPLOYMENT_TARGET = 26.0;
 			};
 			name = Release;
 		};

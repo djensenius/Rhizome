@@ -13,9 +13,10 @@ struct PasswordSignInView: View {
     @State private var password = ""
 
     var body: some View {
-        VStack(spacing: 48) {
+        VStack(spacing: 60) {
             Text("🐕 Rhizome 🐕")
-                .font(.system(.largeTitle))
+                .font(Theme.Fonts.header4XL())
+                .foregroundColor(Theme.Colors.textPrimary)
                 .bold()
 
             VStack(spacing: 16) {
@@ -26,9 +27,13 @@ struct PasswordSignInView: View {
             Button("Sign In") {
                 controller.signIn(email: "rhizome", password: password)
             }
+            .buttonStyle(.card)
             .disabled(password.isEmpty)
+            .padding()
         }
-        .font(.system(.headline))
+        .font(Theme.Fonts.bodyLarge)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Theme.Colors.background)
     }
 }
 

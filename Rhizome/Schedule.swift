@@ -17,7 +17,8 @@ struct Schedule: View {
             /*
             if schedule != nil && schedule?.next_reservation != nil {
                 Text("Daycare Schedule")
-                    .font(.title)
+                    .font(Theme.Fonts.headerLarge())
+                    .foregroundColor(Theme.Colors.textPrimary)
                     .padding([.bottom], 20)
                 ForEach(schedule!.next_reservation) { daycare in
                     Text((parseDate(timestamp: TimeInterval(daycare.date / 1000), timezone: daycare.timezone)) +
@@ -27,19 +28,25 @@ struct Schedule: View {
                             timezone: daycare.timezone,
                             showDate: false))
                     )
+                        .font(Theme.Fonts.bodyLarge)
+                        .foregroundColor(Theme.Colors.textPrimary)
                         .padding([.bottom], 20)
                 }
             } else {
              */
                 Text("No Daycare Appointments Scheduled")
-                    .font(.title)
+                    .font(Theme.Fonts.headerLarge())
+                    .foregroundColor(Theme.Colors.textPrimary)
                     .padding([.bottom], 20)
             // }
             Spacer()
             Text("Other news")
-                .font(.title)
+                .font(Theme.Fonts.headerLarge())
+                .foregroundColor(Theme.Colors.textPrimary)
                 .padding([.bottom], 20)
             Text(news)
+                .font(Theme.Fonts.bodyLarge)
+                .foregroundColor(Theme.Colors.textPrimary)
                 .padding([.bottom], 20)
                 .task {
                     if newsUrl != nil {
@@ -55,6 +62,7 @@ struct Schedule: View {
                     }
                 }
         }
+        .background(Theme.Colors.background)
     }
 
     func parseDate(timestamp: TimeInterval, timezone: String, showDate: Bool = true) -> String {

@@ -19,9 +19,12 @@ struct RhizomeTVApp: App {
 
     var body: some Scene {
         WindowGroup {
-            if whereWeAre.loading == true {
+            if whereWeAre.loading == true || whereWeAre.hasKeyChainPassword == false {
                 SignInView(user: $user, needLoginView: !whereWeAre.hasKeyChainPassword)
                     .transition(.opacity.animation(.linear))
+                    .onAppear {
+                        whereWeAre.load()
+                    }
                     .onReceive(NotificationCenter.default.publisher(for: Notification.Name.loginsUpdated)) { object in
                         if ((object.userInfo?["keysComplete"]) != nil) == true {
                             if object.object != nil {
@@ -31,21 +34,23 @@ struct RhizomeTVApp: App {
                                 newsUrl = configResponse?.rhizomeData.news ?? nil
                                 rhizomeSchedule = configResponse?.rhizomeSchedule.appointments
                             }
+                            whereWeAre.finishedLoading()
                         }
 
                         if (object.userInfo?["updateKeychain"]) != nil {
                             whereWeAre.setPassword(password: object.userInfo!["updateKeychain"] as? String ?? "")
                         }
 
-                        if ((object.userInfo?["keysFailed"]) != nil) == true {
+                        if ((object.userInfo?["keysFailed"]) != nil) == true ||
+                            ((object.userInfo?["loginError"]) != nil) == true {
                             whereWeAre.deleteKeyChainPasword()
                         }
                 }
             } else {
                 RhizomeTabs(
                     cameraUrl: cameraURL,
-                    rhizomeSchedule: rhizomeSchedule!,
-                    newsUrl: newsUrl!,
+                    rhizomeSchedule: rhizomeSchedule,
+                    newsUrl: newsUrl ?? "",
                     images: images
                 )
                 .onReceive(NotificationCenter.default.publisher(for: Notification.Name.logout)) { object in

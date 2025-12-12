@@ -15,10 +15,15 @@ struct WhereWeAre {
     init() {
         let password = WhereWeAre.getPassword()
         if password != nil {
-            queryFlux(password: password!)
             hasKeychainPassword(has: true)
         } else {
             hasKeychainPassword(has: false)
+        }
+    }
+
+    mutating func load() {
+        if let password = WhereWeAre.getPassword() {
+            queryFlux(password: password)
         }
     }
 

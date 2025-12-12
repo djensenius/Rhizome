@@ -15,23 +15,30 @@ struct ContentView: View {
     @State var path = [Int]()
 
     var showRhizome: some View {
-        VStack {
+        VStack(spacing: 50) {
             if inPlayroom {
                 Text("🐕🎉 Rhizome is playing! 🎉🐕")
-                    .padding([.bottom], 20)
+                    .font(Theme.Fonts.headerLarge())
+                    .foregroundColor(Theme.Colors.textPrimary)
             } else {
-                Text("🐕 Rhizome is not in the playroom 🐕")
-                    .padding([.bottom], 20)
+                Text("🐕 See if Rhizome is playing! 🐕")
+                    .font(Theme.Fonts.headerLarge())
+                    .foregroundColor(Theme.Colors.textPrimary)
             }
             Button {
                 path = [1]
             } label: {
                 if inPlayroom {
                     Text("Watch Rhizome")
+                        .padding(.vertical, 10)
+                        .padding(.horizontal, 20)
                 } else {
-                    Text("View Anyway")
+                    Text("Check to see")
+                        .padding(.vertical, 10)
+                        .padding(.horizontal, 20)
                 }
             }
+            .buttonStyle(.card)
         }
     }
 
@@ -39,12 +46,15 @@ struct ContentView: View {
         NavigationStack(path: $path) {
             HStack {
                 showRhizome
+                    .padding(50)
             }.navigationDestination(for: Int.self) { selection in
                 if selection == 1 {
                     VideoPlayerView(cameraURL: cameraURL)
                 }
             }
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Theme.Colors.background)
         .onAppear(perform: parseSchedule)
     }
 
