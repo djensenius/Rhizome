@@ -66,7 +66,8 @@ struct SignInView: View {
                 }
                 .environmentObject(controller)
         } else {
-            Image(systemName: "dog.circle")
+            ProgressView()
+                .scaleEffect(2)
         }
     }
 }

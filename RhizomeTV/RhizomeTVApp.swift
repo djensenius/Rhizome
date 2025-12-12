@@ -31,6 +31,7 @@ struct RhizomeTVApp: App {
                                 newsUrl = configResponse?.rhizomeData.news ?? nil
                                 rhizomeSchedule = configResponse?.rhizomeSchedule.appointments
                             }
+                            whereWeAre.finishedLoading()
                         }
 
                         if (object.userInfo?["updateKeychain"]) != nil {

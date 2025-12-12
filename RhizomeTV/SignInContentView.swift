@@ -24,12 +24,14 @@ struct SignInContentView: View {
                 .font(Theme.Fonts.header4XL())
                 .foregroundColor(Theme.Colors.textPrimary)
                 .bold()
+                .padding(.bottom, 40)
 
             Button("Sign In") {
                 controller.start()
             }
             .buttonStyle(.card)
             .padding(.top, 20)
+            .scaleEffect(1.2)
         }
         .padding(50)
         .font(Theme.Fonts.bodyLarge)

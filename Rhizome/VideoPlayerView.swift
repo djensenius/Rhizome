@@ -103,7 +103,7 @@ struct VideoPlayerView: View {
             }
             .ignoresSafeArea()
 
-            #if os(iOS)
+            #if os(iOS) || os(visionOS)
             Button(action: {
                 dismiss()
             }, label: {

@@ -23,12 +23,12 @@ struct RhizomeTabs: View {
             }
             .customizationID("0")
 
-            Tab("Schedule", systemImage: "calendar", value: "1") {
-                Schedule(newsUrl: newsUrl, schedule: rhizomeSchedule)
-                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-                    .edgesIgnoringSafeArea(.all)
-            }
-            .customizationID("1")
+//            Tab("Schedule", systemImage: "calendar", value: "1") {
+//                Schedule(newsUrl: newsUrl, schedule: rhizomeSchedule)
+//                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+//                    .edgesIgnoringSafeArea(.all)
+//            }
+//            .customizationID("1")
 
             Tab("Images", systemImage: "photo", value: "2") {
                 Gallery(images: images)
