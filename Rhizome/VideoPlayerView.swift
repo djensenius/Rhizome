@@ -90,12 +90,32 @@ struct VideoPlayerView: View {
         self.existingPlayer = player
     }
 
+    @Environment(\.dismiss) var dismiss
+
     var body: some View {
-        Group {
-            #if os(iOS) || os(tvOS) || os(visionOS)
-            PlayerViewController(player: player)
-            #else
-            VideoPlayer(player: player)
+        ZStack(alignment: .topLeading) {
+            Group {
+                #if os(iOS) || os(tvOS) || os(visionOS)
+                PlayerViewController(player: player)
+                #else
+                VideoPlayer(player: player)
+                #endif
+            }
+            .ignoresSafeArea()
+
+            #if os(iOS)
+            Button(action: {
+                dismiss()
+            }) {
+                Image(systemName: "chevron.left")
+                    .font(.title3)
+                    .foregroundColor(.white)
+                    .padding(12)
+                    .background(Color.black.opacity(0.5))
+                    .clipShape(Circle())
+            }
+            .padding(.leading, 16)
+            .padding(.top, 48)
             #endif
         }
             .ignoresSafeArea()

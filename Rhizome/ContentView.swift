@@ -53,10 +53,13 @@ struct ContentView: View {
                 if selection == 1 {
                     HStack {
                         VideoPlayerView(cameraURL: cameraURL)
+                            .ignoresSafeArea()
                             .onAppear {
-                                toolBarStatus = .automatic
+                                toolBarStatus = .hidden
                             }
                     }
+                    .toolbar(.hidden, for: .navigationBar)
+                    .toolbar(.hidden, for: .tabBar)
                 }
             }
         }
