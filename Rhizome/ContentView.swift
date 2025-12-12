@@ -15,11 +15,9 @@ struct ContentView: View {
     @State var inPlayroom = false
     @State var toolBarStatus: Visibility = .automatic
     @State var path = [Int]()
-    var player: AVPlayer?
 
     init(cameraURL: String, rhizomeSchedule: Appointments?) {
         self.cameraURL = cameraURL
-        self.player = AVPlayer(url: URL(string: cameraURL)!)
         self.rhizomeSchedule = rhizomeSchedule
     }
 
@@ -54,17 +52,10 @@ struct ContentView: View {
             }.navigationDestination(for: Int.self) { selection in
                 if selection == 1 {
                     HStack {
-                        #if os(iOS)
-                        VideoPlayerView(player: player!)
-                            .onAppear {
-                                toolBarStatus = .automatic
-                            }
-                        #else
                         VideoPlayerView(cameraURL: cameraURL)
                             .onAppear {
                                 toolBarStatus = .automatic
                             }
-                        #endif
                     }
                 }
             }
