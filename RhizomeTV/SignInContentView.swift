@@ -37,7 +37,6 @@ struct SignInContentView: View {
         .font(Theme.Fonts.bodyLarge)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Theme.Colors.background)
-        .edgesIgnoringSafeArea(.all)
     }
 }
 

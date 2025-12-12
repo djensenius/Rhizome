@@ -22,6 +22,9 @@ struct RhizomeTVApp: App {
             if whereWeAre.loading == true || whereWeAre.hasKeyChainPassword == false {
                 SignInView(user: $user, needLoginView: !whereWeAre.hasKeyChainPassword)
                     .transition(.opacity.animation(.linear))
+                    .onAppear {
+                        whereWeAre.load()
+                    }
                     .onReceive(NotificationCenter.default.publisher(for: Notification.Name.loginsUpdated)) { object in
                         if ((object.userInfo?["keysComplete"]) != nil) == true {
                             if object.object != nil {

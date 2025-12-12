@@ -19,6 +19,9 @@ struct RhizomeVisionApp: App {
         WindowGroup {
             if whereWeAre.loading == true {
                 LoadingView(needLoginView: !whereWeAre.hasKeyChainPassword)
+                    .onAppear {
+                        whereWeAre.load()
+                    }
                     .onReceive(NotificationCenter.default.publisher(for: Notification.Name.loginsUpdated)) { object in
                         if ((object.userInfo?["keysComplete"]) != nil) == true {
                             if object.object != nil {

@@ -107,7 +107,9 @@ struct VideoPlayerView: View {
                 VideoPlayer(player: player)
                 #endif
             }
+            #if os(iOS)
             .ignoresSafeArea()
+            #endif
 
             #if os(iOS)
             Button(action: {
@@ -146,7 +148,9 @@ struct VideoPlayerView: View {
             .zIndex(100)
             #endif
         }
+            #if os(iOS) || os(macOS)
             .ignoresSafeArea()
+            #endif
             .onAppear {
                 setupPlayer()
                 configureAudioAndScreen()
