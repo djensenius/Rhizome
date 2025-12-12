@@ -106,14 +106,14 @@ struct VideoPlayerView: View {
             #if os(iOS)
             Button(action: {
                 dismiss()
-            }) {
+            }, label: {
                 Image(systemName: "chevron.left")
                     .font(.title3)
                     .foregroundColor(.white)
                     .padding(12)
                     .background(Color.black.opacity(0.5))
                     .clipShape(Circle())
-            }
+            })
             .padding(.leading, 16)
             .padding(.top, 48)
             #endif

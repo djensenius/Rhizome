@@ -7,13 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		14F048548A6669A6A5F247A7 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FC4A8BA962926D690372DF /* Theme.swift */; };
 		631DDEB82E4782B6001D801D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6376F9552C6FC127009119D9 /* SettingsView.swift */; };
 		631DDEB92E4782C7001D801D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63294B692C22052100EF4A90 /* ContentView.swift */; };
-		63THEME00000000000000002 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63THEME00000000000000001 /* Theme.swift */; };
-		63THEME00000000000000003 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63THEME00000000000000001 /* Theme.swift */; };
-		63THEME00000000000000004 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63THEME00000000000000001 /* Theme.swift */; };
-		63THEME00000000000000005 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63THEME00000000000000001 /* Theme.swift */; };
-		63THEME00000000000000006 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63THEME00000000000000001 /* Theme.swift */; };
 		631DDEBA2E4782FA001D801D /* RhizomeMacApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63294B672C22052100EF4A90 /* RhizomeMacApp.swift */; };
 		631DDEBC2E478506001D801D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63294B092C21EB3100EF4A90 /* ContentView.swift */; };
 		63294AD72C21EB1100EF4A90 /* RhizomeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63294AD62C21EB1100EF4A90 /* RhizomeApp.swift */; };
@@ -130,6 +126,11 @@
 		63FEEC6D2D33007C004BF4EF /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FEEC652D33007C004BF4EF /* VideoPlayerView.swift */; };
 		63FEEC6E2D33007C004BF4EF /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FEEC652D33007C004BF4EF /* VideoPlayerView.swift */; };
 		63FEEC6F2D33007C004BF4EF /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FEEC652D33007C004BF4EF /* VideoPlayerView.swift */; };
+		63THEME00000000000000002 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63THEME00000000000000001 /* Theme.swift */; };
+		63THEME00000000000000003 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63THEME00000000000000001 /* Theme.swift */; };
+		63THEME00000000000000004 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63THEME00000000000000001 /* Theme.swift */; };
+		63THEME00000000000000005 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63THEME00000000000000001 /* Theme.swift */; };
+		63THEME00000000000000006 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63THEME00000000000000001 /* Theme.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -209,7 +210,6 @@
 		63294AD32C21EB1100EF4A90 /* Rhizome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rhizome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63294AD62C21EB1100EF4A90 /* RhizomeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RhizomeApp.swift; sourceTree = "<group>"; };
 		63294AD82C21EB1100EF4A90 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		63THEME00000000000000001 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		63294ADA2C21EB1200EF4A90 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		63294ADC2C21EB1200EF4A90 /* Rhizome.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Rhizome.entitlements; sourceTree = "<group>"; };
 		63294ADE2C21EB1200EF4A90 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -278,6 +278,8 @@
 		63C485A72C2A515C00FF9163 /* Gallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gallery.swift; sourceTree = "<group>"; };
 		63C485B32C2A59A100FF9163 /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
 		63FEEC652D33007C004BF4EF /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VideoPlayerView.swift; path = Rhizome/VideoPlayerView.swift; sourceTree = SOURCE_ROOT; };
+		63THEME00000000000000001 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		B0FC4A8BA962926D690372DF /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Theme.swift; path = Rhizome/Theme.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -391,6 +393,7 @@
 				6388A9F02C6977EB0080D664 /* RhizomeWatch Watch App */,
 				63294AD42C21EB1100EF4A90 /* Products */,
 				635AAC0B2C22255F0003C041 /* Frameworks */,
+				B0FC4A8BA962926D690372DF /* Theme.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1136,6 +1139,7 @@
 				635AAC4F2C22853E0003C041 /* SystemNotifications.swift in Sources */,
 				63C485B62C2A59A100FF9163 /* Schedule.swift in Sources */,
 				635AAC372C2284940003C041 /* LoadingView.swift in Sources */,
+				14F048548A6669A6A5F247A7 /* Theme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1457,7 +1461,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Rhizome/Rhizome.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.1;
+				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Rhizome/Preview Content\"";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1500,7 +1504,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Rhizome/Rhizome.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.1;
+				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Rhizome/Preview Content\"";
 				ENABLE_HARDENED_RUNTIME = YES;

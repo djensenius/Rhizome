@@ -13,7 +13,6 @@ struct ContentView: View {
     var rhizomeSchedule: Appointments?
     @State var showVideo = false
     @State var inPlayroom = false
-    @State var toolBarStatus: Visibility = .automatic
     @State var path = [Int]()
 
     init(cameraURL: String, rhizomeSchedule: Appointments?) {
@@ -30,7 +29,7 @@ struct ContentView: View {
                         .foregroundColor(Theme.Colors.textPrimary)
                         .padding([.bottom], 20)
                 } else {
-                    Text("🐕 Rhizome is not in the playroom 🐕")
+                    Text("🐕 See if Rhizome is playing! 🐕")
                         .font(Theme.Fonts.headerLarge())
                         .foregroundColor(Theme.Colors.textPrimary)
                         .padding([.bottom], 20)
@@ -54,9 +53,6 @@ struct ContentView: View {
                     HStack {
                         VideoPlayerView(cameraURL: cameraURL)
                             .ignoresSafeArea()
-                            .onAppear {
-                                toolBarStatus = .hidden
-                            }
                     }
                     .toolbar(.hidden, for: .navigationBar)
                     .toolbar(.hidden, for: .tabBar)
@@ -64,9 +60,6 @@ struct ContentView: View {
             }
         }
         .onAppear(perform: parseSchedule)
-        #if os(iOS)
-        .toolbar(toolBarStatus, for: .tabBar)
-        #endif
     }
 
     func parseSchedule() {
