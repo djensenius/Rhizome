@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		631DDEB82E4782B6001D801D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6376F9552C6FC127009119D9 /* SettingsView.swift */; };
 		631DDEB92E4782C7001D801D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63294B692C22052100EF4A90 /* ContentView.swift */; };
+		63THEME00000000000000002 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63THEME00000000000000001 /* Theme.swift */; };
+		63THEME00000000000000003 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63THEME00000000000000001 /* Theme.swift */; };
+		63THEME00000000000000004 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63THEME00000000000000001 /* Theme.swift */; };
+		63THEME00000000000000005 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63THEME00000000000000001 /* Theme.swift */; };
+		63THEME00000000000000006 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63THEME00000000000000001 /* Theme.swift */; };
 		631DDEBA2E4782FA001D801D /* RhizomeMacApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63294B672C22052100EF4A90 /* RhizomeMacApp.swift */; };
 		631DDEBC2E478506001D801D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63294B092C21EB3100EF4A90 /* ContentView.swift */; };
 		63294AD72C21EB1100EF4A90 /* RhizomeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63294AD62C21EB1100EF4A90 /* RhizomeApp.swift */; };
@@ -204,6 +209,7 @@
 		63294AD32C21EB1100EF4A90 /* Rhizome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rhizome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63294AD62C21EB1100EF4A90 /* RhizomeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RhizomeApp.swift; sourceTree = "<group>"; };
 		63294AD82C21EB1100EF4A90 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		63THEME00000000000000001 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		63294ADA2C21EB1200EF4A90 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		63294ADC2C21EB1200EF4A90 /* Rhizome.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Rhizome.entitlements; sourceTree = "<group>"; };
 		63294ADE2C21EB1200EF4A90 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -412,6 +418,7 @@
 			children = (
 				63BB895E2C2218BE00A10C74 /* Info.plist */,
 				63294AD82C21EB1100EF4A90 /* ContentView.swift */,
+				63THEME00000000000000001 /* Theme.swift */,
 				63C485A72C2A515C00FF9163 /* Gallery.swift */,
 				635AAC342C2284940003C041 /* LoadingView.swift */,
 				635AAC1C2C2283D20003C041 /* Login.swift */,
@@ -1093,6 +1100,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				63294AD92C21EB1100EF4A90 /* ContentView.swift in Sources */,
+				63THEME00000000000000002 /* Theme.swift in Sources */,
 				635AAC292C2284400003C041 /* QueryFlux.swift in Sources */,
 				63C485A82C2A515C00FF9163 /* Gallery.swift in Sources */,
 				63C485B42C2A59A100FF9163 /* Schedule.swift in Sources */,
@@ -1137,6 +1145,7 @@
 			files = (
 				635AAC5D2C228BAA0003C041 /* AuthenticationController.swift in Sources */,
 				63294B0A2C21EB3100EF4A90 /* ContentView.swift in Sources */,
+				63THEME00000000000000003 /* Theme.swift in Sources */,
 				63C485AB2C2A515C00FF9163 /* Gallery.swift in Sources */,
 				635AAC2C2C2284400003C041 /* QueryFlux.swift in Sources */,
 				635AAC142C22836F0003C041 /* WhereWeAre.swift in Sources */,
@@ -1188,6 +1197,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				63294B4A2C22044300EF4A90 /* ContentView.swift in Sources */,
+				63THEME00000000000000004 /* Theme.swift in Sources */,
 				635AAC2F2C2284400003C041 /* QueryFlux.swift in Sources */,
 				63C485AE2C2A515C00FF9163 /* Gallery.swift in Sources */,
 				63C485BA2C2A59A100FF9163 /* Schedule.swift in Sources */,
@@ -1215,6 +1225,7 @@
 			files = (
 				637153162C998AEB00CC828F /* SettingsView.swift in Sources */,
 				63294B6A2C22052100EF4A90 /* ContentView.swift in Sources */,
+				63THEME00000000000000005 /* Theme.swift in Sources */,
 				63B8C3052C99E1CD004FAFAF /* GridView.swift in Sources */,
 				635AAC312C2284400003C041 /* QueryFlux.swift in Sources */,
 				63C485BC2C2A59A100FF9163 /* Schedule.swift in Sources */,
@@ -1270,6 +1281,7 @@
 				6388AA1E2C6979630080D664 /* Login.swift in Sources */,
 				6388AA1D2C69795E0080D664 /* WhereWeAre.swift in Sources */,
 				6388A9F42C6977EB0080D664 /* ContentView.swift in Sources */,
+				63THEME00000000000000006 /* Theme.swift in Sources */,
 				6388A9F22C6977EB0080D664 /* RhizomeWatchApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

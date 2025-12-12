@@ -22,12 +22,13 @@ struct ContentView: View {
             } else {
                 VStack {
                     Text("🐕 Rhizome is not in the playroom 🐕")
+                        .font(Theme.Fonts.headerLarge())
+                        .foregroundColor(Theme.Colors.textPrimary)
                         .padding([.bottom], 20)
-                    Button {
+                    Button("View Anyway") {
                         showVideo = true
-                    } label: {
-                        Text("View Anyway")
                     }
+                    .buttonStyle(.rhizomePrimary)
                 }
             }
         }.onAppear(perform: parseSchedule)

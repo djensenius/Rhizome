@@ -28,22 +28,23 @@ struct ContentView: View {
             VStack {
                 if inPlayroom {
                     Text("🐕🎉 Rhizome is playing! 🎉🐕")
+                        .font(Theme.Fonts.headerLarge())
+                        .foregroundColor(Theme.Colors.textPrimary)
                         .padding([.bottom], 20)
                 } else {
                     Text("🐕 Rhizome is not in the playroom 🐕")
-                            .padding([.bottom], 20)
+                        .font(Theme.Fonts.headerLarge())
+                        .foregroundColor(Theme.Colors.textPrimary)
+                        .padding([.bottom], 20)
                 }
-                Button {
+                Button(inPlayroom ? "Watch Rhizome" : "View Anyway") {
                     path = [1]
-                } label: {
-                    if inPlayroom {
-                        Text("Watch Rhizome")
-                    } else {
-                        Text("View Anyway")
-                    }
                 }
+                .buttonStyle(.rhizomePrimary)
             }
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Theme.Colors.background)
     }
 
     var body: some View {
