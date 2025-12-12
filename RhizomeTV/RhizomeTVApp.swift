@@ -19,7 +19,7 @@ struct RhizomeTVApp: App {
 
     var body: some Scene {
         WindowGroup {
-            if whereWeAre.loading == true {
+            if whereWeAre.loading == true || whereWeAre.hasKeyChainPassword == false {
                 SignInView(user: $user, needLoginView: !whereWeAre.hasKeyChainPassword)
                     .transition(.opacity.animation(.linear))
                     .onReceive(NotificationCenter.default.publisher(for: Notification.Name.loginsUpdated)) { object in
@@ -38,7 +38,7 @@ struct RhizomeTVApp: App {
                             whereWeAre.setPassword(password: object.userInfo!["updateKeychain"] as? String ?? "")
                         }
 
-                        if ((object.userInfo?["keysFailed"]) != nil) == true {
+                        if ((object.userInfo?["keysFailed"]) != nil) == true || ((object.userInfo?["loginError"]) != nil) == true {
                             whereWeAre.deleteKeyChainPasword()
                         }
                 }

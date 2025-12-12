@@ -31,9 +31,7 @@ struct ContentView: View {
             }
             .navigationDestination(for: Int.self) { selection in
                 if selection == 1 {
-                    VideoPlayerView(cameraURL: cameraURL) {
-                        path = []
-                    }
+                    VideoPlayerView(cameraURL: cameraURL)
                 }
             }
         }.onAppear(perform: parseSchedule)

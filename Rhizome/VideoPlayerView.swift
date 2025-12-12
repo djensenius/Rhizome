@@ -143,7 +143,7 @@ struct VideoPlayerView: View {
             .padding(.trailing, 16)
             .padding(.top, 16)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
-            .zIndex(1)
+            .zIndex(100)
             #endif
         }
             .ignoresSafeArea()
