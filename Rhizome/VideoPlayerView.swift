@@ -79,18 +79,21 @@ struct VideoPlayerView: View {
     @StateObject private var playerObserver = PlayerObserver()
 
     // Initializer for URL-based player (current behavior)
-    init(cameraURL: String) {
+    init(cameraURL: String, onDismiss: (() -> Void)? = nil) {
         self.cameraURL = cameraURL
         self.existingPlayer = nil
+        self.onDismiss = onDismiss
     }
 
     // Initializer for existing player (replaces AZVideoPlayer)
-    init(player: AVPlayer) {
+    init(player: AVPlayer, onDismiss: (() -> Void)? = nil) {
         self.cameraURL = nil
         self.existingPlayer = player
+        self.onDismiss = onDismiss
     }
 
     @Environment(\.dismiss) var dismiss
+    var onDismiss: (() -> Void)?
 
     var body: some View {
         ZStack(alignment: .topLeading) {
@@ -105,7 +108,11 @@ struct VideoPlayerView: View {
 
             #if os(iOS) || os(visionOS)
             Button(action: {
-                dismiss()
+                if let onDismiss = onDismiss {
+                    onDismiss()
+                } else {
+                    dismiss()
+                }
             }, label: {
                 Image(systemName: "chevron.left")
                     .font(.title3)
@@ -116,6 +123,7 @@ struct VideoPlayerView: View {
             })
             .padding(.leading, 16)
             .padding(.top, 48)
+            .zIndex(1)
             #endif
 
             #if os(macOS)
@@ -132,6 +140,7 @@ struct VideoPlayerView: View {
             .padding(.trailing, 16)
             .padding(.top, 16)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
+            .zIndex(1)
             #endif
         }
             .ignoresSafeArea()

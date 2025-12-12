@@ -43,11 +43,11 @@ struct RhizomeTVApp: App {
                         }
                 }
             } else {
-                if let schedule = rhizomeSchedule, let news = newsUrl {
+                if let schedule = rhizomeSchedule {
                     RhizomeTabs(
                         cameraUrl: cameraURL,
                         rhizomeSchedule: schedule,
-                        newsUrl: news,
+                        newsUrl: newsUrl ?? "",
                         images: images
                     )
                     .onReceive(NotificationCenter.default.publisher(for: Notification.Name.logout)) { object in
@@ -59,6 +59,11 @@ struct RhizomeTVApp: App {
                     }
                 } else {
                     ProgressView()
+                        .onAppear {
+                            print(
+                                "DEBUG: Stuck in ProgressView. rhizomeSchedule: \(String(describing: rhizomeSchedule))"
+                            )
+                        }
                 }
             }
         }
