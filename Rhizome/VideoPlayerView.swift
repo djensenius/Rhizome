@@ -51,6 +51,26 @@ class PlayerObserver: NSObject, ObservableObject {
         errorObservation?.invalidate()
     }
 }
+
+#if os(iOS) || os(tvOS) || os(visionOS)
+struct PlayerViewController: UIViewControllerRepresentable {
+    var player: AVPlayer?
+
+    func makeUIViewController(context: Context) -> AVPlayerViewController {
+        let controller = AVPlayerViewController()
+        controller.player = player
+        controller.showsPlaybackControls = true
+        return controller
+    }
+
+    func updateUIViewController(_ uiViewController: AVPlayerViewController, context: Context) {
+        if uiViewController.player != player {
+            uiViewController.player = player
+        }
+    }
+}
+#endif
+
 struct VideoPlayerView: View {
     let cameraURL: String?
     let existingPlayer: AVPlayer?
@@ -71,7 +91,13 @@ struct VideoPlayerView: View {
     }
 
     var body: some View {
-        VideoPlayer(player: player)
+        Group {
+            #if os(iOS) || os(tvOS) || os(visionOS)
+            PlayerViewController(player: player)
+            #else
+            VideoPlayer(player: player)
+            #endif
+        }
             .ignoresSafeArea()
             .onAppear {
                 setupPlayer()
