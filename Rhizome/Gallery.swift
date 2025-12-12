@@ -55,6 +55,7 @@ struct Gallery: View {
                 }
             }
         }
+        .background(Theme.Colors.background)
     }
 }
 

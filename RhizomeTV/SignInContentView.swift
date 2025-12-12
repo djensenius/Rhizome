@@ -25,6 +25,8 @@ struct SignInContentView: View {
             .buttonStyle(.card)
         }
         .font(Theme.Fonts.bodyLarge)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Theme.Colors.background)
     }
 }
 

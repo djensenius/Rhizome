@@ -50,6 +50,8 @@ struct ContentView: View {
                 }
             }
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Theme.Colors.background)
         .onAppear(perform: parseSchedule)
     }
 

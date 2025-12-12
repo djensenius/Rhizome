@@ -62,6 +62,7 @@ struct Schedule: View {
                     }
                 }
         }
+        .background(Theme.Colors.background)
     }
 
     func parseDate(timestamp: TimeInterval, timezone: String, showDate: Bool = true) -> String {

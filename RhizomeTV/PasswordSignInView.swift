@@ -31,6 +31,8 @@ struct PasswordSignInView: View {
             .disabled(password.isEmpty)
         }
         .font(Theme.Fonts.bodyLarge)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Theme.Colors.background)
     }
 }
 
