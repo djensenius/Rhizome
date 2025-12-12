@@ -147,21 +147,6 @@ struct VideoPlayerView: View {
             #endif
         }
             .ignoresSafeArea()
-            #if os(visionOS)
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Button(action: {
-                        if let onDismiss = onDismiss {
-                            onDismiss()
-                        } else {
-                            dismiss()
-                        }
-                    }) {
-                        Label("Back", systemImage: "chevron.left")
-                    }
-                }
-            }
-            #endif
             .onAppear {
                 setupPlayer()
                 configureAudioAndScreen()

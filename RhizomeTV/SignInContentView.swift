@@ -32,7 +32,6 @@ struct SignInContentView: View {
             .padding()
             .buttonStyle(.card)
             .padding(.top, 20)
-            .scaleEffect(1.2)
         }
         .padding(50)
         .font(Theme.Fonts.bodyLarge)

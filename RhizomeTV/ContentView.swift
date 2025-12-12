@@ -46,6 +46,7 @@ struct ContentView: View {
         NavigationStack(path: $path) {
             HStack {
                 showRhizome
+                    .padding(50)
             }.navigationDestination(for: Int.self) { selection in
                 if selection == 1 {
                     VideoPlayerView(cameraURL: cameraURL)
