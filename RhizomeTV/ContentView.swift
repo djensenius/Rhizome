@@ -22,7 +22,7 @@ struct ContentView: View {
                     .foregroundColor(Theme.Colors.textPrimary)
                     .padding([.bottom], 20)
             } else {
-                Text("🐕 Rhizome is not in the playroom 🐕")
+                Text("🐕 See if Rhizome is playing! 🐕")
                     .font(Theme.Fonts.headerLarge())
                     .foregroundColor(Theme.Colors.textPrimary)
                     .padding([.bottom], 20)
@@ -33,7 +33,7 @@ struct ContentView: View {
                 if inPlayroom {
                     Text("Watch Rhizome")
                 } else {
-                    Text("View Anyway")
+                    Text("Check to see")
                 }
             }
             .buttonStyle(.card)

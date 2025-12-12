@@ -22,7 +22,7 @@ struct ContentView: View {
                     .foregroundColor(Theme.Colors.textPrimary)
                     .padding([.bottom], 5)
             } else {
-                Text("🐕 Rhizome is not in the playroom 🐕")
+                Text("🐕 See if Rhizome is playing! 🐕")
                     .font(Theme.Fonts.bodyMedium)
                     .foregroundColor(Theme.Colors.textPrimary)
                     .padding([.bottom], 5)

@@ -34,7 +34,7 @@ struct ContentView: View {
                         .foregroundColor(Theme.Colors.textPrimary)
                         .padding([.bottom], 20)
                 }
-                Button(inPlayroom ? "Watch Rhizome" : "View Anyway") {
+                Button(inPlayroom ? "Watch Rhizome" : "Check to see") {
                     path = [1]
                 }
                 .buttonStyle(.rhizomePrimary)

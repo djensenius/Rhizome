@@ -24,12 +24,12 @@ struct ContentView: View {
                         .foregroundColor(Theme.Colors.textPrimary)
                         .padding([.bottom], 20)
                 } else {
-                    Text("🐕 Rhizome is not in the playroom 🐕")
+                    Text("🐕 See if Rhizome is playing! 🐕")
                         .font(Theme.Fonts.headerLarge())
                         .foregroundColor(Theme.Colors.textPrimary)
                         .padding([.bottom], 20)
                 }
-                Button(inPlayroom ? "Watch Rhizome" : "View Anyway") {
+                Button(inPlayroom ? "Watch Rhizome" : "Check to see") {
                     path = [1]
                 }
                 .buttonStyle(.rhizomePrimary)

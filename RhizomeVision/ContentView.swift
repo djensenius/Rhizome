@@ -21,11 +21,11 @@ struct ContentView: View {
                 VideoPlayerView(cameraURL: cameraURL)
             } else {
                 VStack {
-                    Text("🐕 Rhizome is not in the playroom 🐕")
+                    Text("🐕 See if Rhizome is playing! 🐕")
                         .font(Theme.Fonts.headerLarge())
                         .foregroundColor(Theme.Colors.textPrimary)
                         .padding([.bottom], 20)
-                    Button("View Anyway") {
+                    Button("Check to see") {
                         showVideo = true
                     }
                     .buttonStyle(.rhizomePrimary)
