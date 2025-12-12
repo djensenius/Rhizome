@@ -43,27 +43,18 @@ struct RhizomeTVApp: App {
                         }
                 }
             } else {
-                if let schedule = rhizomeSchedule {
-                    RhizomeTabs(
-                        cameraUrl: cameraURL,
-                        rhizomeSchedule: schedule,
-                        newsUrl: newsUrl ?? "",
-                        images: images
-                    )
-                    .onReceive(NotificationCenter.default.publisher(for: Notification.Name.logout)) { object in
-                        if (object.userInfo?["logout"]) != nil {
-                            DispatchQueue.main.async { @MainActor in
-                                self.whereWeAre = WhereWeAre()
-                            }
+                RhizomeTabs(
+                    cameraUrl: cameraURL,
+                    rhizomeSchedule: rhizomeSchedule,
+                    newsUrl: newsUrl ?? "",
+                    images: images
+                )
+                .onReceive(NotificationCenter.default.publisher(for: Notification.Name.logout)) { object in
+                    if (object.userInfo?["logout"]) != nil {
+                        DispatchQueue.main.async { @MainActor in
+                            self.whereWeAre = WhereWeAre()
                         }
                     }
-                } else {
-                    ProgressView()
-                        .onAppear {
-                            print(
-                                "DEBUG: Stuck in ProgressView. rhizomeSchedule: \(String(describing: rhizomeSchedule))"
-                            )
-                        }
                 }
             }
         }

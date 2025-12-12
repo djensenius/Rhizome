@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RhizomeTabs: View {
     var cameraUrl: String
-    var rhizomeSchedule: Appointments
+    var rhizomeSchedule: Appointments?
     var newsUrl: String
     var images: [String]
 

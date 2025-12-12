@@ -12,6 +12,9 @@ import SwiftUI
 #if canImport(AVFoundation)
 import AVFoundation
 #endif
+#if os(macOS)
+import AppKit
+#endif
 
 struct PlayerError: Identifiable {
     let id = UUID()
@@ -106,7 +109,7 @@ struct VideoPlayerView: View {
             }
             .ignoresSafeArea()
 
-            #if os(iOS) || os(visionOS)
+            #if os(iOS)
             Button(action: {
                 if let onDismiss = onDismiss {
                     onDismiss()
@@ -128,7 +131,7 @@ struct VideoPlayerView: View {
 
             #if os(macOS)
             Button(action: {
-                NSApp.keyWindow?.toggleFullScreen(nil)
+                NSApplication.shared.windows.first?.toggleFullScreen(nil)
             }, label: {
                 Image(systemName: "arrow.up.left.and.arrow.down.right")
                     .font(.title3)
@@ -144,6 +147,21 @@ struct VideoPlayerView: View {
             #endif
         }
             .ignoresSafeArea()
+            #if os(visionOS)
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button(action: {
+                        if let onDismiss = onDismiss {
+                            onDismiss()
+                        } else {
+                            dismiss()
+                        }
+                    }) {
+                        Label("Back", systemImage: "chevron.left")
+                    }
+                }
+            }
+            #endif
             .onAppear {
                 setupPlayer()
                 configureAudioAndScreen()
