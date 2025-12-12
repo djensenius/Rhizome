@@ -151,6 +151,9 @@ struct VideoPlayerView: View {
             #if os(iOS) || os(tvOS) || os(visionOS)
             .ignoresSafeArea()
             #endif
+            #if os(tvOS)
+            .toolbar(.hidden, for: .tabBar)
+            #endif
             .onAppear {
                 setupPlayer()
                 configureAudioAndScreen()

@@ -30,46 +30,50 @@ func queryFlux(password: String) {
     request.addValue("application/json", forHTTPHeaderField: "Accept")
 
     let task = URLSession.shared.dataTask(with: request) { @Sendable data, _, error in
-        if let error = error {
+        handleQueryFluxResponse(data: data, error: error, password: password)
+    }
+    task.resume()
+}
+
+func handleQueryFluxResponse(data: Data?, error: Error?, password: String) {
+    if let error = error {
+        DispatchQueue.main.async { @MainActor in
+            NotificationCenter.default.post(
+                name: Notification.Name.loginsUpdated,
+                object: nil,
+                userInfo: ["loginError": error.localizedDescription]
+            )
+        }
+        return
+    }
+
+    if let data = data {
+        let response = try? JSONDecoder().decode(LoginResponse.self, from: data)
+
+        if let response = response {
+            DispatchQueue.main.async { @MainActor in
+                NotificationCenter.default.post(
+                    name: Notification.Name.loginsUpdated,
+                    object: response,
+                    userInfo: ["keysComplete": true]
+                )
+
+                NotificationCenter.default.post(
+                    name: Notification.Name.loginsUpdated,
+                    object: nil,
+                    userInfo: ["updateKeychain": password]
+                )
+            }
+        } else {
+            // Error: Unable to decode response JSON
+            // This also happens if the password is wrong!
             DispatchQueue.main.async { @MainActor in
                 NotificationCenter.default.post(
                     name: Notification.Name.loginsUpdated,
                     object: nil,
-                    userInfo: ["loginError": error.localizedDescription]
+                    userInfo: ["loginError": "Incorrect Password"]
                 )
-            }
-            return
-        }
-
-        if let data = data {
-            let response = try? JSONDecoder().decode(LoginResponse.self, from: data)
-
-            if let response = response {
-                DispatchQueue.main.async { @MainActor in
-                    NotificationCenter.default.post(
-                        name: Notification.Name.loginsUpdated,
-                        object: response,
-                        userInfo: ["keysComplete": true]
-                    )
-
-                    NotificationCenter.default.post(
-                        name: Notification.Name.loginsUpdated,
-                        object: nil,
-                        userInfo: ["updateKeychain": password]
-                    )
-                }
-            } else {
-                // Error: Unable to decode response JSON
-                // This also happens if the password is wrong!
-                DispatchQueue.main.async { @MainActor in
-                    NotificationCenter.default.post(
-                        name: Notification.Name.loginsUpdated,
-                        object: nil,
-                        userInfo: ["loginError": "Incorrect Password"]
-                    )
-                }
             }
         }
     }
-    task.resume()
 }

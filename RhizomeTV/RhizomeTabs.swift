@@ -19,28 +19,28 @@ struct RhizomeTabs: View {
             Tab("Watch", systemImage: "tv", value: "0") {
                 ContentView(cameraURL: cameraUrl, rhizomeSchedule: rhizomeSchedule)
                     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-                    
+
             }
             .customizationID("0")
 
 //            Tab("Schedule", systemImage: "calendar", value: "1") {
 //                Schedule(newsUrl: newsUrl, schedule: rhizomeSchedule)
 //                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-//                    
+//
 //            }
 //            .customizationID("1")
 
             Tab("Images", systemImage: "photo", value: "2") {
                 Gallery(images: images)
                     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-                    
+
             }
             .customizationID("2")
 
             Tab("Settings", systemImage: "gear", value: "3") {
                 SettingsView()
                     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-                    
+
             }
             .customizationID("3")
         }

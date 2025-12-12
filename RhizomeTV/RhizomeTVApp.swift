@@ -41,7 +41,8 @@ struct RhizomeTVApp: App {
                             whereWeAre.setPassword(password: object.userInfo!["updateKeychain"] as? String ?? "")
                         }
 
-                        if ((object.userInfo?["keysFailed"]) != nil) == true || ((object.userInfo?["loginError"]) != nil) == true {
+                        if ((object.userInfo?["keysFailed"]) != nil) == true ||
+                            ((object.userInfo?["loginError"]) != nil) == true {
                             whereWeAre.deleteKeyChainPasword()
                         }
                 }
