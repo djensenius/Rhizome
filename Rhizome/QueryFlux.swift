@@ -7,6 +7,28 @@
 
 import Foundation
 
+class BasicAuthDelegate: NSObject, URLSessionTaskDelegate, @unchecked Sendable {
+    let user: String
+    let password: String
+
+    init(user: String, password: String) {
+        self.user = user
+        self.password = password
+    }
+
+    func urlSession(
+        _ session: URLSession,
+        task: URLSessionTask,
+        didReceive challenge: URLAuthenticationChallenge
+    ) async -> (URLSession.AuthChallengeDisposition, URLCredential?) {
+        if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodHTTPBasic {
+            let credential = URLCredential(user: user, password: password, persistence: .forSession)
+            return (.useCredential, credential)
+        }
+        return (.performDefaultHandling, nil)
+    }
+}
+
 func queryFlux(password: String) {
     let scheme: String = "https"
     let host: String = "api.fluxhaus.io"
@@ -16,8 +38,6 @@ func queryFlux(password: String) {
     components.scheme = scheme
     components.host = host
     components.path = path
-    components.user = "rhizome"
-    components.password = password
 
     guard let url = components.url else {
         return
@@ -29,7 +49,9 @@ func queryFlux(password: String) {
     request.addValue("application/json", forHTTPHeaderField: "Content-Type")
     request.addValue("application/json", forHTTPHeaderField: "Accept")
 
-    let task = URLSession.shared.dataTask(with: request) { @Sendable data, _, error in
+    let delegate = BasicAuthDelegate(user: "rhizome", password: password)
+    let session = URLSession(configuration: .default, delegate: delegate, delegateQueue: nil)
+    let task = session.dataTask(with: request) { @Sendable data, _, error in
         handleQueryFluxResponse(data: data, error: error, password: password)
     }
     task.resume()
