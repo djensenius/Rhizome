@@ -10,7 +10,7 @@ import SwiftUI
 
 // MARK: - ColumnStepper Tests
 
-@Test func columnStepperInitialization() throws {
+@MainActor @Test func columnStepperInitialization() throws {
     let range = 1...10
     let stepper = ColumnStepper(
         title: "Columns",
@@ -20,13 +20,13 @@ import SwiftUI
     #expect(type(of: stepper) == ColumnStepper.self)
 }
 
-@Test func gridViewInitialization() throws {
+@MainActor @Test func gridViewInitialization() throws {
     let images = ["image1.jpg", "image2.jpg", "image3.jpg"]
     let gridView = GridView(images: images)
     #expect(type(of: gridView) == GridView.self)
 }
 
-@Test func gridViewWithEmptyImages() throws {
+@MainActor @Test func gridViewWithEmptyImages() throws {
     let images: [String] = []
     let gridView = GridView(images: images)
     #expect(type(of: gridView) == GridView.self)
@@ -34,13 +34,13 @@ import SwiftUI
 
 // MARK: - GridItemView Tests
 
-@Test func gridItemViewInitialization() throws {
+@MainActor @Test func gridItemViewInitialization() throws {
     let itemURL = URL(string: "https://example.com/image.jpg")!
     let itemView = GridItemView(size: 100, item: itemURL)
     #expect(type(of: itemView) == GridItemView.self)
 }
 
-@Test func gridItemViewWithSize() throws {
+@MainActor @Test func gridItemViewWithSize() throws {
     let itemURL = URL(string: "https://example.com/image.jpg")!
     let smallView = GridItemView(size: 50, item: itemURL)
     let largeView = GridItemView(size: 500, item: itemURL)
@@ -50,7 +50,7 @@ import SwiftUI
 
 // MARK: - DetailView Tests
 
-@Test func detailViewInitialization() throws {
+@MainActor @Test func detailViewInitialization() throws {
     let itemURL = URL(string: "https://example.com/image.jpg")!
     let detailView = DetailView(item: itemURL)
     #expect(type(of: detailView) == DetailView.self)
@@ -58,14 +58,14 @@ import SwiftUI
 
 // MARK: - ContentView Tests
 
-@Test func macContentViewInitialization() throws {
+@MainActor @Test func macContentViewInitialization() throws {
     let cameraURL = "https://example.com/stream"
     let schedule: Appointments? = nil
     let contentView = ContentView(cameraURL: cameraURL, rhizomeSchedule: schedule)
     #expect(type(of: contentView) == ContentView.self)
 }
 
-@Test func macContentViewWithSchedule() throws {
+@MainActor @Test func macContentViewWithSchedule() throws {
     let cameraURL = "https://example.com/stream"
     let daycare = AppointmentsDaycare(
         startDate: "Thursday, 8/14/2025 9:00 am",
@@ -79,12 +79,12 @@ import SwiftUI
 
 // MARK: - Performance Tests
 
-@Test(.timeLimit(.minutes(1))) func gridViewPerformance() throws {
+@MainActor @Test(.timeLimit(.minutes(1))) func gridViewPerformance() throws {
     let images = Array(1...100).map { "image\($0).jpg" }
     _ = GridView(images: images)
 }
 
-@Test(.timeLimit(.minutes(1))) func detailViewPerformance() throws {
+@MainActor @Test(.timeLimit(.minutes(1))) func detailViewPerformance() throws {
     let itemURL = URL(string: "https://example.com/large-image.jpg")!
     _ = DetailView(item: itemURL)
 }

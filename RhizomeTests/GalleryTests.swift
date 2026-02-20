@@ -9,7 +9,7 @@ import Testing
 import SwiftUI
 @testable import Rhizome
 
-@Test func galleryInitializationWithEmptyImages() throws {
+@MainActor @Test func galleryInitializationWithEmptyImages() throws {
     // Given: Empty images array
     let images: [String] = []
 
@@ -20,7 +20,7 @@ import SwiftUI
     #expect(gallery.images.count == 0)
 }
 
-@Test func galleryInitializationWithImages() throws {
+@MainActor @Test func galleryInitializationWithImages() throws {
     // Given: Images array
     let images = ["image1.jpg", "image2.jpg", "image3.jpg"]
 
@@ -33,7 +33,7 @@ import SwiftUI
     #expect(gallery.images[2] == "image3.jpg")
 }
 
-@Test func galleryWithSingleImage() throws {
+@MainActor @Test func galleryWithSingleImage() throws {
     // Given: Single image
     let images = ["single-image.jpg"]
 
@@ -45,7 +45,7 @@ import SwiftUI
     #expect(gallery.images[0] == "single-image.jpg")
 }
 
-@Test func galleryWithLargeImageArray() throws {
+@MainActor @Test func galleryWithLargeImageArray() throws {
     // Given: Large images array
     let images = Array(1...100).map { "image\($0).jpg" }
 
@@ -60,7 +60,7 @@ import SwiftUI
 
 // MARK: - View Extension Tests
 
-@Test func framedAspectRatioExtension() throws {
+@MainActor @Test func framedAspectRatioExtension() throws {
     // Given: Image view
     let imageView = Image(systemName: "photo")
 
@@ -71,7 +71,7 @@ import SwiftUI
     #expect(framedView != nil)
 }
 
-@Test func fixedAspectRatioExtension() throws {
+@MainActor @Test func fixedAspectRatioExtension() throws {
     // Given: Any view
     let anyView = Text("Test")
 
@@ -82,7 +82,7 @@ import SwiftUI
     #expect(fixedView != nil)
 }
 
-@Test func fixedAspectRatioWithNilAspect() throws {
+@MainActor @Test func fixedAspectRatioWithNilAspect() throws {
     // Given: Any view
     let anyView = Rectangle()
 
@@ -94,19 +94,19 @@ import SwiftUI
 }
 // MARK: - Performance Tests
 
-@Test(.timeLimit(.minutes(1))) func galleryInitializationPerformance() throws {
+@MainActor @Test(.timeLimit(.minutes(1))) func galleryInitializationPerformance() throws {
     let images = Array(1...50).map { "image\($0).jpg" }
     _ = Gallery(images: images)
 }
 
-@Test(.timeLimit(.minutes(1))) func largeImageArrayPerformance() throws {
+@MainActor @Test(.timeLimit(.minutes(1))) func largeImageArrayPerformance() throws {
     let images = Array(1...1000).map { "image\($0).jpg" }
     _ = Gallery(images: images)
 }
 
 // MARK: - Edge Cases
 
-@Test func galleryWithInvalidImageURLs() throws {
+@MainActor @Test func galleryWithInvalidImageURLs() throws {
     // Given: Images with potentially invalid URLs
     let images = ["", "invalid-url", "http://", "not-a-url"]
 
@@ -117,7 +117,7 @@ import SwiftUI
     #expect(gallery.images.count == 4)
 }
 
-@Test func galleryWithVeryLongImageURLs() throws {
+@MainActor @Test func galleryWithVeryLongImageURLs() throws {
     // Given: Very long image URLs
     let longURL = String(repeating: "a", count: 1000) + ".jpg"
     let images = [longURL]
@@ -130,7 +130,7 @@ import SwiftUI
         #expect(gallery.images[0] == longURL)
     }
 
-@Test func galleryWithSpecialCharacters() throws {
+@MainActor @Test func galleryWithSpecialCharacters() throws {
     // Given: Image URLs with special characters
     let images = [
         "image with spaces.jpg",

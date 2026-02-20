@@ -20,7 +20,7 @@ private func cleanupKeychain() {
 
 // MARK: - WhereWeAre Tests
 
-@Test func whereWeAreDeletePassword() throws {
+@MainActor @Test func whereWeAreDeletePassword() throws {
     // Given: A password stored in keychain
     cleanupKeychain()
     var whereWeAre = WhereWeAre()
@@ -42,7 +42,7 @@ private func cleanupKeychain() {
     cleanupKeychain()
 }
 
-@Test func whereWeAreGetPasswordReturnsNilWhenEmpty() throws {
+@MainActor @Test func whereWeAreGetPasswordReturnsNilWhenEmpty() throws {
     // Given: No password in keychain
     cleanupKeychain()
 
@@ -55,7 +55,7 @@ private func cleanupKeychain() {
 
 // MARK: - System Notifications Tests
 
-@Test func systemNotificationNames() throws {
+@MainActor @Test func systemNotificationNames() throws {
     // Given & When & Then: Notification names should be defined correctly
     #expect(Notification.Name.loginsUpdated.rawValue == "LoginsUpdated")
     #expect(Notification.Name.logout.rawValue == "Logout")
@@ -63,7 +63,7 @@ private func cleanupKeychain() {
 
 // MARK: - Performance Tests
 
-@Test(.timeLimit(.minutes(1))) func keychainPerformance() throws {
+@MainActor @Test(.timeLimit(.minutes(1))) func keychainPerformance() throws {
     // Setup keychain cleanup for performance test
     cleanupKeychain()
 
@@ -76,7 +76,7 @@ private func cleanupKeychain() {
     cleanupKeychain()
 }
 
-@Test(.timeLimit(.minutes(1))) func jsonDecodingPerformance() throws {
+@MainActor @Test(.timeLimit(.minutes(1))) func jsonDecodingPerformance() throws {
     let jsonData = Data("""
     {
         "cameraURL": "https://example.com/stream",

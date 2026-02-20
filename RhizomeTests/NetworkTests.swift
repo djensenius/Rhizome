@@ -9,6 +9,7 @@ import Testing
 import Foundation
 @testable import Rhizome
 
+@MainActor
 @Suite("Network Tests")
 struct NetworkTests {
 
