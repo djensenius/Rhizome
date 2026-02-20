@@ -9,6 +9,7 @@ import Testing
 import Foundation
 @testable import Rhizome
 
+@MainActor
 @Suite("Schedule Tests")
 struct ScheduleTests {
 
@@ -76,7 +77,8 @@ struct ScheduleTests {
     func scheduleInitialization() {
         // Given: Schedule parameters
         let newsUrl = "https://example.com/news"
-        let appointments = Appointments(daycare: [])
+        let daycare = AppointmentsDaycare(startDate: "Thursday, 8/14/2025 9:00 am", rId: 1, type: "Daycare | Full Day")
+        let appointments = Appointments(nextReservation: daycare)
 
         // When: Creating a Schedule
         let schedule = Schedule(newsUrl: newsUrl, schedule: appointments)
@@ -84,7 +86,6 @@ struct ScheduleTests {
         // Then: Properties should be set correctly
         #expect(schedule.newsUrl == newsUrl)
         #expect(schedule.schedule != nil)
-        #expect(schedule.schedule?.daycare.count == 0)
     }
 
     @Test

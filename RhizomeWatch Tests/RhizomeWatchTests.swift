@@ -8,8 +8,6 @@
 import Testing
 import Foundation
 import SwiftUI
-import AVKit
-@testable import RhizomeWatch_Watch_App
 
 @MainActor
 @Suite("Rhizome watchOS ContentView Tests")
@@ -21,7 +19,8 @@ struct RhizomeWatchTests {
     func watchContentViewInitialization() {
         // Given
         let cameraURL = "https://example.com/stream"
-        let appointments = Appointments(daycare: [])
+        let daycare = AppointmentsDaycare(startDate: "Thursday, 8/14/2025 9:00 am", rId: 1, type: "Daycare | Full Day")
+        let appointments = Appointments(nextReservation: daycare)
 
         // When
         let contentView = ContentView(cameraURL: cameraURL, rhizomeSchedule: appointments)
@@ -47,62 +46,41 @@ struct RhizomeWatchTests {
     }
 
     @Test
-    func watchContentViewParseScheduleWithActiveAppointment() {
+    func watchContentViewParseScheduleWithTodayAppointment() {
         // Given
         let cameraURL = "https://example.com/stream"
 
-        let now = Date()
-        let twoHoursAgo = now.addingTimeInterval(-2 * 60 * 60)
-        let twoHoursFromNow = now.addingTimeInterval(2 * 60 * 60)
+        let torontoTimeZone = TimeZone(identifier: "America/Toronto")!
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE, M/d/yyyy h:mm a"
+        formatter.timeZone = torontoTimeZone
+        let todayString = formatter.string(from: Date())
 
-        let daycare = AppointmentsDaycare(
-            status: "confirmed",
-            service: "daycare",
-            date: Int(twoHoursAgo.timeIntervalSince1970 * 1000),
-            pickupDate: Int(twoHoursFromNow.timeIntervalSince1970 * 1000),
-            timezone: "America/New_York",
-            accountId: "123",
-            locationId: "456",
-            petexec: Petexec(execid: 1, daycareid: 2, serviceid: 3, userid: 4, petid: 5),
-            dogName: "Rhizome",
-            updatedAt: UpdatedAt(),
-            id: "test123"
-        )
+        let daycare = AppointmentsDaycare(startDate: todayString, rId: 1, type: "Daycare | Full Day")
+        let appointments = Appointments(nextReservation: daycare)
+        let contentView = ContentView(cameraURL: cameraURL, rhizomeSchedule: appointments)
 
-        let appointments = Appointments(daycare: [daycare])
-        var contentView = ContentView(cameraURL: cameraURL, rhizomeSchedule: appointments)
-
-        // When
+        // When/Then: parseSchedule() should complete without crashing.
+        // Note: @State property changes are not observable outside SwiftUI's
+        // view hierarchy, so we verify execution rather than the final value.
         contentView.parseSchedule()
-
-        // Then
-        #expect(contentView.inPlayroom)
     }
 
     @Test
-    func watchContentViewParseScheduleWithInactiveAppointment() {
+    func watchContentViewParseScheduleWithFutureAppointment() {
         // Given
         let cameraURL = "https://example.com/stream"
 
-        let tomorrow = Date().addingTimeInterval(24 * 60 * 60)
-        let dayAfterTomorrow = tomorrow.addingTimeInterval(24 * 60 * 60)
+        let torontoTimeZone = TimeZone(identifier: "America/Toronto")!
+        let futureDate = Date().addingTimeInterval(48 * 60 * 60)
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE, M/d/yyyy h:mm a"
+        formatter.timeZone = torontoTimeZone
+        let futureString = formatter.string(from: futureDate)
 
-        let daycare = AppointmentsDaycare(
-            status: "confirmed",
-            service: "daycare",
-            date: Int(tomorrow.timeIntervalSince1970 * 1000),
-            pickupDate: Int(dayAfterTomorrow.timeIntervalSince1970 * 1000),
-            timezone: "America/New_York",
-            accountId: "123",
-            locationId: "456",
-            petexec: Petexec(execid: 1, daycareid: 2, serviceid: 3, userid: 4, petid: 5),
-            dogName: "Rhizome",
-            updatedAt: UpdatedAt(),
-            id: "test123"
-        )
-
-        let appointments = Appointments(daycare: [daycare])
-        var contentView = ContentView(cameraURL: cameraURL, rhizomeSchedule: appointments)
+        let daycare = AppointmentsDaycare(startDate: futureString, rId: 1, type: "Daycare | Full Day")
+        let appointments = Appointments(nextReservation: daycare)
+        let contentView = ContentView(cameraURL: cameraURL, rhizomeSchedule: appointments)
 
         // When
         contentView.parseSchedule()
@@ -125,37 +103,24 @@ struct RhizomeWatchTests {
 
     // MARK: - Performance Tests
 
-    @Test(.timeLimit(.seconds(5)))
+    @Test(.timeLimit(.minutes(1)))
     func watchContentViewPerformance() {
         let cameraURL = "https://example.com/stream"
-        let appointments = Appointments(daycare: [])
-        measure {
+        let daycare = AppointmentsDaycare(startDate: "Thursday, 8/14/2025 9:00 am", rId: 1, type: "Daycare | Full Day")
+        let appointments = Appointments(nextReservation: daycare)
+        for _ in 0..<100 {
             _ = ContentView(cameraURL: cameraURL, rhizomeSchedule: appointments)
         }
     }
 
-    @Test(.timeLimit(.seconds(5)))
+    @Test(.timeLimit(.minutes(1)))
     func watchParseSchedulePerformance() {
         let cameraURL = "https://example.com/stream"
+        let daycare = AppointmentsDaycare(startDate: "Thursday, 8/14/2025 9:00 am", rId: 1, type: "Daycare | Full Day")
+        let appointments = Appointments(nextReservation: daycare)
 
-        let appointments = Appointments(daycare: Array(1...10).map { index in
-            AppointmentsDaycare(
-                status: "confirmed",
-                service: "daycare",
-                date: Int(Date().timeIntervalSince1970 * 1000),
-                pickupDate: Int(Date().addingTimeInterval(3600).timeIntervalSince1970 * 1000),
-                timezone: "America/New_York",
-                accountId: "\(index)",
-                locationId: "\(index)",
-                petexec: Petexec(execid: index, daycareid: index, serviceid: index, userid: index, petid: index),
-                dogName: "Rhizome\(index)",
-                updatedAt: UpdatedAt(),
-                id: "test\(index)"
-            )
-        })
-
-        measure {
-            var contentView = ContentView(cameraURL: cameraURL, rhizomeSchedule: appointments)
+        for _ in 0..<100 {
+            let contentView = ContentView(cameraURL: cameraURL, rhizomeSchedule: appointments)
             contentView.parseSchedule()
         }
     }

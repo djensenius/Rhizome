@@ -11,20 +11,6 @@ import SwiftUI
 
 final class SettingsViewTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Clear any existing notifications
-        let center = NotificationCenter.default
-        for token in notificationObservers { center.removeObserver(token) }
-        NotificationCenter.default.removeAll()
-    }
-
-    override func tearDownWithError() throws {
-        // Clean up after tests
-        let center = NotificationCenter.default
-        for token in notificationObservers { center.removeObserver(token) }
-        NotificationCenter.default.removeAll()
-    }
-
     func testSettingsViewInitialization() throws {
         // Given & When: Creating SettingsView
         let settingsView = SettingsView()
@@ -84,9 +70,6 @@ final class SettingsViewTests: XCTestCase {
         // When: SettingsView exists
         // Then: Should have internal WhereWeAre state management
         XCTAssertNotNil(settingsView)
-
-        // Note: Since WhereWeAre is @State private, we can't directly test it,
-        // but we can test that the view initializes without crashing
     }
 
     func testSettingsViewLogoutFlow() throws {
@@ -104,7 +87,6 @@ final class SettingsViewTests: XCTestCase {
         }
 
         // When: Simulating complete logout flow
-        // 1. Post logout notification (simulating button tap)
         NotificationCenter.default.post(
             name: .logout,
             object: nil,
@@ -180,9 +162,7 @@ final class SettingsViewTests: XCTestCase {
             XCTAssertNotNil(weakSettingsView)
         }
 
-        // Then: View should be properly deallocated
-        // Note: SwiftUI views have complex memory management, 
-        // so this test may not behave as expected in all cases
-        XCTAssertNotNil(weakSettingsView) // SwiftUI views are value types, so this is expected
+        // Then: SwiftUI views are value types, so this is expected
+        XCTAssertNotNil(weakSettingsView)
     }
 }

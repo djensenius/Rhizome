@@ -17,7 +17,8 @@ struct ContentViewTests {
     func contentViewInitialization() {
         // Given: Parameters for ContentView
         let cameraURL = "https://example.com/stream"
-        let appointments = Appointments(daycare: [])
+        let daycare = AppointmentsDaycare(startDate: "Thursday, 8/14/2025 9:00 am", rId: 1, type: "Daycare | Full Day")
+        let appointments = Appointments(nextReservation: daycare)
 
         // When: Creating ContentView
         let contentView = ContentView(cameraURL: cameraURL, rhizomeSchedule: appointments)
@@ -25,7 +26,6 @@ struct ContentViewTests {
         // Then: Should initialize correctly
         #expect(contentView.cameraURL == cameraURL)
         #expect(contentView.rhizomeSchedule != nil)
-        #expect(!contentView.showVideo)
         #expect(!contentView.inPlayroom)
     }
 
@@ -40,76 +40,50 @@ struct ContentViewTests {
         // Then: Should handle nil schedule gracefully
         #expect(contentView.cameraURL == cameraURL)
         #expect(contentView.rhizomeSchedule == nil)
-        #expect(!contentView.showVideo)
         #expect(!contentView.inPlayroom)
     }
 
     @Test
-    func parseScheduleWithActiveAppointment() {
-        // Given: A ContentView with an active appointment (within the time window)
+    func parseScheduleWithTodayAppointment() {
+        // Given: A ContentView with an appointment for today
         let cameraURL = "https://example.com/stream"
 
-        // Create an appointment that should be active (current time within range)
-        let now = Date()
-        let twoHoursAgo = now.addingTimeInterval(-2 * 60 * 60)
-        let twoHoursFromNow = now.addingTimeInterval(2 * 60 * 60)
+        let torontoTimeZone = TimeZone(identifier: "America/Toronto")!
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE, M/d/yyyy h:mm a"
+        formatter.timeZone = torontoTimeZone
+        let todayString = formatter.string(from: Date())
 
-        let daycare = AppointmentsDaycare(
-            status: "confirmed",
-            service: "daycare",
-            date: Int(twoHoursAgo.timeIntervalSince1970 * 1000),
-            pickupDate: Int(twoHoursFromNow.timeIntervalSince1970 * 1000),
-            timezone: "America/New_York",
-            accountId: "123",
-            locationId: "456",
-            petexec: Petexec(execid: 1, daycareid: 2, serviceid: 3, userid: 4, petid: 5),
-            dogName: "Rhizome",
-            updatedAt: UpdatedAt(),
-            id: "test123"
-        )
+        let daycare = AppointmentsDaycare(startDate: todayString, rId: 1, type: "Daycare | Full Day")
+        let appointments = Appointments(nextReservation: daycare)
+        let contentView = ContentView(cameraURL: cameraURL, rhizomeSchedule: appointments)
 
-        let appointments = Appointments(daycare: [daycare])
-        var contentView = ContentView(cameraURL: cameraURL, rhizomeSchedule: appointments)
-
-        // When: Parsing the schedule
+        // When/Then: parseSchedule() should complete without crashing.
+        // Note: @State property changes are not observable outside SwiftUI's
+        // view hierarchy, so we verify execution rather than the final value.
         contentView.parseSchedule()
-
-        // Then: Should show video and be in playroom
-        #expect(contentView.showVideo)
-        #expect(contentView.inPlayroom)
     }
 
     @Test
-    func parseScheduleWithInactiveAppointment() {
-        // Given: A ContentView with an inactive appointment (outside the time window)
+    func parseScheduleWithFutureAppointment() {
+        // Given: A ContentView with a future appointment
         let cameraURL = "https://example.com/stream"
 
-        // Create an appointment that is in the future
-        let tomorrow = Date().addingTimeInterval(24 * 60 * 60)
-        let dayAfterTomorrow = tomorrow.addingTimeInterval(24 * 60 * 60)
+        let torontoTimeZone = TimeZone(identifier: "America/Toronto")!
+        let tomorrow = Date().addingTimeInterval(48 * 60 * 60)
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE, M/d/yyyy h:mm a"
+        formatter.timeZone = torontoTimeZone
+        let tomorrowString = formatter.string(from: tomorrow)
 
-        let daycare = AppointmentsDaycare(
-            status: "confirmed",
-            service: "daycare",
-            date: Int(tomorrow.timeIntervalSince1970 * 1000),
-            pickupDate: Int(dayAfterTomorrow.timeIntervalSince1970 * 1000),
-            timezone: "America/New_York",
-            accountId: "123",
-            locationId: "456",
-            petexec: Petexec(execid: 1, daycareid: 2, serviceid: 3, userid: 4, petid: 5),
-            dogName: "Rhizome",
-            updatedAt: UpdatedAt(),
-            id: "test123"
-        )
-
-        let appointments = Appointments(daycare: [daycare])
-        var contentView = ContentView(cameraURL: cameraURL, rhizomeSchedule: appointments)
+        let daycare = AppointmentsDaycare(startDate: tomorrowString, rId: 1, type: "Daycare | Full Day")
+        let appointments = Appointments(nextReservation: daycare)
+        let contentView = ContentView(cameraURL: cameraURL, rhizomeSchedule: appointments)
 
         // When: Parsing the schedule
         contentView.parseSchedule()
 
-        // Then: Should not show video and not be in playroom
-        #expect(!contentView.showVideo)
+        // Then: Should not be in playroom (future date)
         #expect(!contentView.inPlayroom)
     }
 
@@ -117,28 +91,12 @@ struct ContentViewTests {
     func parseScheduleWithNilSchedule() {
         // Given: A ContentView with nil schedule
         let cameraURL = "https://example.com/stream"
-        var contentView = ContentView(cameraURL: cameraURL, rhizomeSchedule: nil)
+        let contentView = ContentView(cameraURL: cameraURL, rhizomeSchedule: nil)
 
         // When: Parsing the schedule
         contentView.parseSchedule()
 
-        // Then: Should not show video and not be in playroom
-        #expect(!contentView.showVideo)
-        #expect(!contentView.inPlayroom)
-    }
-
-    @Test
-    func parseScheduleWithEmptyDaycare() {
-        // Given: A ContentView with empty daycare appointments
-        let cameraURL = "https://example.com/stream"
-        let appointments = Appointments(daycare: [])
-        var contentView = ContentView(cameraURL: cameraURL, rhizomeSchedule: appointments)
-
-        // When: Parsing the schedule
-        contentView.parseSchedule()
-
-        // Then: Should not show video and not be in playroom
-        #expect(!contentView.showVideo)
+        // Then: Should not be in playroom
         #expect(!contentView.inPlayroom)
     }
 }
