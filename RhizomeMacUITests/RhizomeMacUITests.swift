@@ -11,6 +11,11 @@ final class RhizomeMacUITests: XCTestCase {
 
     // Keep setUp nonisolated (matches XCTest's signature) and avoid touching UI APIs here.
     override func setUpWithError() throws {
+        // Xcode Cloud cannot launch macOS apps (Runningboard error 5).
+        try XCTSkipIf(
+            ProcessInfo.processInfo.environment["CI"] == "TRUE",
+            "macOS UI tests are skipped in Xcode Cloud (app launch not supported)."
+        )
         continueAfterFailure = false
     }
 
@@ -93,6 +98,13 @@ final class RhizomeMacUITests: XCTestCase {
 }
 
 final class RhizomeMacUIPerfTests: XCTestCase {
+
+    override func setUpWithError() throws {
+        try XCTSkipIf(
+            ProcessInfo.processInfo.environment["CI"] == "TRUE",
+            "macOS UI tests are skipped in Xcode Cloud (app launch not supported)."
+        )
+    }
 
     @MainActor
     func testLaunchPerformance() throws {

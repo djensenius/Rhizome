@@ -160,7 +160,7 @@ struct NetworkTests {
 
     // MARK: - Performance Tests
 
-    @Test(.timeLimit(.seconds(5)))
+    @Test(.timeLimit(.minutes(1)))
     func urlconstructionperformance() {
         for _ in 0..<1000 {
             var components = URLComponents()
@@ -173,7 +173,7 @@ struct NetworkTests {
         }
     }
 
-    @Test(.timeLimit(.seconds(5)))
+    @Test(.timeLimit(.minutes(1)))
     func notificationperformance() {
         let center = NotificationCenter.default
         for _ in 0..<1000 {

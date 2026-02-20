@@ -94,12 +94,12 @@ import SwiftUI
 }
 // MARK: - Performance Tests
 
-@Test(.timeLimit(.seconds(5))) func galleryInitializationPerformance() throws {
+@Test(.timeLimit(.minutes(1))) func galleryInitializationPerformance() throws {
     let images = Array(1...50).map { "image\($0).jpg" }
     _ = Gallery(images: images)
 }
 
-@Test(.timeLimit(.seconds(5))) func largeImageArrayPerformance() throws {
+@Test(.timeLimit(.minutes(1))) func largeImageArrayPerformance() throws {
     let images = Array(1...1000).map { "image\($0).jpg" }
     _ = Gallery(images: images)
 }

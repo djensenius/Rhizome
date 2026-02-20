@@ -8,8 +8,6 @@
 import Testing
 import Foundation
 import SwiftUI
-import AVKit
-@testable import RhizomeWatch_Watch_App
 
 @MainActor
 @Suite("Rhizome watchOS ContentView Tests")
@@ -115,7 +113,7 @@ struct RhizomeWatchTests {
 
     // MARK: - Performance Tests
 
-    @Test(.timeLimit(.seconds(5)))
+    @Test(.timeLimit(.minutes(1)))
     func watchContentViewPerformance() {
         let cameraURL = "https://example.com/stream"
         let daycare = AppointmentsDaycare(startDate: "Thursday, 8/14/2025 9:00 am", rId: 1, type: "Daycare | Full Day")
@@ -125,7 +123,7 @@ struct RhizomeWatchTests {
         }
     }
 
-    @Test(.timeLimit(.seconds(5)))
+    @Test(.timeLimit(.minutes(1)))
     func watchParseSchedulePerformance() {
         let cameraURL = "https://example.com/stream"
         let daycare = AppointmentsDaycare(startDate: "Thursday, 8/14/2025 9:00 am", rId: 1, type: "Daycare | Full Day")

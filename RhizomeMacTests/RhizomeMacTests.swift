@@ -7,7 +7,6 @@
 
 import Testing
 import SwiftUI
-@testable import RhizomeMac
 
 // MARK: - ColumnStepper Tests
 
@@ -120,13 +119,13 @@ import SwiftUI
 
     // MARK: - Performance Tests
 
-    @Test(.timeLimit(.seconds(5))) func gridViewPerformance() throws {
+    @Test(.timeLimit(.minutes(1))) func gridViewPerformance() throws {
         let images = Array(1...100).map { "image\($0).jpg" }
 
         _ = GridView(images: images)
     }
 
-    @Test(.timeLimit(.seconds(5))) func detailViewPerformance() throws {
+    @Test(.timeLimit(.minutes(1))) func detailViewPerformance() throws {
         let itemURL = URL(string: "https://example.com/large-image.jpg")!
 
         _ = DetailView(item: itemURL)
