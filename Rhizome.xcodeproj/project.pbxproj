@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		14F048548A6669A6A5F247A7 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FC4A8BA962926D690372DF /* Theme.swift */; };
+		2C35C3820302451EF8328D23 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FC4A8BA962926D690372DF /* Theme.swift */; };
 		50C692DD44EDE99EA9FE27E3 /* RhizomeVisionUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B77351E57CD5EB92BC8FA6 /* RhizomeVisionUITests.swift */; };
 		631DDEB82E4782B6001D801D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6376F9552C6FC127009119D9 /* SettingsView.swift */; };
 		631DDEB92E4782C7001D801D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63294B692C22052100EF4A90 /* ContentView.swift */; };
@@ -132,6 +133,7 @@
 		63THEME00000000000000004 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63THEME00000000000000001 /* Theme.swift */; };
 		63THEME00000000000000005 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63THEME00000000000000001 /* Theme.swift */; };
 		63THEME00000000000000006 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63THEME00000000000000001 /* Theme.swift */; };
+		DA612E45E4A0107AF2B3C85E /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FC4A8BA962926D690372DF /* Theme.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1251,6 +1253,7 @@
 				63C485B92C2A59A100FF9163 /* Schedule.swift in Sources */,
 				635AAC672C228D900003C041 /* PasswordSignInView.swift in Sources */,
 				63294B232C21EB3200EF4A90 /* RhizomeTVUITests.swift in Sources */,
+				DA612E45E4A0107AF2B3C85E /* Theme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1330,6 +1333,7 @@
 				63B8C3132C99E419004FAFAF /* GidItemView.swift in Sources */,
 				635AAC3F2C2284940003C041 /* LoadingView.swift in Sources */,
 				63294B842C22052200EF4A90 /* RhizomeMacUITests.swift in Sources */,
+				2C35C3820302451EF8328D23 /* Theme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
