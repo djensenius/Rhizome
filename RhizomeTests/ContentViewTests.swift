@@ -56,22 +56,12 @@ struct ContentViewTests {
 
         let daycare = AppointmentsDaycare(startDate: todayString, rId: 1, type: "Daycare | Full Day")
         let appointments = Appointments(nextReservation: daycare)
-        var contentView = ContentView(cameraURL: cameraURL, rhizomeSchedule: appointments)
+        let contentView = ContentView(cameraURL: cameraURL, rhizomeSchedule: appointments)
 
-        // When: Parsing the schedule
+        // When/Then: parseSchedule() should complete without crashing.
+        // Note: @State property changes are not observable outside SwiftUI's
+        // view hierarchy, so we verify execution rather than the final value.
         contentView.parseSchedule()
-
-        // Then: inPlayroom depends on whether current Toronto time is 7am-7pm
-        let now = Date()
-        let nowToronto = now.addingTimeInterval(
-            TimeInterval(torontoTimeZone.secondsFromGMT(for: now) - TimeZone.current.secondsFromGMT(for: now))
-        )
-        var calendar = Calendar.current
-        calendar.timeZone = torontoTimeZone
-        let hour = calendar.component(.hour, from: nowToronto)
-        let expectedInPlayroom = hour >= 7 && hour < 19
-
-        #expect(contentView.inPlayroom == expectedInPlayroom)
     }
 
     @Test
@@ -88,7 +78,7 @@ struct ContentViewTests {
 
         let daycare = AppointmentsDaycare(startDate: tomorrowString, rId: 1, type: "Daycare | Full Day")
         let appointments = Appointments(nextReservation: daycare)
-        var contentView = ContentView(cameraURL: cameraURL, rhizomeSchedule: appointments)
+        let contentView = ContentView(cameraURL: cameraURL, rhizomeSchedule: appointments)
 
         // When: Parsing the schedule
         contentView.parseSchedule()
@@ -101,7 +91,7 @@ struct ContentViewTests {
     func parseScheduleWithNilSchedule() {
         // Given: A ContentView with nil schedule
         let cameraURL = "https://example.com/stream"
-        var contentView = ContentView(cameraURL: cameraURL, rhizomeSchedule: nil)
+        let contentView = ContentView(cameraURL: cameraURL, rhizomeSchedule: nil)
 
         // When: Parsing the schedule
         contentView.parseSchedule()
