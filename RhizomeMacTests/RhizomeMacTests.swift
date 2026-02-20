@@ -13,74 +13,75 @@ import SwiftUI
 
 @Test func columnStepperInitialization() throws {
         // Given: ColumnStepper parameters
-        let initialColumns = 3
         let range = 1...10
 
         // When: Creating ColumnStepper
-        let stepper = ColumnStepper(columns: .constant(initialColumns), range: range)
+        let stepper = ColumnStepper(
+            title: "Columns",
+            range: range,
+            columns: .constant(Array(repeating: GridItem(.flexible()), count: 3))
+        )
 
-        // Then: Should initialize with correct properties
-        // Note: Since we can't easily test SwiftUI view properties, we test the initialization doesn't crash
+        // Then: Should initialize without crash
         #expect(stepper != nil)
     }
 
 @Test func gridViewInitialization() throws {
         // Given: GridView parameters
         let images = ["image1.jpg", "image2.jpg", "image3.jpg"]
-        let columns = 2
 
         // When: Creating GridView
-        let gridView = GridView(images: images, columns: columns)
+        let gridView = GridView(images: images)
 
         // Then: Should initialize correctly
         #expect(gridView != nil)
-        // Additional validation would require SwiftUI testing framework
     }
 
     @Test func gridViewWithEmptyImages() throws {
         // Given: Empty images array
         let images: [String] = []
-        let columns = 2
 
         // When: Creating GridView with empty images
-        let gridView = GridView(images: images, columns: columns)
+        let gridView = GridView(images: images)
 
         // Then: Should handle empty array gracefully
         #expect(gridView != nil)
     }
 
-    // MARK: - GidItemView Tests
+    // MARK: - GridItemView Tests
 
-    @Test func gidItemViewInitialization() throws {
-        // Given: GidItemView parameters
-        let imageURL = "https://example.com/image.jpg"
+    @Test func gridItemViewInitialization() throws {
+        // Given: GridItemView parameters
+        let itemURL = URL(string: "https://example.com/image.jpg")!
 
-        // When: Creating GidItemView
-        let itemView = GidItemView(imageURL: imageURL)
+        // When: Creating GridItemView
+        let itemView = GridItemView(size: 100, item: itemURL)
 
         // Then: Should initialize correctly
         #expect(itemView != nil)
     }
 
-    @Test func gidItemViewWithEmptyURL() throws {
-        // Given: Empty image URL
-        let imageURL = ""
+    @Test func gridItemViewWithSize() throws {
+        // Given: Different sizes
+        let itemURL = URL(string: "https://example.com/image.jpg")!
 
-        // When: Creating GidItemView with empty URL
-        let itemView = GidItemView(imageURL: imageURL)
+        // When: Creating GridItemView with different sizes
+        let smallView = GridItemView(size: 50, item: itemURL)
+        let largeView = GridItemView(size: 500, item: itemURL)
 
-        // Then: Should handle empty URL gracefully
-        #expect(itemView != nil)
+        // Then: Should handle different sizes gracefully
+        #expect(smallView != nil)
+        #expect(largeView != nil)
     }
 
     // MARK: - DetailView Tests
 
     @Test func detailViewInitialization() throws {
         // Given: DetailView parameters
-        let imageURL = "https://example.com/image.jpg"
+        let itemURL = URL(string: "https://example.com/image.jpg")!
 
         // When: Creating DetailView
-        let detailView = DetailView(imageURL: imageURL)
+        let detailView = DetailView(item: itemURL)
 
         // Then: Should initialize correctly
         #expect(detailView != nil)
@@ -90,11 +91,11 @@ import SwiftUI
 
     @Test func macContentViewInitialization() throws {
         // Given: ContentView parameters
-        let images = ["image1.jpg", "image2.jpg"]
+        let cameraURL = "https://example.com/stream"
         let schedule: Appointments? = nil
 
         // When: Creating ContentView
-        let contentView = ContentView(images: images, rhizomeSchedule: schedule)
+        let contentView = ContentView(cameraURL: cameraURL, rhizomeSchedule: schedule)
 
         // Then: Should initialize correctly
         #expect(contentView != nil)
@@ -102,16 +103,16 @@ import SwiftUI
 
     @Test func macContentViewWithSchedule() throws {
         // Given: ContentView parameters with schedule
-        let images = ["image1.jpg", "image2.jpg"]
+        let cameraURL = "https://example.com/stream"
         let daycare = AppointmentsDaycare(
             startDate: "Thursday, 8/14/2025 9:00 am",
             rId: 1,
             type: "Daycare | Full Day"
         )
-        let appointments = Appointments(nextReservateion: daycare)
+        let appointments = Appointments(nextReservation: daycare)
 
         // When: Creating ContentView with schedule
-        let contentView = ContentView(images: images, rhizomeSchedule: appointments)
+        let contentView = ContentView(cameraURL: cameraURL, rhizomeSchedule: appointments)
 
         // Then: Should initialize correctly
         #expect(contentView != nil)
@@ -121,13 +122,12 @@ import SwiftUI
 
     @Test(.timeLimit(.seconds(5))) func gridViewPerformance() throws {
         let images = Array(1...100).map { "image\($0).jpg" }
-        let columns = 4
 
-        _ = GridView(images: images, columns: columns)
+        _ = GridView(images: images)
     }
 
     @Test(.timeLimit(.seconds(5))) func detailViewPerformance() throws {
-        let imageURL = "https://example.com/large-image.jpg"
+        let itemURL = URL(string: "https://example.com/large-image.jpg")!
 
-        _ = DetailView(imageURL: imageURL)
+        _ = DetailView(item: itemURL)
     }

@@ -11,22 +11,6 @@ import SwiftUI
 
 final class IntegrationTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Clear any existing notifications
-        let center = NotificationCenter.default
-        for token in notificationObservers { center.removeObserver(token) }
-        notificationObservers.removeAll()
-        // Clean up keychain before each test
-        cleanupKeychain()
-    }
-
-    override func tearDownWithError() throws {
-        let center = NotificationCenter.default
-        for token in notificationObservers { center.removeObserver(token) }
-        notificationObservers.removeAll()
-        cleanupKeychain()
-    }
-
     private func cleanupKeychain() {
         let query: [String: Any] = [
             kSecClass as String: kSecClassInternetPassword,
@@ -34,6 +18,14 @@ final class IntegrationTests: XCTestCase {
             kSecAttrAccount as String: "rhizome"
         ]
         SecItemDelete(query as CFDictionary)
+    }
+
+    override func setUpWithError() throws {
+        cleanupKeychain()
+    }
+
+    override func tearDownWithError() throws {
+        cleanupKeychain()
     }
 
     // MARK: - LoadingView Tests
@@ -45,8 +37,6 @@ final class IntegrationTests: XCTestCase {
         // Then: Should initialize correctly
         XCTAssertNotNil(loadingView)
         XCTAssertTrue(loadingView.needLoginView)
-        XCTAssertFalse(loadingView.loggedIn)
-        XCTAssertNil(loadingView.error)
     }
 
     func testLoadingViewWithoutLoginRequired() throws {
@@ -58,10 +48,10 @@ final class IntegrationTests: XCTestCase {
         XCTAssertFalse(loadingView.needLoginView)
     }
 
-    func testLoadingViewLoginFlow() throws {
-        // Given: LoadingView with login required
-        var loadingView = LoadingView(needLoginView: true)
-        let expectation = expectation(description: "Login flow completed")
+    func testLoadingViewLoginNotification() throws {
+        // Given: Expectation for login notification
+        let expectation = expectation(description: "Login notification received")
+        var authCompleted = false
 
         let observer = NotificationCenter.default.addObserver(
             forName: .loginsUpdated,
@@ -69,10 +59,8 @@ final class IntegrationTests: XCTestCase {
             queue: .main
         ) { notification in
             if notification.userInfo?["keysComplete"] != nil {
-                DispatchQueue.main.async {
-                    loadingView.loggedIn = true
-                    expectation.fulfill()
-                }
+                authCompleted = true
+                expectation.fulfill()
             }
         }
 
@@ -83,19 +71,19 @@ final class IntegrationTests: XCTestCase {
             userInfo: ["keysComplete": true]
         )
 
-        // Then: Should update login state
+        // Then: Should receive notification
         waitForExpectations(timeout: 1.0)
-        XCTAssertTrue(loadingView.loggedIn)
+        XCTAssertTrue(authCompleted)
 
         // Clean up
         NotificationCenter.default.removeObserver(observer)
     }
 
-    func testLoadingViewErrorHandling() throws {
-        // Given: LoadingView with login required
-        var loadingView = LoadingView(needLoginView: true)
+    func testLoadingViewErrorNotification() throws {
+        // Given: Expectation for error notification
         let expectation = expectation(description: "Error handled")
         let testError = "Invalid credentials"
+        var receivedError: String?
 
         let observer = NotificationCenter.default.addObserver(
             forName: .loginsUpdated,
@@ -103,10 +91,8 @@ final class IntegrationTests: XCTestCase {
             queue: .main
         ) { notification in
             if let error = notification.userInfo?["loginError"] as? String {
-                DispatchQueue.main.async {
-                    loadingView.error = error
-                    expectation.fulfill()
-                }
+                receivedError = error
+                expectation.fulfill()
             }
         }
 
@@ -117,9 +103,9 @@ final class IntegrationTests: XCTestCase {
             userInfo: ["loginError": testError]
         )
 
-        // Then: Should update error state
+        // Then: Should receive error
         waitForExpectations(timeout: 1.0)
-        XCTAssertEqual(loadingView.error, testError)
+        XCTAssertEqual(receivedError, testError)
 
         // Clean up
         NotificationCenter.default.removeObserver(observer)
@@ -129,10 +115,7 @@ final class IntegrationTests: XCTestCase {
 
     func testCompleteAuthenticationFlow() throws {
         // Given: Complete authentication components
-        let whereWeAre = WhereWeAre()
-        let loadingView = LoadingView(needLoginView: !whereWeAre.hasKeyChainPassword)
         let loginExpectation = expectation(description: "Complete auth flow")
-
         var authCompleted = false
 
         let observer = NotificationCenter.default.addObserver(
@@ -151,7 +134,7 @@ final class IntegrationTests: XCTestCase {
             cameraURL: "https://example.com/stream",
             rhizomeSchedule: RhizomeSchedule(
                 timestamp: "2024-06-18T10:00:00Z",
-                appointments: Appointments(daycare: []),
+                appointments: nil,
                 rawData: nil
             ),
             rhizomeData: RhizomeData(
@@ -176,34 +159,31 @@ final class IntegrationTests: XCTestCase {
     }
 
     func testScheduleParsingWithContentView() throws {
-        // Given: ContentView with schedule data
-        let now = Date()
-        let startTime = now.addingTimeInterval(-30 * 60) // 30 minutes ago
-        let endTime = now.addingTimeInterval(30 * 60)    // 30 minutes from now
+        // Given: ContentView with schedule data for today
+        let torontoTimeZone = TimeZone(identifier: "America/Toronto")!
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE, M/d/yyyy h:mm a"
+        formatter.timeZone = torontoTimeZone
+        let todayString = formatter.string(from: Date())
 
-        let daycare = AppointmentsDaycare(
-            status: "confirmed",
-            service: "daycare",
-            date: Int(startTime.timeIntervalSince1970 * 1000),
-            pickupDate: Int(endTime.timeIntervalSince1970 * 1000),
-            timezone: "America/New_York",
-            accountId: "123",
-            locationId: "456",
-            petexec: Petexec(execid: 1, daycareid: 2, serviceid: 3, userid: 4, petid: 5),
-            dogName: "Rhizome",
-            updatedAt: UpdatedAt(),
-            id: "integration-test"
-        )
-
-        let appointments = Appointments(daycare: [daycare])
+        let daycare = AppointmentsDaycare(startDate: todayString, rId: 1, type: "Daycare | Full Day")
+        let appointments = Appointments(nextReservation: daycare)
         var contentView = ContentView(cameraURL: "https://example.com/stream", rhizomeSchedule: appointments)
 
         // When: Parsing schedule
         contentView.parseSchedule()
 
-        // Then: Should detect active appointment
-        XCTAssertTrue(contentView.inPlayroom)
-        XCTAssertTrue(contentView.showVideo)
+        // Then: inPlayroom depends on current Toronto time (7am-7pm)
+        let now = Date()
+        let nowToronto = now.addingTimeInterval(
+            TimeInterval(torontoTimeZone.secondsFromGMT(for: now) - TimeZone.current.secondsFromGMT(for: now))
+        )
+        var calendar = Calendar.current
+        calendar.timeZone = torontoTimeZone
+        let hour = calendar.component(.hour, from: nowToronto)
+        let expectedInPlayroom = hour >= 7 && hour < 19
+
+        XCTAssertEqual(contentView.inPlayroom, expectedInPlayroom)
     }
 
     func testGalleryWithNetworkData() throws {
@@ -221,7 +201,6 @@ final class IntegrationTests: XCTestCase {
         XCTAssertEqual(gallery.images.count, 3)
         XCTAssertTrue(gallery.images[0].starts(with: "https://"))
         XCTAssertTrue(gallery.images[1].contains("api.fluxhaus.io"))
-        XCTAssertEqual(gallery.currentIndex, 0)
     }
 
     func testCompleteLogoutFlow() throws {
@@ -264,13 +243,15 @@ final class IntegrationTests: XCTestCase {
 
     func testCompleteAppFlowPerformance() throws {
         measure {
-            // Simulate complete app initialization flow
             let whereWeAre = WhereWeAre()
             let loadingView = LoadingView(needLoginView: !whereWeAre.hasKeyChainPassword)
             let gallery = Gallery(images: ["image1.jpg", "image2.jpg"])
-            let schedule = Schedule(newsUrl: "https://example.com/news", schedule: Appointments(daycare: []))
+            let daycare = AppointmentsDaycare(
+                startDate: "Thursday, 8/14/2025 9:00 am", rId: 1, type: "Daycare | Full Day"
+            )
+            let appointments = Appointments(nextReservation: daycare)
+            let schedule = Schedule(newsUrl: "https://example.com/news", schedule: appointments)
 
-            // Use the components to prevent optimization
             XCTAssertNotNil(whereWeAre)
             XCTAssertNotNil(loadingView)
             XCTAssertNotNil(gallery)
@@ -281,35 +262,20 @@ final class IntegrationTests: XCTestCase {
     func testLargeDatasetIntegration() throws {
         // Given: Large dataset similar to real app usage
         let largeImageList = Array(1...100).map { "https://api.fluxhaus.io/image\($0).jpg" }
-        let largeDaycareList = Array(1...50).map { index in
-            AppointmentsDaycare(
-                status: "confirmed",
-                service: "daycare",
-                date: Int(Date().timeIntervalSince1970 * 1000),
-                pickupDate: Int(Date().addingTimeInterval(3600).timeIntervalSince1970 * 1000),
-                timezone: "America/New_York",
-                accountId: "\(index)",
-                locationId: "\(index)",
-                petexec: Petexec(execid: index, daycareid: index, serviceid: index, userid: index, petid: index),
-                dogName: "Dog\(index)",
-                updatedAt: UpdatedAt(),
-                id: "appointment\(index)"
-            )
-        }
-
-        let appointments = Appointments(daycare: largeDaycareList)
 
         // When: Creating components with large datasets
         let gallery = Gallery(images: largeImageList)
+        let daycare = AppointmentsDaycare(startDate: "Thursday, 8/14/2025 9:00 am", rId: 1, type: "Daycare | Full Day")
+        let appointments = Appointments(nextReservation: daycare)
         let schedule = Schedule(newsUrl: "https://example.com/news", schedule: appointments)
         var contentView = ContentView(cameraURL: "https://example.com/stream", rhizomeSchedule: appointments)
 
         // Then: Should handle large datasets efficiently
         XCTAssertEqual(gallery.images.count, 100)
-        XCTAssertEqual(schedule.schedule?.daycare.count, 50)
+        XCTAssertNotNil(schedule.schedule)
         XCTAssertNotNil(contentView.rhizomeSchedule)
 
-        // Performance test for large dataset parsing
+        // Performance test for parsing
         measure {
             contentView.parseSchedule()
         }

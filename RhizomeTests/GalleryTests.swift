@@ -18,7 +18,6 @@ import SwiftUI
 
     // Then: Should initialize correctly
     #expect(gallery.images.count == 0)
-    #expect(gallery.currentIndex == 0)
 }
 
 @Test func galleryInitializationWithImages() throws {
@@ -32,7 +31,6 @@ import SwiftUI
     #expect(gallery.images[0] == "image1.jpg")
     #expect(gallery.images[1] == "image2.jpg")
     #expect(gallery.images[2] == "image3.jpg")
-    #expect(gallery.currentIndex == 0)
 }
 
 @Test func galleryWithSingleImage() throws {
@@ -45,7 +43,6 @@ import SwiftUI
     // Then: Should handle single image correctly
     #expect(gallery.images.count == 1)
     #expect(gallery.images[0] == "single-image.jpg")
-    #expect(gallery.currentIndex == 0)
 }
 
 @Test func galleryWithLargeImageArray() throws {
@@ -59,7 +56,6 @@ import SwiftUI
     #expect(gallery.images.count == 100)
         #expect(gallery.images[0] == "image1.jpg")
         #expect(gallery.images[99] == "image100.jpg")
-        #expect(gallery.currentIndex == 0)
     }
 
 // MARK: - View Extension Tests
@@ -119,7 +115,6 @@ import SwiftUI
 
     // Then: Should handle invalid URLs gracefully
     #expect(gallery.images.count == 4)
-    #expect(gallery.currentIndex == 0)
 }
 
 @Test func galleryWithVeryLongImageURLs() throws {

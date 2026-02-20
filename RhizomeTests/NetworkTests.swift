@@ -15,7 +15,7 @@ struct NetworkTests {
     // MARK: - URL Construction Tests
 
     @Test
-    func queryfluxurlconstruction() {
+    func queryfluxurlconstruction() throws {
         // Given: Password for API call
         let password = "testPassword123"
 
@@ -28,7 +28,7 @@ struct NetworkTests {
         components.password = password
 
         // Then: URL should be constructed correctly
-        let url: URL = #require(components.url, "URL construction failed")
+        let url = try #require(components.url)
 
         #expect(url.scheme == "https")
         #expect(url.host == "api.fluxhaus.io")
@@ -38,7 +38,7 @@ struct NetworkTests {
     }
 
     @Test
-    func queryfluxurlrequest() {
+    func queryfluxurlrequest() throws {
         // Given: Valid URL components
         var components = URLComponents()
         components.scheme = "https"
@@ -47,7 +47,7 @@ struct NetworkTests {
         components.user = "rhizome"
         components.password = "testPassword"
 
-        let url: URL = #require(components.url, "URL construction failed")
+        let url = try #require(components.url)
 
         // When: Creating URLRequest
         var request = URLRequest(url: url)
@@ -160,9 +160,9 @@ struct NetworkTests {
 
     // MARK: - Performance Tests
 
-    @Test
+    @Test(.timeLimit(.seconds(5)))
     func urlconstructionperformance() {
-        measure {
+        for _ in 0..<1000 {
             var components = URLComponents()
             components.scheme = "https"
             components.host = "api.fluxhaus.io"
@@ -173,10 +173,10 @@ struct NetworkTests {
         }
     }
 
-    @Test
+    @Test(.timeLimit(.seconds(5)))
     func notificationperformance() {
         let center = NotificationCenter.default
-        measure {
+        for _ in 0..<1000 {
             center.post(
                 name: .loginsUpdated,
                 object: nil,
