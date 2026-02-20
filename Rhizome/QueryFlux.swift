@@ -7,28 +7,6 @@
 
 import Foundation
 
-class BasicAuthDelegate: NSObject, URLSessionTaskDelegate, @unchecked Sendable {
-    let user: String
-    let password: String
-
-    init(user: String, password: String) {
-        self.user = user
-        self.password = password
-    }
-
-    func urlSession(
-        _ session: URLSession,
-        task: URLSessionTask,
-        didReceive challenge: URLAuthenticationChallenge
-    ) async -> (URLSession.AuthChallengeDisposition, URLCredential?) {
-        if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodHTTPBasic {
-            let credential = URLCredential(user: user, password: password, persistence: .forSession)
-            return (.useCredential, credential)
-        }
-        return (.performDefaultHandling, nil)
-    }
-}
-
 func queryFlux(password: String) {
     let scheme: String = "https"
     let host: String = "api.fluxhaus.io"
@@ -49,9 +27,23 @@ func queryFlux(password: String) {
     request.addValue("application/json", forHTTPHeaderField: "Content-Type")
     request.addValue("application/json", forHTTPHeaderField: "Accept")
 
-    let delegate = BasicAuthDelegate(user: "rhizome", password: password)
-    let session = URLSession(configuration: .default, delegate: delegate, delegateQueue: nil)
-    let task = session.dataTask(with: request) { @Sendable data, _, error in
+    let credentialData = Data("rhizome:\(password)".utf8)
+    let base64Credential = credentialData.base64EncodedString()
+    request.setValue("Basic \(base64Credential)", forHTTPHeaderField: "Authorization")
+
+    let session = URLSession(configuration: .default)
+    let task = session.dataTask(with: request) { @Sendable data, response, error in
+        let httpResponse = response as? HTTPURLResponse
+        if httpResponse?.statusCode == 401 {
+            DispatchQueue.main.async { @MainActor in
+                NotificationCenter.default.post(
+                    name: Notification.Name.loginsUpdated,
+                    object: nil,
+                    userInfo: ["loginError": "Incorrect Password"]
+                )
+            }
+            return
+        }
         handleQueryFluxResponse(data: data, error: error, password: password)
     }
     task.resume()
