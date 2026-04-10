@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct RhizomeTVApp: App {
     @State private var whereWeAre = WhereWeAre()
-    @State var cameraURL = ""
+    @State var cameras: [CameraFeed] = []
     @State var images: [String] = []
     @State var rhizomeSchedule: Appointments?
     @State var newsUrl: String?
@@ -29,7 +29,7 @@ struct RhizomeTVApp: App {
                         if ((object.userInfo?["keysComplete"]) != nil) == true {
                             if object.object != nil {
                                 let configResponse = object.object! as? LoginResponse
-                                cameraURL = configResponse?.cameraURL ?? ""
+                                cameras = configResponse?.cameraFeeds ?? []
                                 images = configResponse?.rhizomeData.photos ?? []
                                 newsUrl = configResponse?.rhizomeData.news ?? nil
                                 rhizomeSchedule = configResponse?.rhizomeSchedule.appointments
@@ -48,7 +48,7 @@ struct RhizomeTVApp: App {
                 }
             } else {
                 RhizomeTabs(
-                    cameraUrl: cameraURL,
+                    cameras: cameras,
                     rhizomeSchedule: rhizomeSchedule,
                     newsUrl: newsUrl ?? "",
                     images: images

@@ -9,14 +9,14 @@ import SwiftUI
 import AVKit
 
 struct ContentView: View {
-    var cameraURL: String
+    var cameras: [CameraFeed]
     var rhizomeSchedule: Appointments?
     @State var showVideo = false
     @State var inPlayroom = false
     @State var path = [Int]()
 
-    init(cameraURL: String, rhizomeSchedule: Appointments?) {
-        self.cameraURL = cameraURL
+    init(cameras: [CameraFeed], rhizomeSchedule: Appointments?) {
+        self.cameras = cameras
         self.rhizomeSchedule = rhizomeSchedule
     }
 
@@ -51,7 +51,7 @@ struct ContentView: View {
             }.navigationDestination(for: Int.self) { selection in
                 if selection == 1 {
                     HStack {
-                        VideoPlayerView(cameraURL: cameraURL)
+                        VideoPlayerView(cameras: cameras)
                             .ignoresSafeArea()
                     }
                     .toolbar(.hidden, for: .navigationBar)

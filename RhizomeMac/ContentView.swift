@@ -9,7 +9,7 @@ import SwiftUI
 import AVKit
 
 struct ContentView: View {
-    var cameraURL: String
+    var cameras: [CameraFeed]
     var rhizomeSchedule: Appointments?
     @State var inPlayroom = false
     @State var path = [Int]()
@@ -45,7 +45,7 @@ struct ContentView: View {
                 showRhizome
             }.navigationDestination(for: Int.self) { selection in
                 if selection == 1 {
-                    VideoPlayerView(cameraURL: cameraURL)
+                    VideoPlayerView(cameras: cameras)
                 }
             }
         }

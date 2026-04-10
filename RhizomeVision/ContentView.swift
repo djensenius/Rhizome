@@ -11,7 +11,7 @@ import RealityKit
 import RealityKitContent
 
 struct ContentView: View {
-    var cameraURL: String
+    var cameras: [CameraFeed]
     var rhizomeSchedule: Appointments?
     @State private var showVideo = false
 
@@ -31,7 +31,7 @@ struct ContentView: View {
             }
         }
         .fullScreenCover(isPresented: $showVideo) {
-            VideoPlayerView(cameraURL: cameraURL)
+            VideoPlayerView(cameras: cameras)
         }
         .onAppear(perform: parseSchedule)
     }
@@ -101,5 +101,5 @@ struct ContentView: View {
 }
 
 #Preview(windowStyle: .automatic) {
-    ContentView(cameraURL: "")
+    ContentView(cameras: [], rhizomeSchedule: nil)
 }
