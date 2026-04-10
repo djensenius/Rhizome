@@ -132,6 +132,8 @@ final class IntegrationTests: XCTestCase {
         // When: Simulating complete authentication
         let testResponse = LoginResponse(
             cameraURL: "https://example.com/stream",
+            romperURL: nil,
+            gymURL: nil,
             rhizomeSchedule: RhizomeSchedule(
                 timestamp: "2024-06-18T10:00:00Z",
                 appointments: nil,
@@ -168,7 +170,10 @@ final class IntegrationTests: XCTestCase {
 
         let daycare = AppointmentsDaycare(startDate: todayString, rId: 1, type: "Daycare | Full Day")
         let appointments = Appointments(nextReservation: daycare)
-        var contentView = ContentView(cameraURL: "https://example.com/stream", rhizomeSchedule: appointments)
+        var contentView = ContentView(
+            cameras: [CameraFeed(id: "toybox", name: "Toybox", url: "https://example.com/stream")],
+            rhizomeSchedule: appointments
+        )
 
         // When: Parsing schedule
         contentView.parseSchedule()
@@ -268,7 +273,10 @@ final class IntegrationTests: XCTestCase {
         let daycare = AppointmentsDaycare(startDate: "Thursday, 8/14/2025 9:00 am", rId: 1, type: "Daycare | Full Day")
         let appointments = Appointments(nextReservation: daycare)
         let schedule = Schedule(newsUrl: "https://example.com/news", schedule: appointments)
-        var contentView = ContentView(cameraURL: "https://example.com/stream", rhizomeSchedule: appointments)
+        var contentView = ContentView(
+            cameras: [CameraFeed(id: "toybox", name: "Toybox", url: "https://example.com/stream")],
+            rhizomeSchedule: appointments
+        )
 
         // Then: Should handle large datasets efficiently
         XCTAssertEqual(gallery.images.count, 100)

@@ -75,6 +75,8 @@ struct NetworkTests {
         // When: Posting login notification
         let testResponse = LoginResponse(
             cameraURL: "https://example.com/stream",
+            romperURL: nil,
+            gymURL: nil,
             rhizomeSchedule: RhizomeSchedule(
                 timestamp: "2024-06-18T10:00:00Z",
                 appointments: nil,

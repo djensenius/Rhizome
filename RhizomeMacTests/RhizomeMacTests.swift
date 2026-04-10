@@ -59,21 +59,21 @@ import SwiftUI
 // MARK: - ContentView Tests
 
 @MainActor @Test func macContentViewInitialization() throws {
-    let cameraURL = "https://example.com/stream"
+    let cameras = [CameraFeed(id: "toybox", name: "Toybox", url: "https://example.com/stream")]
     let schedule: Appointments? = nil
-    let contentView = ContentView(cameraURL: cameraURL, rhizomeSchedule: schedule)
+    let contentView = ContentView(cameras: cameras, rhizomeSchedule: schedule)
     #expect(type(of: contentView) == ContentView.self)
 }
 
 @MainActor @Test func macContentViewWithSchedule() throws {
-    let cameraURL = "https://example.com/stream"
+    let cameras = [CameraFeed(id: "toybox", name: "Toybox", url: "https://example.com/stream")]
     let daycare = AppointmentsDaycare(
         startDate: "Thursday, 8/14/2025 9:00 am",
         rId: 1,
         type: "Daycare | Full Day"
     )
     let appointments = Appointments(nextReservation: daycare)
-    let contentView = ContentView(cameraURL: cameraURL, rhizomeSchedule: appointments)
+    let contentView = ContentView(cameras: cameras, rhizomeSchedule: appointments)
     #expect(type(of: contentView) == ContentView.self)
 }
 
