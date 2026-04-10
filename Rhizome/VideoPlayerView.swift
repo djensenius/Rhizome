@@ -27,34 +27,98 @@ struct PlayerError: Identifiable {
 @MainActor
 class PlayerObserver: NSObject, ObservableObject {
     @Published var playerError: PlayerError?
+    @Published var isBuffering = false
+    @Published var needsRetry = false
+
     private var playerItem: AVPlayerItem?
+    private var player: AVPlayer?
     private var statusObservation: NSKeyValueObservation?
     private var errorObservation: NSKeyValueObservation?
+    private var timeControlObservation: NSKeyValueObservation?
+    private var bufferObservation: NSKeyValueObservation?
+    private var stalledObserver: Any?
+    private var failedObserver: Any?
 
-    func observe(playerItem: AVPlayerItem) {
+    func observe(player: AVPlayer, playerItem: AVPlayerItem) {
+        self.player = player
         self.playerItem = playerItem
-        statusObservation = playerItem.observe(\.status, options: [.new, .initial]) { [weak self] item, _ in
-            if item.status == .failed {
-                if let error = item.error {
-                    Task { @MainActor in
-                        self?.playerError = PlayerError(error: error)
-                    }
-                }
-            }
-        }
+        observeItemStatus(playerItem)
+        observeBuffering(playerItem)
+        observeTimeControl(player)
+        observeNotifications(playerItem)
+    }
 
-        errorObservation = playerItem.observe(\.error, options: [.new, .initial]) { [weak self] item, _ in
-            if let error = item.error {
-                Task { @MainActor in
+    // MARK: Private helpers
+
+    private func observeItemStatus(_ item: AVPlayerItem) {
+        statusObservation = item.observe(\.status, options: [.new, .initial]) { [weak self] obs, _ in
+            Task { @MainActor in
+                if obs.status == .failed, let error = obs.error {
                     self?.playerError = PlayerError(error: error)
+                    self?.needsRetry = true
                 }
             }
         }
     }
 
+    private func observeBuffering(_ item: AVPlayerItem) {
+        bufferObservation = item.observe(
+            \.isPlaybackLikelyToKeepUp,
+             options: [.new, .initial]
+        ) { [weak self] obs, _ in
+            Task { @MainActor in
+                if !obs.isPlaybackLikelyToKeepUp { self?.isBuffering = true }
+            }
+        }
+    }
+
+    private func observeTimeControl(_ avPlayer: AVPlayer) {
+        timeControlObservation = avPlayer.observe(
+            \.timeControlStatus,
+             options: [.new, .initial]
+        ) { [weak self] obs, _ in
+            Task { @MainActor in
+                switch obs.timeControlStatus {
+                case .playing:
+                    self?.isBuffering = false
+                    self?.needsRetry = false
+                case .waitingToPlayAtSpecifiedRate:
+                    self?.isBuffering = true
+                case .paused:
+                    self?.isBuffering = true
+                @unknown default:
+                    break
+                }
+            }
+        }
+    }
+
+    private func observeNotifications(_ item: AVPlayerItem) {
+        stalledObserver = NotificationCenter.default.addObserver(
+            forName: AVPlayerItem.playbackStalledNotification,
+            object: item, queue: .main
+        ) { [weak self] _ in
+            Task { @MainActor in self?.isBuffering = true; self?.needsRetry = true }
+        }
+
+        failedObserver = NotificationCenter.default.addObserver(
+            forName: AVPlayerItem.failedToPlayToEndTimeNotification,
+            object: item, queue: .main
+        ) { [weak self] _ in
+            Task { @MainActor in self?.needsRetry = true }
+        }
+    }
+
     func stopObserving() {
         statusObservation?.invalidate()
-        errorObservation?.invalidate()
+        bufferObservation?.invalidate()
+        timeControlObservation?.invalidate()
+        if let stalledObserver { NotificationCenter.default.removeObserver(stalledObserver) }
+        if let failedObserver { NotificationCenter.default.removeObserver(failedObserver) }
+        stalledObserver = nil
+        failedObserver = nil
+        player = nil
+        playerItem = nil
     }
 }
 
@@ -94,6 +158,7 @@ struct PlayerNSView: NSViewRepresentable {
 }
 #endif
 
+// swiftlint:disable type_body_length
 struct VideoPlayerView: View {
     let cameras: [CameraFeed]
     let existingPlayer: AVPlayer?
@@ -116,6 +181,9 @@ struct VideoPlayerView: View {
     // UI feedback
     @State private var showSaveSuccess = false
     @State private var showSaveError = false
+
+    // Buffering / reconnect
+    @State private var retryTask: Task<Void, Never>?
 
     // Controls visibility
     @State private var showControls = true
@@ -159,6 +227,17 @@ struct VideoPlayerView: View {
             .ignoresSafeArea()
             #endif
 
+            // Buffering indicator
+            if playerObserver.isBuffering {
+                ProgressView()
+                    .progressViewStyle(.circular)
+                    .scaleEffect(1.5)
+                    .tint(.white)
+                    .padding(20)
+                    .background(Color.black.opacity(0.45))
+                    .clipShape(RoundedRectangle(cornerRadius: 14))
+            }
+
             overlayControls
         }
         #if os(iOS) || os(tvOS) || os(visionOS)
@@ -186,12 +265,14 @@ struct VideoPlayerView: View {
             setupPlayer()
             configureAudioAndScreen()
             scheduleHide()
+            startRetryLoop()
         }
         .onDisappear {
             if isRecording { stopRecording() }
             cleanupPlayer()
             restoreAudioAndScreen()
             hideTask?.cancel()
+            retryTask?.cancel()
         }
         .alert(item: $playerObserver.playerError) { playerError in
             Alert(
@@ -366,6 +447,7 @@ struct VideoPlayerView: View {
         }
     }
 }
+// swiftlint:enable type_body_length
 
 // MARK: - Player Management
 private extension VideoPlayerView {
@@ -378,14 +460,39 @@ private extension VideoPlayerView {
                 kCVPixelBufferPixelFormatTypeKey as String: kCVPixelFormatType_32BGRA
             ])
             let asset = AVURLAsset(url: url)
-            playerItem = AVPlayerItem(asset: asset)
-            playerItem?.add(output)
+            let item = AVPlayerItem(asset: asset)
+            item.add(output)
+            playerItem = item
             videoOutput = output
-            player = AVPlayer(playerItem: playerItem)
+            let newPlayer = AVPlayer(playerItem: item)
+            player = newPlayer
             player?.play()
+            playerObserver.observe(player: newPlayer, playerItem: item)
+        }
+    }
 
-            if let playerItem = playerItem {
-                playerObserver.observe(playerItem: playerItem)
+    func reconnectPlayer() {
+        guard existingPlayer == nil else { return }
+        if isRecording { stopRecording() }
+        playerObserver.stopObserving()
+        player?.pause()
+        if let output = videoOutput, let item = playerItem { item.remove(output) }
+        videoOutput = nil
+        player = nil
+        playerItem = nil
+        setupPlayer()
+        configureAudioAndScreen()
+    }
+
+    func startRetryLoop() {
+        guard existingPlayer == nil else { return }
+        retryTask = Task {
+            while !Task.isCancelled {
+                try? await Task.sleep(for: .seconds(3))
+                guard !Task.isCancelled else { return }
+                if playerObserver.needsRetry {
+                    reconnectPlayer()
+                }
             }
         }
     }
@@ -394,9 +501,7 @@ private extension VideoPlayerView {
         if existingPlayer == nil {
             player?.pause()
             playerObserver.stopObserving()
-            if let output = videoOutput, let item = playerItem {
-                item.remove(output)
-            }
+            if let output = videoOutput, let item = playerItem { item.remove(output) }
             videoOutput = nil
             player = nil
             playerItem = nil
