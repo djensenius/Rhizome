@@ -100,6 +100,10 @@ struct VideoPlayerView: View {
     @State private var showSaveSuccess = false
     @State private var showSaveError = false
 
+    // Controls visibility
+    @State private var showControls = true
+    @State private var hideTask: Task<Void, Never>?
+
     @Environment(\.dismiss) var dismiss
     var onDismiss: (() -> Void)?
 
@@ -142,17 +146,34 @@ struct VideoPlayerView: View {
         #if os(iOS) || os(tvOS) || os(visionOS)
         .ignoresSafeArea()
         #endif
+        #if os(iOS) || os(visionOS)
+        .simultaneousGesture(TapGesture().onEnded { toggleControls() })
+        #elseif os(macOS)
+        .onContinuousHover { phase in
+            switch phase {
+            case .active:
+                withAnimation(.easeInOut(duration: 0.25)) { showControls = true }
+                scheduleHide()
+            case .ended:
+                scheduleHide()
+            }
+        }
+        #elseif os(tvOS)
+        .simultaneousGesture(TapGesture().onEnded { toggleControls() })
+        #endif
         #if os(tvOS)
         .toolbar(.hidden, for: .tabBar)
         #endif
         .onAppear {
             setupPlayer()
             configureAudioAndScreen()
+            scheduleHide()
         }
         .onDisappear {
             if isRecording { stopRecording() }
             cleanupPlayer()
             restoreAudioAndScreen()
+            hideTask?.cancel()
         }
         .alert(item: $playerObserver.playerError) { playerError in
             Alert(
@@ -230,6 +251,8 @@ struct VideoPlayerView: View {
                     .padding(.bottom, 40)
             }
         }
+        .opacity(showControls ? 1 : 0)
+        .animation(.easeInOut(duration: 0.25), value: showControls)
         .zIndex(1)
         #elseif os(macOS)
         VStack(spacing: 0) {
@@ -282,6 +305,8 @@ struct VideoPlayerView: View {
                     .padding(.bottom, 20)
             }
         }
+        .opacity(showControls ? 1 : 0)
+        .animation(.easeInOut(duration: 0.25), value: showControls)
         .zIndex(100)
         #elseif os(tvOS)
         if cameras.count > 1 {
@@ -290,6 +315,8 @@ struct VideoPlayerView: View {
                 cameraSwitcher
                     .padding(.bottom, 60)
             }
+            .opacity(showControls ? 1 : 0)
+            .animation(.easeInOut(duration: 0.25), value: showControls)
             .zIndex(1)
         }
         #endif
@@ -364,6 +391,24 @@ private extension VideoPlayerView {
         activeCameraURL = camera.url
         setupPlayer()
         configureAudioAndScreen()
+    }
+
+    func scheduleHide() {
+        hideTask?.cancel()
+        hideTask = Task {
+            try? await Task.sleep(for: .seconds(3))
+            guard !Task.isCancelled else { return }
+            withAnimation(.easeInOut(duration: 0.25)) { showControls = false }
+        }
+    }
+
+    func toggleControls() {
+        withAnimation(.easeInOut(duration: 0.25)) { showControls.toggle() }
+        if showControls {
+            scheduleHide()
+        } else {
+            hideTask?.cancel()
+        }
     }
 
     func configureAudioAndScreen() {
