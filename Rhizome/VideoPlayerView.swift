@@ -75,6 +75,23 @@ struct PlayerViewController: UIViewControllerRepresentable {
         }
     }
 }
+#elseif os(macOS)
+struct PlayerNSView: NSViewRepresentable {
+    var player: AVPlayer?
+
+    func makeNSView(context: Context) -> AVPlayerView {
+        let view = AVPlayerView()
+        view.controlsStyle = .none
+        view.player = player
+        return view
+    }
+
+    func updateNSView(_ nsView: AVPlayerView, context: Context) {
+        if nsView.player != player {
+            nsView.player = player
+        }
+    }
+}
 #endif
 
 struct VideoPlayerView: View {
@@ -133,8 +150,9 @@ struct VideoPlayerView: View {
             Group {
                 #if os(iOS) || os(tvOS) || os(visionOS)
                 PlayerViewController(player: player)
-                #else
-                VideoPlayer(player: player)
+                #elseif os(macOS)
+                PlayerNSView(player: player)
+                    .ignoresSafeArea()
                 #endif
             }
             #if os(iOS) || os(tvOS) || os(visionOS)
