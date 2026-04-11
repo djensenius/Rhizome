@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct RhizomeMacApp: App {
     @State private var whereWeAre = WhereWeAre()
-    @State var cameraURL = ""
+    @State var cameras: [CameraFeed] = []
     @State var images: [String] = []
     @State var rhizomeSchedule: Appointments?
     @State var newsUrl: String?
@@ -26,7 +26,7 @@ struct RhizomeMacApp: App {
                         if ((object.userInfo?["keysComplete"]) != nil) == true {
                             if object.object != nil {
                                 let configResponse = object.object! as? LoginResponse
-                                cameraURL = configResponse?.cameraURL ?? ""
+                                cameras = configResponse?.cameraFeeds ?? []
                                 images = configResponse?.rhizomeData.photos ?? []
                                 newsUrl = configResponse?.rhizomeData.news ?? nil
                                 rhizomeSchedule = configResponse?.rhizomeSchedule.appointments
@@ -43,7 +43,7 @@ struct RhizomeMacApp: App {
                 }
             } else {
                 TabView {
-                    ContentView(cameraURL: cameraURL, rhizomeSchedule: rhizomeSchedule)
+                    ContentView(cameras: cameras, rhizomeSchedule: rhizomeSchedule)
                         .tabItem {
                             Label("Watch", systemImage: "tv")
                         }

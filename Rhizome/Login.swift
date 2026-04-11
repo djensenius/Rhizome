@@ -104,10 +104,36 @@ struct Service: Codable {
     let servicename, price: String
 }
 
+// MARK: - CameraFeed
+struct CameraFeed: Identifiable, Hashable {
+    let id: String
+    let name: String
+    let url: String
+}
+
 struct LoginResponse: Decodable {
     let cameraURL: String
+    let romperURL: String?
+    let gymURL: String?
     let rhizomeSchedule: RhizomeSchedule
     let rhizomeData: RhizomeData
+
+    enum CodingKeys: String, CodingKey {
+        case cameraURL, rhizomeSchedule, rhizomeData
+        case romperURL
+        case gymURL
+    }
+
+    var cameraFeeds: [CameraFeed] {
+        var feeds = [CameraFeed(id: "toybox", name: "Toybox", url: cameraURL)]
+        if let url = romperURL, !url.isEmpty {
+            feeds.append(CameraFeed(id: "romper", name: "Romper", url: url))
+        }
+        if let url = gymURL, !url.isEmpty {
+            feeds.append(CameraFeed(id: "gym", name: "Gym", url: url))
+        }
+        return feeds
+    }
 }
 
 struct FluxObject {

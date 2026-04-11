@@ -14,7 +14,7 @@ import SwiftUI
 @MainActor
 @Test func visionContentViewInitialization() throws {
     // Given: ContentView parameters for visionOS
-    let cameraURL = "https://example.com/stream"
+    let cameras = [CameraFeed(id: "toybox", name: "Toybox", url: "https://example.com/stream")]
     let daycare = AppointmentsDaycare(
         startDate: "Thursday, 8/14/2025 9:00 am",
         rId: 1,
@@ -23,7 +23,7 @@ import SwiftUI
     let appointments = Appointments(nextReservation: daycare)
 
     // When: Creating ContentView
-    let contentView = ContentView(cameraURL: cameraURL, rhizomeSchedule: appointments)
+    let contentView = ContentView(cameras: cameras, rhizomeSchedule: appointments)
 
     // Then: Should initialize correctly (avoid comparing non-optional to nil)
     #expect(type(of: contentView) == ContentView.self)
@@ -33,10 +33,10 @@ import SwiftUI
 @MainActor
 @Test func visionContentViewWithNilSchedule() throws {
     // Given: ContentView parameters with nil schedule
-    let cameraURL = "https://example.com/stream"
+    let cameras = [CameraFeed(id: "toybox", name: "Toybox", url: "https://example.com/stream")]
 
     // When: Creating ContentView with nil schedule
-    let contentView = ContentView(cameraURL: cameraURL, rhizomeSchedule: nil)
+    let contentView = ContentView(cameras: cameras, rhizomeSchedule: nil)
 
     // Then: Should handle nil schedule gracefully
     #expect(type(of: contentView) == ContentView.self)
@@ -45,10 +45,10 @@ import SwiftUI
 @MainActor
 @Test func visionContentViewWithEmptyURL() throws {
     // Given: ContentView with empty camera URL
-    let cameraURL = ""
+    let cameras = [CameraFeed(id: "toybox", name: "Toybox", url: "")]
 
     // When: Creating ContentView with empty URL
-    let contentView = ContentView(cameraURL: cameraURL, rhizomeSchedule: nil)
+    let contentView = ContentView(cameras: cameras, rhizomeSchedule: nil)
 
     // Then: Should handle empty URL gracefully
     #expect(type(of: contentView) == ContentView.self)
@@ -57,7 +57,7 @@ import SwiftUI
 // MARK: - Performance Tests
 
 @Test(.timeLimit(.minutes(1))) func visionContentViewPerformance() throws {
-    let cameraURL = "https://example.com/stream"
+    let cameras = [CameraFeed(id: "toybox", name: "Toybox", url: "https://example.com/stream")]
     let daycare = AppointmentsDaycare(
         startDate: "Thursday, 8/14/2025 9:00 am",
         rId: 1,
@@ -65,7 +65,7 @@ import SwiftUI
     )
     let appointments = Appointments(nextReservation: daycare)
 
-    _ = ContentView(cameraURL: cameraURL, rhizomeSchedule: appointments)
+    _ = ContentView(cameras: cameras, rhizomeSchedule: appointments)
 }
 
 // MARK: - VisionOS Specific Tests
@@ -73,7 +73,7 @@ import SwiftUI
 @MainActor
 @Test func visionContentViewHandlesRealityKitIntegration() throws {
     // Given: Parameters that would use RealityKit
-    let cameraURL = "https://example.com/stream"
+    let cameras = [CameraFeed(id: "toybox", name: "Toybox", url: "https://example.com/stream")]
     let daycare = AppointmentsDaycare(
         startDate: "Thursday, 8/14/2025 9:00 am",
         rId: 1,
@@ -82,7 +82,7 @@ import SwiftUI
     let appointments = Appointments(nextReservation: daycare)
 
     // When: Creating ContentView (which should integrate with RealityKit)
-    let contentView = ContentView(cameraURL: cameraURL, rhizomeSchedule: appointments)
+    let contentView = ContentView(cameras: cameras, rhizomeSchedule: appointments)
 
     // Then: Should not crash when RealityKit components are involved
     #expect(type(of: contentView) == ContentView.self)
@@ -92,7 +92,7 @@ import SwiftUI
 @MainActor
 @Test func visionContentViewWithComplexSchedule() throws {
     // Given: Complex schedule data
-    let cameraURL = "https://example.com/stream"
+    let cameras = [CameraFeed(id: "toybox", name: "Toybox", url: "https://example.com/stream")]
     let daycare = AppointmentsDaycare(
         startDate: "Thursday, 8/14/2025 9:00 am",
         rId: 1,
@@ -101,7 +101,7 @@ import SwiftUI
     let appointments = Appointments(nextReservation: daycare)
 
     // When: Creating ContentView with complex schedule
-    let contentView = ContentView(cameraURL: cameraURL, rhizomeSchedule: appointments)
+    let contentView = ContentView(cameras: cameras, rhizomeSchedule: appointments)
 
     // Then: Should handle complex data gracefully
     #expect(type(of: contentView) == ContentView.self)

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RhizomeTabs: View {
-    var cameraUrl: String
+    var cameras: [CameraFeed]
     var rhizomeSchedule: Appointments?
     var newsUrl: String
     var images: [String]
@@ -17,7 +17,7 @@ struct RhizomeTabs: View {
     var body: some View {
         TabView(selection: $selectedTab) {
             Tab("Watch", systemImage: "tv", value: "0") {
-                ContentView(cameraURL: cameraUrl, rhizomeSchedule: rhizomeSchedule)
+                ContentView(cameras: cameras, rhizomeSchedule: rhizomeSchedule)
                     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
 
             }

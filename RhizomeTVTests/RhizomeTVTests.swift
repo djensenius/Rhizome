@@ -174,7 +174,7 @@ func authenticationErrorInitWithOtherError() throws {
 @Test
 func rhizomeTabsInitialization() throws {
     // Given: RhizomeTabs parameters
-    let cameraUrl = "https://example.com/stream"
+    let cameras = [CameraFeed(id: "toybox", name: "Toybox", url: "https://example.com/stream")]
     let daycare = AppointmentsDaycare(
         startDate: "Thursday, 8/14/2025 9:00 am",
         rId: 1,
@@ -186,14 +186,14 @@ func rhizomeTabsInitialization() throws {
 
     // When: Creating RhizomeTabs
     let tabs = RhizomeTabs(
-        cameraUrl: cameraUrl,
+        cameras: cameras,
         rhizomeSchedule: appointments,
         newsUrl: newsUrl,
         images: images
     )
 
     // Then: Should initialize correctly
-    #expect(tabs.cameraUrl == cameraUrl)
+    #expect(tabs.cameras[0].url == cameras[0].url)
     #expect(tabs.newsUrl == newsUrl)
     #expect(tabs.images.count == 2)
 }
@@ -210,7 +210,7 @@ func authenticationControllerPerformance() throws {
 @MainActor
 @Test(.timeLimit(.minutes(1)))
 func rhizomeTabsPerformance() throws {
-    let cameraUrl = "https://example.com/stream"
+    let cameras = [CameraFeed(id: "toybox", name: "Toybox", url: "https://example.com/stream")]
     let daycare = AppointmentsDaycare(
         startDate: "Thursday, 8/14/2025 9:00 am",
         rId: 1,
@@ -221,7 +221,7 @@ func rhizomeTabsPerformance() throws {
     let images = Array(1...50).map { "image\($0).jpg" }
 
     _ = RhizomeTabs(
-        cameraUrl: cameraUrl,
+        cameras: cameras,
         rhizomeSchedule: appointments,
         newsUrl: newsUrl,
         images: images
