@@ -354,58 +354,65 @@ struct VideoPlayerView: View {
         .animation(.easeInOut(duration: 0.25), value: showControls)
         .zIndex(1)
         #elseif os(macOS)
-        VStack(spacing: 0) {
-            HStack(alignment: .top) {
-                Spacer()
-                HStack(spacing: 10) {
-                    Button(action: takeScreenshot) {
-                        Image(systemName: "camera.fill")
-                            .font(.title3)
-                            .foregroundColor(.white)
-                            .padding(12)
-                            .background(Color.black.opacity(0.5))
-                            .clipShape(Circle())
-                    }
-                    .buttonStyle(.plain)
-
-                    Button(
-                        action: { isRecording ? stopRecording() : startRecording() },
-                        label: {
-                            Image(systemName: isRecording ? "stop.circle.fill" : "record.circle")
+        ZStack {
+            VStack(spacing: 0) {
+                HStack(alignment: .top) {
+                    Spacer()
+                    HStack(spacing: 10) {
+                        Button(action: takeScreenshot) {
+                            Image(systemName: "camera.fill")
                                 .font(.title3)
-                                .foregroundColor(isRecording ? .red : .white)
+                                .foregroundColor(.white)
                                 .padding(12)
                                 .background(Color.black.opacity(0.5))
                                 .clipShape(Circle())
                         }
-                    )
-                    .buttonStyle(.plain)
+                        .buttonStyle(.plain)
 
-                    Button(action: {
-                        NSApplication.shared.windows.first?.toggleFullScreen(nil)
-                    }, label: {
-                        Image(systemName: "arrow.up.left.and.arrow.down.right")
-                            .font(.title3)
-                            .foregroundColor(.white)
-                            .padding(12)
-                            .background(Color.black.opacity(0.5))
-                            .clipShape(Circle())
-                    })
-                    .buttonStyle(.plain)
+                        Button(
+                            action: { isRecording ? stopRecording() : startRecording() },
+                            label: {
+                                Image(systemName: isRecording ? "stop.circle.fill" : "record.circle")
+                                    .font(.title3)
+                                    .foregroundColor(isRecording ? .red : .white)
+                                    .padding(12)
+                                    .background(Color.black.opacity(0.5))
+                                    .clipShape(Circle())
+                            }
+                        )
+                        .buttonStyle(.plain)
+
+                        Button(action: {
+                            NSApplication.shared.windows.first?.toggleFullScreen(nil)
+                        }, label: {
+                            Image(systemName: "arrow.up.left.and.arrow.down.right")
+                                .font(.title3)
+                                .foregroundColor(.white)
+                                .padding(12)
+                                .background(Color.black.opacity(0.5))
+                                .clipShape(Circle())
+                        })
+                        .buttonStyle(.plain)
+                    }
+                    .padding(.trailing, 16)
+                    .padding(.top, 16)
                 }
-                .padding(.trailing, 16)
-                .padding(.top, 16)
+
+                Spacer()
             }
+            .opacity(showControls ? 1 : 0)
+            .animation(.easeInOut(duration: 0.25), value: showControls)
 
-            Spacer()
-
+            // Keep the multi-camera switcher always visible so it is reliably
+            // discoverable on macOS, where hover-driven controls can be missed.
             if cameras.count > 1 {
-                cameraSwitcher
-                    .padding(.bottom, 20)
+                VStack {
+                    Spacer()
+                    cameraSwitcher
+                        .padding(.bottom, 20)
+                }
             }
         }
-        .opacity(showControls ? 1 : 0)
-        .animation(.easeInOut(duration: 0.25), value: showControls)
         .zIndex(100)
         #elseif os(tvOS)
         if cameras.count > 1 {

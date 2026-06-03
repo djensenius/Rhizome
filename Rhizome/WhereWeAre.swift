@@ -90,6 +90,17 @@ struct WhereWeAre {
         loading = false
     }
 
+    // Clear the stored credentials and notify the app to return to the login screen.
+    static func logout() {
+        var instance = WhereWeAre()
+        instance.deleteKeyChainPasword()
+        NotificationCenter.default.post(
+            name: Notification.Name.logout,
+            object: nil,
+            userInfo: ["logout": true]
+        )
+    }
+
     mutating func deleteKeyChainPasword() {
         let query: [String: Any] = [
             kSecClass as String: kSecClassInternetPassword,

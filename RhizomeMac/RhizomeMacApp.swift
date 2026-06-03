@@ -57,10 +57,6 @@ struct RhizomeMacApp: App {
                         .tabItem {
                             Label("Gallery", systemImage: "photo")
                         }
-                    SettingsView()
-                        .tabItem {
-                            Label("Settings", systemImage: "gear")
-                        }
                 }
                 .onReceive(NotificationCenter.default.publisher(for: Notification.Name.logout)) { object in
                     if (object.userInfo?["logout"]) != nil {
@@ -69,6 +65,14 @@ struct RhizomeMacApp: App {
                         }
                     }
                 }.tabViewStyle(.sidebarAdaptable)
+            }
+        }
+        .commands {
+            CommandGroup(after: .appInfo) {
+                Button("Log Out") {
+                    WhereWeAre.logout()
+                }
+                .keyboardShortcut("L", modifiers: [.command, .shift])
             }
         }
     }
