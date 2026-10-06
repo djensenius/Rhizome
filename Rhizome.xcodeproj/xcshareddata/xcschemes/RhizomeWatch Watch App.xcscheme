@@ -73,7 +73,6 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6388A9EE2C6977EB0080D664"
             BuildableName = "Rhizome.app"
-            BlueprintName = "RhizomeWatch Watch App"
             ReferencedContainer = "container:Rhizome.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -90,7 +89,6 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6388A9EE2C6977EB0080D664"
             BuildableName = "Rhizome.app"
-            BlueprintName = "RhizomeWatch Watch App"
             ReferencedContainer = "container:Rhizome.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
