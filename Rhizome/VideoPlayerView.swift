@@ -129,7 +129,7 @@ struct PlayerViewController: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> AVPlayerViewController {
         let controller = AVPlayerViewController()
         controller.player = player
-        controller.showsPlaybackControls = true
+        controller.showsPlaybackControls = false
         return controller
     }
 
@@ -214,35 +214,34 @@ struct VideoPlayerView: View {
     }
 
     var body: some View {
-        ZStack {
-            Group {
+        GeometryReader { geometry in
+            ZStack {
+                Group {
+                    #if os(iOS) || os(tvOS) || os(visionOS)
+                    PlayerViewController(player: player)
+                    #elseif os(macOS)
+                    PlayerNSView(player: player)
+                        .ignoresSafeArea()
+                    #endif
+                }
                 #if os(iOS) || os(tvOS) || os(visionOS)
-                PlayerViewController(player: player)
-                #elseif os(macOS)
-                PlayerNSView(player: player)
-                    .ignoresSafeArea()
+                .ignoresSafeArea()
                 #endif
-            }
-            #if os(iOS) || os(tvOS) || os(visionOS)
-            .ignoresSafeArea()
-            #endif
 
-            // Buffering indicator
-            if playerObserver.isBuffering {
-                ProgressView()
-                    .progressViewStyle(.circular)
-                    .scaleEffect(1.5)
-                    .tint(.white)
-                    .padding(20)
-                    .background(Color.black.opacity(0.45))
-                    .clipShape(RoundedRectangle(cornerRadius: 14))
-            }
+                // Buffering indicator
+                if playerObserver.isBuffering {
+                    ProgressView()
+                        .progressViewStyle(.circular)
+                        .scaleEffect(1.5)
+                        .tint(.white)
+                        .padding(20)
+                        .background(Color.black.opacity(0.45))
+                        .clipShape(RoundedRectangle(cornerRadius: 14))
+                }
 
-            overlayControls
+                overlayControls(in: geometry)
+            }
         }
-        #if os(iOS) || os(tvOS) || os(visionOS)
-        .ignoresSafeArea()
-        #endif
         #if os(iOS) || os(visionOS)
         .simultaneousGesture(TapGesture().onEnded { toggleControls() })
         #elseif os(macOS)
@@ -296,100 +295,175 @@ struct VideoPlayerView: View {
     // MARK: - Overlay Controls
 
     @ViewBuilder
-    private var overlayControls: some View {
-        #if os(iOS) || os(visionOS)
-        VStack(spacing: 0) {
-            HStack(alignment: .top) {
-                Button(action: {
-                    if let onDismiss = onDismiss {
-                        onDismiss()
-                    } else {
-                        dismiss()
-                    }
-                }, label: {
-                    Image(systemName: "chevron.left")
-                        .font(.title3)
-                        .foregroundColor(.white)
-                        .padding(12)
-                        .background(Color.black.opacity(0.5))
-                        .clipShape(Circle())
-                })
-                .padding(.leading, 16)
-
+    private func overlayControls(in geometry: GeometryProxy) -> some View {
+        #if os(iOS)
+        if let controlRegion = tabletopControlRegion(in: geometry) {
+            tabletopControls(in: geometry)
+                .frame(width: controlRegion.width, height: controlRegion.height)
+                .background(Color.black.opacity(0.42))
+                .position(x: controlRegion.midX, y: controlRegion.midY)
+                .transition(.opacity)
+                .opacity(showControls ? 1 : 0)
+                .animation(.easeInOut(duration: 0.25), value: showControls)
+                .zIndex(1)
+        } else {
+            standardOverlayControls(in: geometry)
+                .opacity(showControls ? 1 : 0)
+                .animation(.easeInOut(duration: 0.25), value: showControls)
+                .zIndex(1)
+        }
+        #elseif os(visionOS)
+        standardOverlayControls(in: geometry)
+            .opacity(showControls ? 1 : 0)
+            .animation(.easeInOut(duration: 0.25), value: showControls)
+            .zIndex(1)
+        #elseif os(macOS)
+        macOverlayControls
+            .opacity(showControls ? 1 : 0)
+            .animation(.easeInOut(duration: 0.25), value: showControls)
+            .zIndex(100)
+        #elseif os(tvOS)
+        if cameras.count > 1 {
+            VStack {
                 Spacer()
-
-                HStack(spacing: 12) {
-                    Button(action: takeScreenshot) {
-                        Image(systemName: "camera.fill")
-                            .font(.title3)
-                            .foregroundColor(.white)
-                            .padding(12)
-                            .background(Color.black.opacity(0.5))
-                            .clipShape(Circle())
-                    }
-                    Button(
-                        action: { isRecording ? stopRecording() : startRecording() },
-                        label: {
-                            Image(systemName: isRecording ? "stop.circle.fill" : "record.circle")
-                                .font(.title3)
-                                .foregroundColor(isRecording ? .red : .white)
-                                .padding(12)
-                                .background(Color.black.opacity(0.5))
-                                .clipShape(Circle())
-                        }
-                    )
-                }
-                .padding(.trailing, 16)
+                cameraSwitcher
+                    .padding(.bottom, 60)
             }
-            .padding(.top, 48)
+            .opacity(showControls ? 1 : 0)
+            .animation(.easeInOut(duration: 0.25), value: showControls)
+            .zIndex(1)
+        }
+        #endif
+    }
+
+    @ViewBuilder
+    private func standardOverlayControls(in geometry: GeometryProxy) -> some View {
+        VStack(spacing: 0) {
+            topControlBar(in: geometry)
+                .padding(.top, max(16, geometry.safeAreaInsets.top + 12))
 
             Spacer()
 
             if cameras.count > 1 {
                 cameraSwitcher
-                    .padding(.bottom, 40)
+                    .padding(.horizontal, 16)
+                    .padding(.bottom, max(24, geometry.safeAreaInsets.bottom + 24))
             }
         }
-        .opacity(showControls ? 1 : 0)
-        .animation(.easeInOut(duration: 0.25), value: showControls)
-        .zIndex(1)
-        #elseif os(macOS)
+    }
+
+    @ViewBuilder
+    private func tabletopControls(in geometry: GeometryProxy) -> some View {
+        VStack(spacing: 16) {
+            topControlBar(in: geometry)
+
+            Spacer(minLength: 8)
+
+            if cameras.count > 1 {
+                cameraSwitcher
+                    .padding(.horizontal, 16)
+                    .padding(.bottom, max(16, geometry.safeAreaInsets.bottom + 12))
+            }
+        }
+        .padding(.top, 16)
+    }
+
+    @ViewBuilder
+    private func topControlBar(in geometry: GeometryProxy) -> some View {
+        HStack(alignment: .top) {
+            dismissButton
+
+            Spacer()
+
+            HStack(spacing: 12) {
+                screenshotButton
+                recordingButton
+            }
+        }
+        .padding(.leading, geometry.safeAreaInsets.leading + 16)
+        .padding(.trailing, geometry.safeAreaInsets.trailing + 16)
+    }
+
+    private var dismissButton: some View {
+        Button(action: dismissPlayback) {
+            controlImage(systemName: "chevron.left")
+        }
+    }
+
+    private var screenshotButton: some View {
+        Button(action: takeScreenshot) {
+            controlImage(systemName: "camera.fill")
+        }
+    }
+
+    private var recordingButton: some View {
+        Button(
+            action: { isRecording ? stopRecording() : startRecording() },
+            label: {
+                controlImage(
+                    systemName: isRecording ? "stop.circle.fill" : "record.circle",
+                    foregroundColor: isRecording ? .red : .white
+                )
+            }
+        )
+    }
+
+    private func controlImage(systemName: String, foregroundColor: Color = .white) -> some View {
+        Image(systemName: systemName)
+            .font(.title3)
+            .foregroundColor(foregroundColor)
+            .padding(12)
+            .background(Color.black.opacity(0.5))
+            .clipShape(Circle())
+    }
+
+    private func dismissPlayback() {
+        if let onDismiss = onDismiss {
+            onDismiss()
+        } else {
+            dismiss()
+        }
+    }
+
+    private func tabletopControlRegion(in geometry: GeometryProxy) -> CGRect? {
+        #if os(iOS)
+        if #available(iOS 27.1, *) {
+            guard let division = geometry.reservedRegions(kind: .division)
+                .filter({ $0.isActive && $0.frame.width > $0.frame.height })
+                .max(by: { $0.frame.width < $1.frame.width })
+            else { return nil }
+
+            let region = CGRect(
+                x: 0,
+                y: division.frame.maxY,
+                width: geometry.size.width,
+                height: geometry.size.height - division.frame.maxY
+            )
+
+            guard region.height >= 120 else { return nil }
+            return region
+        }
+        #endif
+
+        return nil
+    }
+
+    #if os(macOS)
+    private var macOverlayControls: some View {
         VStack(spacing: 0) {
             HStack(alignment: .top) {
                 Spacer()
                 HStack(spacing: 10) {
-                    Button(action: takeScreenshot) {
-                        Image(systemName: "camera.fill")
-                            .font(.title3)
-                            .foregroundColor(.white)
-                            .padding(12)
-                            .background(Color.black.opacity(0.5))
-                            .clipShape(Circle())
-                    }
-                    .buttonStyle(.plain)
+                    screenshotButton
+                        .buttonStyle(.plain)
 
-                    Button(
-                        action: { isRecording ? stopRecording() : startRecording() },
-                        label: {
-                            Image(systemName: isRecording ? "stop.circle.fill" : "record.circle")
-                                .font(.title3)
-                                .foregroundColor(isRecording ? .red : .white)
-                                .padding(12)
-                                .background(Color.black.opacity(0.5))
-                                .clipShape(Circle())
-                        }
-                    )
-                    .buttonStyle(.plain)
+                    recordingButton
+                        .buttonStyle(.plain)
 
                     Button(action: {
                         NSApplication.shared.windows.first?.toggleFullScreen(nil)
                     }, label: {
-                        Image(systemName: "arrow.up.left.and.arrow.down.right")
-                            .font(.title3)
-                            .foregroundColor(.white)
-                            .padding(12)
-                            .background(Color.black.opacity(0.5))
-                            .clipShape(Circle())
+                        controlImage(systemName: "arrow.up.left.and.arrow.down.right")
                     })
                     .buttonStyle(.plain)
                 }
@@ -404,22 +478,8 @@ struct VideoPlayerView: View {
                     .padding(.bottom, 20)
             }
         }
-        .opacity(showControls ? 1 : 0)
-        .animation(.easeInOut(duration: 0.25), value: showControls)
-        .zIndex(100)
-        #elseif os(tvOS)
-        if cameras.count > 1 {
-            VStack {
-                Spacer()
-                cameraSwitcher
-                    .padding(.bottom, 60)
-            }
-            .opacity(showControls ? 1 : 0)
-            .animation(.easeInOut(duration: 0.25), value: showControls)
-            .zIndex(1)
-        }
-        #endif
     }
+    #endif
 
     @ViewBuilder
     private var cameraSwitcher: some View {
