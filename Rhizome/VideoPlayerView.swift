@@ -489,24 +489,15 @@ struct VideoPlayerView: View {
     private func tabletopControlRegion(in geometry: GeometryProxy) -> CGRect? {
         #if os(iOS)
         if #available(iOS 27.1, *) {
-            if let division = geometry.reservedRegions(kind: .division)
-                .filter({ $0.isActive && $0.frame.width > $0.frame.height })
-                .max(by: { $0.frame.width < $1.frame.width }) {
-                let region = CGRect(
-                    x: 0,
-                    y: division.frame.maxY,
-                    width: geometry.size.width,
-                    height: geometry.size.height - division.frame.maxY
-                )
+            let aspectRatio = geometry.size.height / max(geometry.size.width, 1)
 
-                if region.height >= 120 { return region }
-            }
-
-            // In the current iPhone Duo simulator, the division region is not
-            // always reported to the embedded view even though the app is
-            // visually running in tabletop posture. Fall back to the lower
-            // portrait region so controls still appear on the lower display.
-            if geometry.size.height > geometry.size.width {
+            // The iPhone Duo folded/tabletop simulator reports a wide portrait
+            // canvas to the embedded player, but the fold/reserved-region API
+            // is not consistently available in this view hierarchy on CI. Use
+            // the lower portion of that wide portrait layout for playback
+            // controls while leaving ordinary tall iPhone portrait layouts to
+            // the standard AVKit controls.
+            if geometry.size.height > geometry.size.width, aspectRatio < 1.8 {
                 let height = max(220, geometry.size.height * 0.38)
                 return CGRect(
                     x: 0,
