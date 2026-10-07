@@ -234,17 +234,33 @@ struct VideoPlayerView: View {
     var body: some View {
         GeometryReader { geometry in
             #if os(iOS)
-            let usesTabletopControls = tabletopControlRegion(in: geometry) != nil
+            let tabletopRegion = tabletopControlRegion(in: geometry)
             #else
-            let usesTabletopControls = false
+            let tabletopRegion: CGRect? = nil
             #endif
+            let usesTabletopControls = tabletopRegion != nil
 
             ZStack {
                 Color.black
                     .ignoresSafeArea()
 
                 Group {
-                    #if os(iOS) || os(tvOS) || os(visionOS)
+                    #if os(iOS)
+                    if let tabletopRegion {
+                        PlayerViewController(
+                            player: player,
+                            showsPlaybackControls: false
+                        )
+                        .frame(width: geometry.size.width, height: tabletopRegion.minY)
+                        .position(x: geometry.size.width / 2, y: tabletopRegion.minY / 2)
+                    } else {
+                        PlayerViewController(
+                            player: player,
+                            showsPlaybackControls: true
+                        )
+                        .ignoresSafeArea()
+                    }
+                    #elseif os(tvOS) || os(visionOS)
                     PlayerViewController(
                         player: player,
                         showsPlaybackControls: !usesTabletopControls
@@ -271,7 +287,6 @@ struct VideoPlayerView: View {
             }
         }
         #if os(iOS)
-        .ignoresSafeArea()
         .simultaneousGesture(TapGesture().onEnded { toggleControls() })
         #elseif os(visionOS)
         .simultaneousGesture(TapGesture().onEnded { toggleControls() })
