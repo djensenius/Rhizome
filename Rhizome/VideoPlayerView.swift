@@ -32,6 +32,7 @@ class PlayerObserver: NSObject, ObservableObject {
     @Published var playerError: PlayerError?
     @Published var isBuffering = false
     @Published var needsRetry = false
+    @Published var isPlaybackActive = false
 
     private var playerItem: AVPlayerItem?
     private var player: AVPlayer?
@@ -85,10 +86,13 @@ class PlayerObserver: NSObject, ObservableObject {
                 case .playing:
                     self?.isBuffering = false
                     self?.needsRetry = false
+                    self?.isPlaybackActive = true
                 case .waitingToPlayAtSpecifiedRate:
                     self?.isBuffering = true
+                    self?.isPlaybackActive = true
                 case .paused:
                     self?.isBuffering = true
+                    self?.isPlaybackActive = false
                 @unknown default:
                     break
                 }
@@ -120,6 +124,7 @@ class PlayerObserver: NSObject, ObservableObject {
         if let failedObserver { NotificationCenter.default.removeObserver(failedObserver) }
         stalledObserver = nil
         failedObserver = nil
+        isPlaybackActive = false
         player = nil
         playerItem = nil
     }
@@ -200,7 +205,6 @@ struct VideoPlayerView: View {
 
     // Controls visibility
     @State private var showControls = true
-    @State private var isPlaying = true
     @State private var hideTask: Task<Void, Never>?
 
     @Environment(\.dismiss) var dismiss
@@ -268,6 +272,9 @@ struct VideoPlayerView: View {
         }
         #if os(iOS)
         .ignoresSafeArea()
+        .simultaneousGesture(TapGesture().onEnded { toggleControls() })
+        #elseif os(visionOS)
+        .simultaneousGesture(TapGesture().onEnded { toggleControls() })
         #endif
         #if os(macOS)
         .onContinuousHover { phase in
@@ -328,10 +335,15 @@ struct VideoPlayerView: View {
                 .position(x: controlRegion.midX, y: controlRegion.midY)
                 .transition(.opacity)
                 .zIndex(4)
-        }
 
-        standardOverlayControls(in: geometry)
-            .zIndex(3)
+            standardOverlayControls(in: geometry)
+                .zIndex(3)
+        } else {
+            standardOverlayControls(in: geometry)
+                .opacity(showControls ? 1 : 0)
+                .animation(.easeInOut(duration: 0.25), value: showControls)
+                .zIndex(3)
+        }
         #elseif os(visionOS)
         standardOverlayControls(in: geometry)
             .opacity(showControls ? 1 : 0)
@@ -434,7 +446,7 @@ struct VideoPlayerView: View {
 
     private var playPauseButton: some View {
         Button(action: togglePlayback) {
-            controlImage(systemName: isPlaying ? "pause.fill" : "play.fill")
+            controlImage(systemName: playerObserver.isPlaybackActive ? "pause.fill" : "play.fill")
         }
     }
 
@@ -497,7 +509,9 @@ struct VideoPlayerView: View {
             // the lower portion of that wide portrait layout for playback
             // controls while leaving ordinary tall iPhone portrait layouts to
             // the standard AVKit controls.
-            if geometry.size.height > geometry.size.width, aspectRatio < 1.8 {
+            if UIDevice.current.userInterfaceIdiom == .phone,
+               geometry.size.height > geometry.size.width,
+               aspectRatio < 1.8 {
                 let height = max(220, geometry.size.height * 0.38)
                 return CGRect(
                     x: 0,
@@ -579,7 +593,7 @@ private extension VideoPlayerView {
         if let existingPlayer = existingPlayer {
             player = existingPlayer
             player?.play()
-            isPlaying = true
+            playerObserver.isPlaybackActive = true
         } else if let url = URL(string: activeCameraURL) {
             let output = AVPlayerItemVideoOutput(pixelBufferAttributes: [
                 kCVPixelBufferPixelFormatTypeKey as String: kCVPixelFormatType_32BGRA
@@ -592,7 +606,6 @@ private extension VideoPlayerView {
             let newPlayer = AVPlayer(playerItem: item)
             player = newPlayer
             player?.play()
-            isPlaying = true
             playerObserver.observe(player: newPlayer, playerItem: item)
         }
     }
@@ -626,7 +639,6 @@ private extension VideoPlayerView {
     func cleanupPlayer() {
         if existingPlayer == nil {
             player?.pause()
-            isPlaying = false
             playerObserver.stopObserving()
             if let output = videoOutput, let item = playerItem { item.remove(output) }
             videoOutput = nil
@@ -663,12 +675,16 @@ private extension VideoPlayerView {
 
     func togglePlayback() {
         guard let player else { return }
-        if isPlaying {
+        switch player.timeControlStatus {
+        case .playing, .waitingToPlayAtSpecifiedRate:
             player.pause()
-            isPlaying = false
-        } else {
+            playerObserver.isPlaybackActive = false
+        case .paused:
             player.play()
-            isPlaying = true
+            playerObserver.isPlaybackActive = true
+        @unknown default:
+            player.play()
+            playerObserver.isPlaybackActive = true
         }
     }
 
