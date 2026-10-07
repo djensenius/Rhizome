@@ -27,3 +27,7 @@ DerivedData/
 # Swift Package Manager
 Packages/*/.build/
 .swiftpm/
+
+# Xcode user-specific data
+xcuserdata/
+*.xcuserdatad/
