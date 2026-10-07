@@ -12,6 +12,9 @@ import Combine
 import SwiftUI
 import Photos
 import QuartzCore
+#if canImport(UIKit)
+import UIKit
+#endif
 #if canImport(AVFoundation)
 import AVFoundation
 #endif
@@ -125,11 +128,16 @@ class PlayerObserver: NSObject, ObservableObject {
 #if os(iOS) || os(tvOS) || os(visionOS)
 struct PlayerViewController: UIViewControllerRepresentable {
     var player: AVPlayer?
+    var showsPlaybackControls = true
 
     func makeUIViewController(context: Context) -> AVPlayerViewController {
         let controller = AVPlayerViewController()
         controller.player = player
-        controller.showsPlaybackControls = false
+        controller.showsPlaybackControls = showsPlaybackControls
+        controller.view.backgroundColor = .black
+        #if os(iOS) || os(tvOS)
+        controller.allowsPictureInPicturePlayback = true
+        #endif
         return controller
     }
 
@@ -137,6 +145,11 @@ struct PlayerViewController: UIViewControllerRepresentable {
         if uiViewController.player != player {
             uiViewController.player = player
         }
+        uiViewController.showsPlaybackControls = showsPlaybackControls
+        uiViewController.view.backgroundColor = .black
+        #if os(iOS) || os(tvOS)
+        uiViewController.allowsPictureInPicturePlayback = true
+        #endif
     }
 }
 #elseif os(macOS)
@@ -187,6 +200,7 @@ struct VideoPlayerView: View {
 
     // Controls visibility
     @State private var showControls = true
+    @State private var isPlaying = true
     @State private var hideTask: Task<Void, Never>?
 
     @Environment(\.dismiss) var dismiss
@@ -215,18 +229,28 @@ struct VideoPlayerView: View {
 
     var body: some View {
         GeometryReader { geometry in
+            #if os(iOS)
+            let usesTabletopControls = tabletopControlRegion(in: geometry) != nil
+            #else
+            let usesTabletopControls = false
+            #endif
+
             ZStack {
+                Color.black
+                    .ignoresSafeArea()
+
                 Group {
                     #if os(iOS) || os(tvOS) || os(visionOS)
-                    PlayerViewController(player: player)
+                    PlayerViewController(
+                        player: player,
+                        showsPlaybackControls: !usesTabletopControls
+                    )
+                    .ignoresSafeArea()
                     #elseif os(macOS)
                     PlayerNSView(player: player)
                         .ignoresSafeArea()
                     #endif
                 }
-                #if os(iOS) || os(tvOS) || os(visionOS)
-                .ignoresSafeArea()
-                #endif
 
                 // Buffering indicator
                 if playerObserver.isBuffering {
@@ -242,9 +266,10 @@ struct VideoPlayerView: View {
                 overlayControls(in: geometry)
             }
         }
-        #if os(iOS) || os(visionOS)
-        .simultaneousGesture(TapGesture().onEnded { toggleControls() })
-        #elseif os(macOS)
+        #if os(iOS)
+        .ignoresSafeArea()
+        #endif
+        #if os(macOS)
         .onContinuousHover { phase in
             switch phase {
             case .active:
@@ -298,20 +323,15 @@ struct VideoPlayerView: View {
     private func overlayControls(in geometry: GeometryProxy) -> some View {
         #if os(iOS)
         if let controlRegion = tabletopControlRegion(in: geometry) {
-            tabletopControls(in: geometry)
+            tabletopPlaybackControls
                 .frame(width: controlRegion.width, height: controlRegion.height)
-                .background(Color.black.opacity(0.42))
                 .position(x: controlRegion.midX, y: controlRegion.midY)
                 .transition(.opacity)
-                .opacity(showControls ? 1 : 0)
-                .animation(.easeInOut(duration: 0.25), value: showControls)
-                .zIndex(1)
-        } else {
-            standardOverlayControls(in: geometry)
-                .opacity(showControls ? 1 : 0)
-                .animation(.easeInOut(duration: 0.25), value: showControls)
-                .zIndex(1)
+                .zIndex(4)
         }
+
+        standardOverlayControls(in: geometry)
+            .zIndex(3)
         #elseif os(visionOS)
         standardOverlayControls(in: geometry)
             .opacity(showControls ? 1 : 0)
@@ -344,28 +364,14 @@ struct VideoPlayerView: View {
 
             Spacer()
 
+            #if os(macOS) || os(tvOS) || os(visionOS)
             if cameras.count > 1 {
                 cameraSwitcher
                     .padding(.horizontal, 16)
                     .padding(.bottom, max(24, geometry.safeAreaInsets.bottom + 24))
             }
+            #endif
         }
-    }
-
-    @ViewBuilder
-    private func tabletopControls(in geometry: GeometryProxy) -> some View {
-        VStack(spacing: 16) {
-            topControlBar(in: geometry)
-
-            Spacer(minLength: 8)
-
-            if cameras.count > 1 {
-                cameraSwitcher
-                    .padding(.horizontal, 16)
-                    .padding(.bottom, max(16, geometry.safeAreaInsets.bottom + 12))
-            }
-        }
-        .padding(.top, 16)
     }
 
     @ViewBuilder
@@ -376,6 +382,7 @@ struct VideoPlayerView: View {
             Spacer()
 
             HStack(spacing: 12) {
+                cameraMenu
                 screenshotButton
                 recordingButton
             }
@@ -387,6 +394,23 @@ struct VideoPlayerView: View {
     private var dismissButton: some View {
         Button(action: dismissPlayback) {
             controlImage(systemName: "chevron.left")
+        }
+    }
+
+    @ViewBuilder
+    private var cameraMenu: some View {
+        if cameras.count > 1 {
+            Menu {
+                ForEach(cameras) { camera in
+                    Button(camera.name) {
+                        if camera.url != activeCameraURL {
+                            switchCamera(to: camera)
+                        }
+                    }
+                }
+            } label: {
+                controlImage(systemName: "video.fill")
+            }
         }
     }
 
@@ -406,6 +430,43 @@ struct VideoPlayerView: View {
                 )
             }
         )
+    }
+
+    private var playPauseButton: some View {
+        Button(action: togglePlayback) {
+            controlImage(systemName: isPlaying ? "pause.fill" : "play.fill")
+        }
+    }
+
+    private var tabletopPlaybackControls: some View {
+        VStack(spacing: 22) {
+            Spacer()
+
+            HStack(spacing: 28) {
+                playPauseButton
+
+                if cameras.count > 1 {
+                    cameraMenu
+                }
+
+                screenshotButton
+                recordingButton
+            }
+            .font(.title2)
+
+            HStack(spacing: 8) {
+                Circle()
+                    .fill(Color.red)
+                    .frame(width: 8, height: 8)
+                Text("Live")
+                    .font(.caption.weight(.semibold))
+                    .foregroundColor(.white.opacity(0.85))
+            }
+
+            Spacer()
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color.black)
     }
 
     private func controlImage(systemName: String, foregroundColor: Color = .white) -> some View {
@@ -428,20 +489,32 @@ struct VideoPlayerView: View {
     private func tabletopControlRegion(in geometry: GeometryProxy) -> CGRect? {
         #if os(iOS)
         if #available(iOS 27.1, *) {
-            guard let division = geometry.reservedRegions(kind: .division)
+            if let division = geometry.reservedRegions(kind: .division)
                 .filter({ $0.isActive && $0.frame.width > $0.frame.height })
-                .max(by: { $0.frame.width < $1.frame.width })
-            else { return nil }
+                .max(by: { $0.frame.width < $1.frame.width }) {
+                let region = CGRect(
+                    x: 0,
+                    y: division.frame.maxY,
+                    width: geometry.size.width,
+                    height: geometry.size.height - division.frame.maxY
+                )
 
-            let region = CGRect(
-                x: 0,
-                y: division.frame.maxY,
-                width: geometry.size.width,
-                height: geometry.size.height - division.frame.maxY
-            )
+                if region.height >= 120 { return region }
+            }
 
-            guard region.height >= 120 else { return nil }
-            return region
+            // In the current iPhone Duo simulator, the division region is not
+            // always reported to the embedded view even though the app is
+            // visually running in tabletop posture. Fall back to the lower
+            // portrait region so controls still appear on the lower display.
+            if geometry.size.height > geometry.size.width {
+                let height = max(220, geometry.size.height * 0.38)
+                return CGRect(
+                    x: 0,
+                    y: geometry.size.height - height,
+                    width: geometry.size.width,
+                    height: height
+                )
+            }
         }
         #endif
 
@@ -515,6 +588,7 @@ private extension VideoPlayerView {
         if let existingPlayer = existingPlayer {
             player = existingPlayer
             player?.play()
+            isPlaying = true
         } else if let url = URL(string: activeCameraURL) {
             let output = AVPlayerItemVideoOutput(pixelBufferAttributes: [
                 kCVPixelBufferPixelFormatTypeKey as String: kCVPixelFormatType_32BGRA
@@ -527,6 +601,7 @@ private extension VideoPlayerView {
             let newPlayer = AVPlayer(playerItem: item)
             player = newPlayer
             player?.play()
+            isPlaying = true
             playerObserver.observe(player: newPlayer, playerItem: item)
         }
     }
@@ -560,6 +635,7 @@ private extension VideoPlayerView {
     func cleanupPlayer() {
         if existingPlayer == nil {
             player?.pause()
+            isPlaying = false
             playerObserver.stopObserving()
             if let output = videoOutput, let item = playerItem { item.remove(output) }
             videoOutput = nil
@@ -594,13 +670,40 @@ private extension VideoPlayerView {
         }
     }
 
+    func togglePlayback() {
+        guard let player else { return }
+        if isPlaying {
+            player.pause()
+            isPlaying = false
+        } else {
+            player.play()
+            isPlaying = true
+        }
+    }
+
     func configureAudioAndScreen() {
         #if os(iOS) || os(tvOS) || os(visionOS)
+        let audioSession = AVAudioSession.sharedInstance()
         do {
-            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .moviePlayback)
-            try AVAudioSession.sharedInstance().setActive(true)
+            try audioSession.setCategory(.playback, mode: .moviePlayback)
         } catch {
             print("Failed to set audio session category: \(error)")
+        }
+
+        if #available(iOS 27.0, tvOS 27.0, visionOS 27.0, *) {
+            audioSession.activate(options: []) { _, error in
+                if let error {
+                    print("Failed to activate audio session: \(error)")
+                }
+            }
+        } else {
+            DispatchQueue.global(qos: .userInitiated).async {
+                do {
+                    try audioSession.setActive(true)
+                } catch {
+                    print("Failed to activate audio session: \(error)")
+                }
+            }
         }
         #endif
 
