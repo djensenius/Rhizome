@@ -351,16 +351,24 @@ struct VideoPlayerView: View {
                 .transition(.opacity)
                 .zIndex(4)
 
-            standardOverlayControls(in: geometry)
-                .zIndex(3)
+            standardOverlayControls(
+                in: geometry,
+                showsAppActions: false,
+                showsCameraMenu: false
+            )
+            .zIndex(3)
         } else {
-            standardOverlayControls(in: geometry)
-                .opacity(showControls ? 1 : 0)
-                .animation(.easeInOut(duration: 0.25), value: showControls)
-                .zIndex(3)
+            standardOverlayControls(
+                in: geometry,
+                showsAppActions: true,
+                showsCameraMenu: true
+            )
+            .opacity(showControls ? 1 : 0)
+            .animation(.easeInOut(duration: 0.25), value: showControls)
+            .zIndex(3)
         }
         #elseif os(visionOS)
-        standardOverlayControls(in: geometry)
+        standardOverlayControls(in: geometry, showsAppActions: true, showsCameraMenu: false)
             .opacity(showControls ? 1 : 0)
             .animation(.easeInOut(duration: 0.25), value: showControls)
             .zIndex(1)
@@ -384,10 +392,18 @@ struct VideoPlayerView: View {
     }
 
     @ViewBuilder
-    private func standardOverlayControls(in geometry: GeometryProxy) -> some View {
+    private func standardOverlayControls(
+        in geometry: GeometryProxy,
+        showsAppActions: Bool = true,
+        showsCameraMenu: Bool = true
+    ) -> some View {
         VStack(spacing: 0) {
-            topControlBar(in: geometry)
-                .padding(.top, max(16, geometry.safeAreaInsets.top + 12))
+            topControlBar(
+                in: geometry,
+                showsAppActions: showsAppActions,
+                showsCameraMenu: showsCameraMenu
+            )
+            .padding(.top, max(16, geometry.safeAreaInsets.top + 12))
 
             Spacer()
 
@@ -402,16 +418,24 @@ struct VideoPlayerView: View {
     }
 
     @ViewBuilder
-    private func topControlBar(in geometry: GeometryProxy) -> some View {
+    private func topControlBar(
+        in geometry: GeometryProxy,
+        showsAppActions: Bool,
+        showsCameraMenu: Bool
+    ) -> some View {
         HStack(alignment: .top) {
             dismissButton
 
             Spacer()
 
-            HStack(spacing: 12) {
-                cameraMenu
-                screenshotButton
-                recordingButton
+            if showsAppActions {
+                HStack(spacing: 12) {
+                    if showsCameraMenu {
+                        cameraMenu
+                    }
+                    screenshotButton
+                    recordingButton
+                }
             }
         }
         .padding(.leading, geometry.safeAreaInsets.leading + 16)
