@@ -456,6 +456,9 @@ struct VideoPlayerView: View {
 
     @ViewBuilder
     private var cameraMenu: some View {
+        #if os(tvOS)
+        EmptyView()
+        #else
         if cameras.count > 1 {
             Menu {
                 ForEach(cameras) { camera in
@@ -469,6 +472,7 @@ struct VideoPlayerView: View {
                 controlImage(systemName: "video.fill")
             }
         }
+        #endif
     }
 
     private var screenshotButton: some View {
