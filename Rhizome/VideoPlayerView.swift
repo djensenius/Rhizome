@@ -314,6 +314,11 @@ struct VideoPlayerView: View {
             scheduleHide()
             startRetryLoop()
         }
+        .onReceive(playerObserver.$isPlaybackActive) { isPlaybackActive in
+            if isPlaybackActive {
+                userWantsPlayback = true
+            }
+        }
         .onDisappear {
             if isRecording { stopRecording() }
             cleanupPlayer()
@@ -551,7 +556,7 @@ struct VideoPlayerView: View {
             // the standard AVKit controls.
             if UIDevice.current.userInterfaceIdiom == .phone,
                geometry.size.height > geometry.size.width,
-               aspectRatio < 1.8 {
+               aspectRatio < 1.6 {
                 let height = max(220, geometry.size.height * 0.38)
                 return CGRect(
                     x: 0,
