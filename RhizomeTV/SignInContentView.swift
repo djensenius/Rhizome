@@ -15,7 +15,7 @@ struct SignInContentView: View {
         VStack(spacing: 60) {
             Image(uiImage: UIImage(named: "AppIcon") ?? UIImage())
                 .resizable()
-                .aspectRatio(contentMode: .fit)
+                .scaledToFit()
                 .frame(width: 200, height: 200)
                 .cornerRadius(40)
                 .shadow(radius: 10)

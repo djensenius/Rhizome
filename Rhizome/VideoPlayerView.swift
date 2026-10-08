@@ -12,6 +12,9 @@ import Combine
 import SwiftUI
 import Photos
 import QuartzCore
+#if canImport(UIKit)
+import UIKit
+#endif
 #if canImport(AVFoundation)
 import AVFoundation
 #endif
@@ -29,6 +32,7 @@ class PlayerObserver: NSObject, ObservableObject {
     @Published var playerError: PlayerError?
     @Published var isBuffering = false
     @Published var needsRetry = false
+    @Published var isPlaybackActive = false
 
     private var playerItem: AVPlayerItem?
     private var player: AVPlayer?
@@ -82,10 +86,13 @@ class PlayerObserver: NSObject, ObservableObject {
                 case .playing:
                     self?.isBuffering = false
                     self?.needsRetry = false
+                    self?.isPlaybackActive = true
                 case .waitingToPlayAtSpecifiedRate:
                     self?.isBuffering = true
+                    self?.isPlaybackActive = true
                 case .paused:
-                    self?.isBuffering = true
+                    self?.isBuffering = false
+                    self?.isPlaybackActive = false
                 @unknown default:
                     break
                 }
@@ -117,6 +124,7 @@ class PlayerObserver: NSObject, ObservableObject {
         if let failedObserver { NotificationCenter.default.removeObserver(failedObserver) }
         stalledObserver = nil
         failedObserver = nil
+        isPlaybackActive = false
         player = nil
         playerItem = nil
     }
@@ -125,11 +133,16 @@ class PlayerObserver: NSObject, ObservableObject {
 #if os(iOS) || os(tvOS) || os(visionOS)
 struct PlayerViewController: UIViewControllerRepresentable {
     var player: AVPlayer?
+    var showsPlaybackControls = true
 
     func makeUIViewController(context: Context) -> AVPlayerViewController {
         let controller = AVPlayerViewController()
         controller.player = player
-        controller.showsPlaybackControls = true
+        controller.showsPlaybackControls = showsPlaybackControls
+        controller.view.backgroundColor = .black
+        #if os(iOS) || os(tvOS)
+        controller.allowsPictureInPicturePlayback = true
+        #endif
         return controller
     }
 
@@ -137,6 +150,11 @@ struct PlayerViewController: UIViewControllerRepresentable {
         if uiViewController.player != player {
             uiViewController.player = player
         }
+        uiViewController.showsPlaybackControls = showsPlaybackControls
+        uiViewController.view.backgroundColor = .black
+        #if os(iOS) || os(tvOS)
+        uiViewController.allowsPictureInPicturePlayback = true
+        #endif
     }
 }
 #elseif os(macOS)
@@ -187,6 +205,7 @@ struct VideoPlayerView: View {
 
     // Controls visibility
     @State private var showControls = true
+    @State private var userWantsPlayback = true
     @State private var hideTask: Task<Void, Never>?
 
     @Environment(\.dismiss) var dismiss
@@ -214,38 +233,66 @@ struct VideoPlayerView: View {
     }
 
     var body: some View {
-        ZStack {
-            Group {
-                #if os(iOS) || os(tvOS) || os(visionOS)
-                PlayerViewController(player: player)
-                #elseif os(macOS)
-                PlayerNSView(player: player)
-                    .ignoresSafeArea()
-                #endif
-            }
-            #if os(iOS) || os(tvOS) || os(visionOS)
-            .ignoresSafeArea()
+        GeometryReader { geometry in
+            #if os(iOS)
+            let tabletopRegion = tabletopControlRegion(in: geometry)
+            #else
+            let tabletopRegion: CGRect? = nil
             #endif
+            let usesTabletopControls = tabletopRegion != nil
 
-            // Buffering indicator
-            if playerObserver.isBuffering {
-                ProgressView()
-                    .progressViewStyle(.circular)
-                    .scaleEffect(1.5)
-                    .tint(.white)
-                    .padding(20)
-                    .background(Color.black.opacity(0.45))
-                    .clipShape(RoundedRectangle(cornerRadius: 14))
+            ZStack {
+                Color.black
+                    .ignoresSafeArea()
+
+                Group {
+                    #if os(iOS)
+                    if let tabletopRegion {
+                        PlayerViewController(
+                            player: player,
+                            showsPlaybackControls: false
+                        )
+                        .frame(width: geometry.size.width, height: tabletopRegion.minY)
+                        .position(x: geometry.size.width / 2, y: tabletopRegion.minY / 2)
+                    } else {
+                        PlayerViewController(
+                            player: player,
+                            showsPlaybackControls: true
+                        )
+                        .ignoresSafeArea()
+                    }
+                    #elseif os(tvOS) || os(visionOS)
+                    PlayerViewController(
+                        player: player,
+                        showsPlaybackControls: !usesTabletopControls
+                    )
+                    .ignoresSafeArea()
+                    #elseif os(macOS)
+                    PlayerNSView(player: player)
+                        .ignoresSafeArea()
+                    #endif
+                }
+
+                // Buffering indicator
+                if playerObserver.isBuffering && playerObserver.isPlaybackActive {
+                    ProgressView()
+                        .progressViewStyle(.circular)
+                        .scaleEffect(1.5)
+                        .tint(.white)
+                        .padding(20)
+                        .background(Color.black.opacity(0.45))
+                        .clipShape(RoundedRectangle(cornerRadius: 14))
+                }
+
+                overlayControls(in: geometry)
             }
-
-            overlayControls
         }
-        #if os(iOS) || os(tvOS) || os(visionOS)
-        .ignoresSafeArea()
-        #endif
-        #if os(iOS) || os(visionOS)
+        #if os(iOS)
         .simultaneousGesture(TapGesture().onEnded { toggleControls() })
-        #elseif os(macOS)
+        #elseif os(visionOS)
+        .simultaneousGesture(TapGesture().onEnded { toggleControls() })
+        #endif
+        #if os(macOS)
         .onContinuousHover { phase in
             switch phase {
             case .active:
@@ -266,6 +313,11 @@ struct VideoPlayerView: View {
             configureAudioAndScreen()
             scheduleHide()
             startRetryLoop()
+        }
+        .onReceive(playerObserver.$isPlaybackActive) { isPlaybackActive in
+            if isPlaybackActive {
+                userWantsPlayback = true
+            }
         }
         .onDisappear {
             if isRecording { stopRecording() }
@@ -296,100 +348,248 @@ struct VideoPlayerView: View {
     // MARK: - Overlay Controls
 
     @ViewBuilder
-    private var overlayControls: some View {
-        #if os(iOS) || os(visionOS)
-        VStack(spacing: 0) {
-            HStack(alignment: .top) {
-                Button(action: {
-                    if let onDismiss = onDismiss {
-                        onDismiss()
-                    } else {
-                        dismiss()
-                    }
-                }, label: {
-                    Image(systemName: "chevron.left")
-                        .font(.title3)
-                        .foregroundColor(.white)
-                        .padding(12)
-                        .background(Color.black.opacity(0.5))
-                        .clipShape(Circle())
-                })
-                .padding(.leading, 16)
+    private func overlayControls(in geometry: GeometryProxy) -> some View {
+        #if os(iOS)
+        if let controlRegion = tabletopControlRegion(in: geometry) {
+            tabletopPlaybackControls
+                .frame(width: controlRegion.width, height: controlRegion.height)
+                .position(x: controlRegion.midX, y: controlRegion.midY)
+                .transition(.opacity)
+                .zIndex(4)
 
+            standardOverlayControls(
+                in: geometry,
+                showsAppActions: false,
+                showsCameraMenu: false
+            )
+            .zIndex(3)
+        } else {
+            standardOverlayControls(
+                in: geometry,
+                showsAppActions: true,
+                showsCameraMenu: true
+            )
+            .opacity(showControls ? 1 : 0)
+            .animation(.easeInOut(duration: 0.25), value: showControls)
+            .zIndex(3)
+        }
+        #elseif os(visionOS)
+        standardOverlayControls(in: geometry, showsAppActions: true, showsCameraMenu: false)
+            .opacity(showControls ? 1 : 0)
+            .animation(.easeInOut(duration: 0.25), value: showControls)
+            .zIndex(1)
+        #elseif os(macOS)
+        macOverlayControls
+            .opacity(showControls ? 1 : 0)
+            .animation(.easeInOut(duration: 0.25), value: showControls)
+            .zIndex(100)
+        #elseif os(tvOS)
+        if cameras.count > 1 {
+            VStack {
                 Spacer()
-
-                HStack(spacing: 12) {
-                    Button(action: takeScreenshot) {
-                        Image(systemName: "camera.fill")
-                            .font(.title3)
-                            .foregroundColor(.white)
-                            .padding(12)
-                            .background(Color.black.opacity(0.5))
-                            .clipShape(Circle())
-                    }
-                    Button(
-                        action: { isRecording ? stopRecording() : startRecording() },
-                        label: {
-                            Image(systemName: isRecording ? "stop.circle.fill" : "record.circle")
-                                .font(.title3)
-                                .foregroundColor(isRecording ? .red : .white)
-                                .padding(12)
-                                .background(Color.black.opacity(0.5))
-                                .clipShape(Circle())
-                        }
-                    )
-                }
-                .padding(.trailing, 16)
+                cameraSwitcher
+                    .padding(.bottom, 60)
             }
-            .padding(.top, 48)
+            .opacity(showControls ? 1 : 0)
+            .animation(.easeInOut(duration: 0.25), value: showControls)
+            .zIndex(1)
+        }
+        #endif
+    }
+
+    @ViewBuilder
+    private func standardOverlayControls(
+        in geometry: GeometryProxy,
+        showsAppActions: Bool = true,
+        showsCameraMenu: Bool = true
+    ) -> some View {
+        VStack(spacing: 0) {
+            topControlBar(
+                in: geometry,
+                showsAppActions: showsAppActions,
+                showsCameraMenu: showsCameraMenu
+            )
+            .padding(.top, max(16, geometry.safeAreaInsets.top + 12))
 
             Spacer()
 
+            #if os(macOS) || os(tvOS) || os(visionOS)
             if cameras.count > 1 {
                 cameraSwitcher
-                    .padding(.bottom, 40)
+                    .padding(.horizontal, 16)
+                    .padding(.bottom, max(24, geometry.safeAreaInsets.bottom + 24))
+            }
+            #endif
+        }
+    }
+
+    @ViewBuilder
+    private func topControlBar(
+        in geometry: GeometryProxy,
+        showsAppActions: Bool,
+        showsCameraMenu: Bool
+    ) -> some View {
+        HStack(alignment: .top) {
+            dismissButton
+
+            Spacer()
+
+            if showsAppActions {
+                HStack(spacing: 12) {
+                    if showsCameraMenu {
+                        cameraMenu
+                    }
+                    screenshotButton
+                    recordingButton
+                }
             }
         }
-        .opacity(showControls ? 1 : 0)
-        .animation(.easeInOut(duration: 0.25), value: showControls)
-        .zIndex(1)
-        #elseif os(macOS)
+        .padding(.leading, geometry.safeAreaInsets.leading + 16)
+        .padding(.trailing, geometry.safeAreaInsets.trailing + 16)
+    }
+
+    private var dismissButton: some View {
+        Button(action: dismissPlayback) {
+            controlImage(systemName: "chevron.left")
+        }
+    }
+
+    @ViewBuilder
+    private var cameraMenu: some View {
+        #if os(tvOS)
+        EmptyView()
+        #else
+        if cameras.count > 1 {
+            Menu {
+                ForEach(cameras) { camera in
+                    Button(camera.name) {
+                        if camera.url != activeCameraURL {
+                            switchCamera(to: camera)
+                        }
+                    }
+                }
+            } label: {
+                controlImage(systemName: "video.fill")
+            }
+        }
+        #endif
+    }
+
+    private var screenshotButton: some View {
+        Button(action: takeScreenshot) {
+            controlImage(systemName: "camera.fill")
+        }
+    }
+
+    private var recordingButton: some View {
+        Button(
+            action: { isRecording ? stopRecording() : startRecording() },
+            label: {
+                controlImage(
+                    systemName: isRecording ? "stop.circle.fill" : "record.circle",
+                    foregroundColor: isRecording ? .red : .white
+                )
+            }
+        )
+    }
+
+    private var playPauseButton: some View {
+        Button(action: togglePlayback) {
+            controlImage(systemName: playerObserver.isPlaybackActive ? "pause.fill" : "play.fill")
+        }
+    }
+
+    private var tabletopPlaybackControls: some View {
+        VStack(spacing: 22) {
+            Spacer()
+
+            HStack(spacing: 28) {
+                playPauseButton
+
+                if cameras.count > 1 {
+                    cameraMenu
+                }
+
+                screenshotButton
+                recordingButton
+            }
+            .font(.title2)
+
+            HStack(spacing: 8) {
+                Circle()
+                    .fill(Color.red)
+                    .frame(width: 8, height: 8)
+                Text("Live")
+                    .font(.caption.weight(.semibold))
+                    .foregroundColor(.white.opacity(0.85))
+            }
+
+            Spacer()
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color.black)
+    }
+
+    private func controlImage(systemName: String, foregroundColor: Color = .white) -> some View {
+        Image(systemName: systemName)
+            .font(.title3)
+            .foregroundColor(foregroundColor)
+            .padding(12)
+            .background(Color.black.opacity(0.5))
+            .clipShape(Circle())
+    }
+
+    private func dismissPlayback() {
+        if let onDismiss = onDismiss {
+            onDismiss()
+        } else {
+            dismiss()
+        }
+    }
+
+    private func tabletopControlRegion(in geometry: GeometryProxy) -> CGRect? {
+        #if os(iOS)
+        if #available(iOS 27.1, *) {
+            let aspectRatio = geometry.size.height / max(geometry.size.width, 1)
+
+            // Limit the fallback to unusually wide iPhone portrait canvases.
+            // Ordinary iPhones remain much narrower/taller in portrait, while
+            // iPhone Duo tabletop presents a phone idiom with a wide lower
+            // display area and a shorter portrait aspect ratio.
+            if UIDevice.current.userInterfaceIdiom == .phone,
+               geometry.size.width >= 500,
+               geometry.size.height > geometry.size.width,
+               aspectRatio < 1.6 {
+                let height = max(220, geometry.size.height * 0.38)
+                return CGRect(
+                    x: 0,
+                    y: geometry.size.height - height,
+                    width: geometry.size.width,
+                    height: height
+                )
+            }
+        }
+        #endif
+
+        return nil
+    }
+
+    #if os(macOS)
+    private var macOverlayControls: some View {
         VStack(spacing: 0) {
             HStack(alignment: .top) {
                 Spacer()
                 HStack(spacing: 10) {
-                    Button(action: takeScreenshot) {
-                        Image(systemName: "camera.fill")
-                            .font(.title3)
-                            .foregroundColor(.white)
-                            .padding(12)
-                            .background(Color.black.opacity(0.5))
-                            .clipShape(Circle())
-                    }
-                    .buttonStyle(.plain)
+                    screenshotButton
+                        .buttonStyle(.plain)
 
-                    Button(
-                        action: { isRecording ? stopRecording() : startRecording() },
-                        label: {
-                            Image(systemName: isRecording ? "stop.circle.fill" : "record.circle")
-                                .font(.title3)
-                                .foregroundColor(isRecording ? .red : .white)
-                                .padding(12)
-                                .background(Color.black.opacity(0.5))
-                                .clipShape(Circle())
-                        }
-                    )
-                    .buttonStyle(.plain)
+                    recordingButton
+                        .buttonStyle(.plain)
 
                     Button(action: {
                         NSApplication.shared.windows.first?.toggleFullScreen(nil)
                     }, label: {
-                        Image(systemName: "arrow.up.left.and.arrow.down.right")
-                            .font(.title3)
-                            .foregroundColor(.white)
-                            .padding(12)
-                            .background(Color.black.opacity(0.5))
-                            .clipShape(Circle())
+                        controlImage(systemName: "arrow.up.left.and.arrow.down.right")
                     })
                     .buttonStyle(.plain)
                 }
@@ -404,22 +604,8 @@ struct VideoPlayerView: View {
                     .padding(.bottom, 20)
             }
         }
-        .opacity(showControls ? 1 : 0)
-        .animation(.easeInOut(duration: 0.25), value: showControls)
-        .zIndex(100)
-        #elseif os(tvOS)
-        if cameras.count > 1 {
-            VStack {
-                Spacer()
-                cameraSwitcher
-                    .padding(.bottom, 60)
-            }
-            .opacity(showControls ? 1 : 0)
-            .animation(.easeInOut(duration: 0.25), value: showControls)
-            .zIndex(1)
-        }
-        #endif
     }
+    #endif
 
     @ViewBuilder
     private var cameraSwitcher: some View {
@@ -454,7 +640,13 @@ private extension VideoPlayerView {
     func setupPlayer() {
         if let existingPlayer = existingPlayer {
             player = existingPlayer
-            player?.play()
+            if userWantsPlayback {
+                player?.play()
+                playerObserver.isPlaybackActive = true
+            } else {
+                player?.pause()
+                playerObserver.isPlaybackActive = false
+            }
         } else if let url = URL(string: activeCameraURL) {
             let output = AVPlayerItemVideoOutput(pixelBufferAttributes: [
                 kCVPixelBufferPixelFormatTypeKey as String: kCVPixelFormatType_32BGRA
@@ -466,8 +658,11 @@ private extension VideoPlayerView {
             videoOutput = output
             let newPlayer = AVPlayer(playerItem: item)
             player = newPlayer
-            player?.play()
+            if userWantsPlayback {
+                newPlayer.play()
+            }
             playerObserver.observe(player: newPlayer, playerItem: item)
+            playerObserver.isPlaybackActive = userWantsPlayback
         }
     }
 
@@ -490,7 +685,7 @@ private extension VideoPlayerView {
             while !Task.isCancelled {
                 try? await Task.sleep(for: .seconds(3))
                 guard !Task.isCancelled else { return }
-                if playerObserver.needsRetry {
+                if playerObserver.needsRetry && userWantsPlayback {
                     reconnectPlayer()
                 }
             }
@@ -534,13 +729,51 @@ private extension VideoPlayerView {
         }
     }
 
+    func togglePlayback() {
+        guard let player else { return }
+        switch player.timeControlStatus {
+        case .playing, .waitingToPlayAtSpecifiedRate:
+            userWantsPlayback = false
+            player.pause()
+            playerObserver.isPlaybackActive = false
+        case .paused:
+            userWantsPlayback = true
+            if playerObserver.needsRetry && existingPlayer == nil {
+                reconnectPlayer()
+            } else {
+                player.play()
+                playerObserver.isPlaybackActive = true
+            }
+        @unknown default:
+            userWantsPlayback = true
+            player.play()
+            playerObserver.isPlaybackActive = true
+        }
+    }
+
     func configureAudioAndScreen() {
         #if os(iOS) || os(tvOS) || os(visionOS)
+        let audioSession = AVAudioSession.sharedInstance()
         do {
-            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .moviePlayback)
-            try AVAudioSession.sharedInstance().setActive(true)
+            try audioSession.setCategory(.playback, mode: .moviePlayback)
         } catch {
             print("Failed to set audio session category: \(error)")
+        }
+
+        if #available(iOS 27.0, tvOS 27.0, visionOS 27.0, *) {
+            audioSession.activate(options: []) { _, error in
+                if let error {
+                    print("Failed to activate audio session: \(error)")
+                }
+            }
+        } else {
+            DispatchQueue.global(qos: .userInitiated).async {
+                do {
+                    try audioSession.setActive(true)
+                } catch {
+                    print("Failed to activate audio session: \(error)")
+                }
+            }
         }
         #endif
 
