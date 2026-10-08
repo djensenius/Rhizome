@@ -91,7 +91,7 @@ class PlayerObserver: NSObject, ObservableObject {
                     self?.isBuffering = true
                     self?.isPlaybackActive = true
                 case .paused:
-                    self?.isBuffering = true
+                    self?.isBuffering = false
                     self?.isPlaybackActive = false
                 @unknown default:
                     break
@@ -273,7 +273,7 @@ struct VideoPlayerView: View {
                 }
 
                 // Buffering indicator
-                if playerObserver.isBuffering {
+                if playerObserver.isBuffering && playerObserver.isPlaybackActive {
                     ProgressView()
                         .progressViewStyle(.circular)
                         .scaleEffect(1.5)
