@@ -548,11 +548,12 @@ struct VideoPlayerView: View {
         if #available(iOS 27.1, *) {
             let aspectRatio = geometry.size.height / max(geometry.size.width, 1)
 
-            // The fallback is intentionally limited to iPhone Duo. Without
-            // that device signal, ordinary 16:9 iPhones can look like a wide
-            // portrait tabletop canvas and should keep standard AVKit controls.
+            // Limit the fallback to unusually wide iPhone portrait canvases.
+            // Ordinary iPhones remain much narrower/taller in portrait, while
+            // iPhone Duo tabletop presents a phone idiom with a wide lower
+            // display area and a shorter portrait aspect ratio.
             if UIDevice.current.userInterfaceIdiom == .phone,
-               UIDevice.current.name.localizedCaseInsensitiveContains("Duo"),
+               geometry.size.width >= 500,
                geometry.size.height > geometry.size.width,
                aspectRatio < 1.6 {
                 let height = max(220, geometry.size.height * 0.38)
