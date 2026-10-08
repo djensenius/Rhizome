@@ -205,6 +205,7 @@ struct VideoPlayerView: View {
 
     // Controls visibility
     @State private var showControls = true
+    @State private var userWantsPlayback = true
     @State private var hideTask: Task<Void, Never>?
 
     @Environment(\.dismiss) var dismiss
@@ -631,8 +632,13 @@ private extension VideoPlayerView {
     func setupPlayer() {
         if let existingPlayer = existingPlayer {
             player = existingPlayer
-            player?.play()
-            playerObserver.isPlaybackActive = true
+            if userWantsPlayback {
+                player?.play()
+                playerObserver.isPlaybackActive = true
+            } else {
+                player?.pause()
+                playerObserver.isPlaybackActive = false
+            }
         } else if let url = URL(string: activeCameraURL) {
             let output = AVPlayerItemVideoOutput(pixelBufferAttributes: [
                 kCVPixelBufferPixelFormatTypeKey as String: kCVPixelFormatType_32BGRA
@@ -644,8 +650,11 @@ private extension VideoPlayerView {
             videoOutput = output
             let newPlayer = AVPlayer(playerItem: item)
             player = newPlayer
-            player?.play()
+            if userWantsPlayback {
+                newPlayer.play()
+            }
             playerObserver.observe(player: newPlayer, playerItem: item)
+            playerObserver.isPlaybackActive = userWantsPlayback
         }
     }
 
@@ -668,7 +677,7 @@ private extension VideoPlayerView {
             while !Task.isCancelled {
                 try? await Task.sleep(for: .seconds(3))
                 guard !Task.isCancelled else { return }
-                if playerObserver.needsRetry {
+                if playerObserver.needsRetry && userWantsPlayback {
                     reconnectPlayer()
                 }
             }
@@ -716,12 +725,20 @@ private extension VideoPlayerView {
         guard let player else { return }
         switch player.timeControlStatus {
         case .playing, .waitingToPlayAtSpecifiedRate:
+            userWantsPlayback = false
             player.pause()
+            playerObserver.needsRetry = false
             playerObserver.isPlaybackActive = false
         case .paused:
-            player.play()
-            playerObserver.isPlaybackActive = true
+            userWantsPlayback = true
+            if playerObserver.needsRetry && existingPlayer == nil {
+                reconnectPlayer()
+            } else {
+                player.play()
+                playerObserver.isPlaybackActive = true
+            }
         @unknown default:
+            userWantsPlayback = true
             player.play()
             playerObserver.isPlaybackActive = true
         }
