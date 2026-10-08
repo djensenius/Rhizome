@@ -548,13 +548,11 @@ struct VideoPlayerView: View {
         if #available(iOS 27.1, *) {
             let aspectRatio = geometry.size.height / max(geometry.size.width, 1)
 
-            // The iPhone Duo folded/tabletop simulator reports a wide portrait
-            // canvas to the embedded player, but the fold/reserved-region API
-            // is not consistently available in this view hierarchy on CI. Use
-            // the lower portion of that wide portrait layout for playback
-            // controls while leaving ordinary tall iPhone portrait layouts to
-            // the standard AVKit controls.
+            // The fallback is intentionally limited to iPhone Duo. Without
+            // that device signal, ordinary 16:9 iPhones can look like a wide
+            // portrait tabletop canvas and should keep standard AVKit controls.
             if UIDevice.current.userInterfaceIdiom == .phone,
+               UIDevice.current.name.localizedCaseInsensitiveContains("Duo"),
                geometry.size.height > geometry.size.width,
                aspectRatio < 1.6 {
                 let height = max(220, geometry.size.height * 0.38)
@@ -732,7 +730,6 @@ private extension VideoPlayerView {
         case .playing, .waitingToPlayAtSpecifiedRate:
             userWantsPlayback = false
             player.pause()
-            playerObserver.needsRetry = false
             playerObserver.isPlaybackActive = false
         case .paused:
             userWantsPlayback = true
